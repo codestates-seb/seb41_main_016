@@ -28,16 +28,16 @@ public class Reservation {
 
     private LocalDateTime createdAt;
 
-    @OneToOne
-    @JoinColumn(name = "PAYMENT_ID")
-    private Payment payment;
-
-    @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
-
-    @ManyToOne
-    @JoinColumn(name = "ROOM_ID")
-    private Room room;
+//    @OneToOne
+//    @JoinColumn(name = "PAYMENT_ID")
+//    private Payment payment;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "MEMBER_ID")
+//    private Member member;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "ROOM_ID")
+//    private Room room;
 
 }

@@ -28,8 +28,11 @@ public class Hotel {
     @Column(name = "room") // 클래스 바꿔야함
     private String room;
 
-    @Column(name = "location")
-    private String location;
+    @Column(name = "location_x")
+    private String location_x;
+
+    @Column(name = "location_y")
+    private String location_y;
 
     @Column(name = "service")
     private String service;
@@ -42,9 +45,6 @@ public class Hotel {
 
     @Column(name = "review")
     private String review;
-
-    @Column(name = "price")
-    private Integer price;
 
 
 }
