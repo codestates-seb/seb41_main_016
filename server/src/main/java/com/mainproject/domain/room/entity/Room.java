@@ -22,10 +22,5 @@ public class Room {
 
     private int price;
 
-//    @ManyToOne
-//    private Hotel hotel;
-
-//    @OneToMany(mappedBy = "room")
-//    private
 
 }
