@@ -1,10 +1,8 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "./components/Header";
 import Main from "./pages/Main";
 import NotFound from "./pages/NotFound";
 import AllProducts from "./pages/AllProducts";
-import Footer from "./components/Footer";
 import DetailedProduct from "./pages/DetailedProduct";
 import WishLists from "./pages/WishLists";
 import MyPage from "./pages/MyPage";
@@ -34,11 +32,5 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return (
-    <>
-      <Header />
-      <RouterProvider router={router} />
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
