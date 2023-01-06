@@ -23,7 +23,7 @@ public class Room {
     @ManyToOne
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "room")
-    private 
+//    @OneToMany(mappedBy = "room")
+//    private
 
 }
