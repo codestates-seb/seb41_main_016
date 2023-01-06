@@ -29,7 +29,7 @@ public class Review {
     @Column(nullable = false)
     private int score;
 
-    private List<String> image = new ArrayList<>();
+//    private List<String> image = new ArrayList<>();
 
 
 }

@@ -20,10 +20,7 @@ public class Room {
 
     private String roomNumber;
 
-    @ManyToOne
-    private Hotel hotel;
+    private int price;
 
-//    @OneToMany(mappedBy = "room")
-//    private
 
 }
