@@ -16,10 +16,13 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roomId;
 
+    @Column
     private int headCount;
 
-    private String roomNumber;
+    @Column
+    private String roomType;
 
+    @Column
     private int price;
 
 
