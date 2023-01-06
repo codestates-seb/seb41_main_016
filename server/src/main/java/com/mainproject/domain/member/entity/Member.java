@@ -26,6 +26,6 @@ public class Member {
 //    List<Review> reviews = new ArrayList<>();
 //    List<Reservation> reservations = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
-    List<Bucket> buckets = new ArrayList<>();
+//    @OneToMany(mappedBy = "member")
+//    List<Bucket> buckets = new ArrayList<>();
 }
