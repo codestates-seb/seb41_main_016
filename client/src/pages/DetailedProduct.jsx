@@ -12,9 +12,9 @@ const TitleBox = styled.div`
 `;
 
 const HotelName = styled.span`
-    font-size: 26px;
+    font-size: 32px;
     line-height: 30px;
-    font-weight: 600;
+    font-weight: 700;
 `;
 
 const ShortInfoBox = styled.div`
@@ -23,13 +23,21 @@ const ShortInfoBox = styled.div`
 `;
 
 const ShortInfo = styled.span`
+    font-size: 20px;
+    font-weight: 700;
     align-items: center;
     display: inline-flex;
     margin-right: 15px;
+    svg {
+        color: #fbbc05;
+        margin-right: 3px;
+    }
 `;
 
 const ReviewNumber = styled(ShortInfo)`
     text-decoration: underline;
+    font-size: 20px;
+    font-weight: 700;
 `;
 
 const PictureContainer = styled.div`
@@ -53,12 +61,14 @@ const InfoBox = styled.div`
 `;
 
 const InfoTitle = styled.div`
-    font-weight: 400;
+    font-size: 24px;
+    font-weight: 700;
     line-height: 20px;
     margin-bottom: 15px;
 `;
 
 const InfoText = styled.div`
+    line-height: 23px;
     margin: 0 0 24px 0;
     font-size: 14px;
     font-weight: 400;
@@ -84,10 +94,26 @@ const ReservationContainer = styled.div`
 
 const DailyPrice = styled.div`
     margin-bottom: 24px;
+    font-weight: 700;
+    font-size: 20px;
 `;
 
 const DatePickerContainer = styled.div`
     display: flex;
+    border: 1px solid ${(props) => props.theme.lightGrey};
+    border-radius: 8px;
+    input {
+        width: 100%;
+        padding: 20px;
+    }
+`;
+
+const PersonSelection = styled.div`
+    flex-direction: column;
+    border: 1px solid ${(props) => props.theme.lightGrey};
+    border-radius: 8px;
+    background-color: aliceblue;
+    height: 50px;
 `;
 
 export default function DetailedProduct() {
@@ -126,6 +152,8 @@ export default function DetailedProduct() {
                         <ReactDatePicker />
                         <ReactDatePicker />
                     </DatePickerContainer>
+                    <PersonSelection>인원 선택</PersonSelection>
+                    <PersonSelection>객실 타입 선택</PersonSelection>
                 </ReservationContainer>
             </MainContainer>
         </LayoutContainer>

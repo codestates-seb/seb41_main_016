@@ -15,7 +15,10 @@ const SlideContainer = styled.div`
     margin-top: 24px;
 
     .carousel:hover .slide .legend {
-        opacity: 0.5;
+        opacity: 0.6;
+    }
+    .carousel.carousel-slider {
+        border-radius: 10px;
     }
 `;
 export default function PicCarousel() {

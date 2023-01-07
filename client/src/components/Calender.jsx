@@ -3,12 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 
-const ReactDatePicker = () => {
+export default function ReactDatePicker() {
     const [startDate, setStartDate] = useState(new Date());
     return (
         <DatePicker
             locale={ko}
             dateFormat="yyyy-MM-dd"
+            placeholderText="체크인"
             renderCustomHeader={({
                 monthDate,
                 customHeaderCount,
@@ -69,6 +70,4 @@ const ReactDatePicker = () => {
             monthsShown={2}
         />
     );
-};
-
-export default ReactDatePicker;
+}
