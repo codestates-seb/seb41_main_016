@@ -23,7 +23,6 @@ const CategoryTitleBox = styled.div`
   }
   h3 {
     margin-left: 16px;
-    font-family: 'Noto Sans KR', sans-serif;
     font-weight: bold;
     color: ${(props) => props.theme.lightBlack};
   }

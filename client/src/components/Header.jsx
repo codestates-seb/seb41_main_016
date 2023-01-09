@@ -28,7 +28,6 @@ const HeaderBox = styled.header`
 
 const Title = styled.h1`
   color: ${(props) => props.theme.pointColor};
-  font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
 `;
 

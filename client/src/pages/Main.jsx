@@ -43,14 +43,12 @@ const MainContentBox = styled.div`
 const CategoryTitleBox = styled.div`
   width: 100%;
   h2 {
-    font-family: 'Noto Sans KR', sans-serif;
     font-weight: bold;
     font-size: 32px;
     color: ${(props) => props.theme.lightBlack};
     margin-bottom: 8px;
   }
   span {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 20px;
     color: ${(props) => props.theme.darkGrey};
   }
@@ -71,7 +69,6 @@ const AllCategoryButton = styled.a`
   border-radius: 10px;
   background-color: ${(props) => props.theme.pointColor};
   color: ${(props) => props.theme.white};
-  font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
   font-size: 20px;
 `;

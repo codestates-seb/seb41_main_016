@@ -18,7 +18,6 @@ const Search = styled.input`
   border: 2px solid ${(props) => props.theme.lightGrey};
   &::placeholder {
     color: ${(props) => props.theme.lightGrey};
-    font-family: 'Noto Sans KR', sans-serif;
   }
   &:focus-visible {
     width: 100%;
