@@ -3,7 +3,7 @@ import styled from "styled-components";
 import LayoutContainer from "../components/LayoutContainer";
 import { AiFillStar } from "react-icons/ai";
 import PicCarousel from "../components/Carousel";
-import ReactDatePicker from "../components/Calender";
+import Calender from "../components/Calender";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -81,7 +81,7 @@ const MapContainer = styled.div`
     height: 400px;
 `;
 
-const ReservationContainer = styled.div`
+const RoomActionContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 50px;
@@ -98,21 +98,14 @@ const DailyPrice = styled.div`
     font-size: 20px;
 `;
 
-const DatePickerContainer = styled.div`
-    display: flex;
-    border: 1px solid ${(props) => props.theme.lightGrey};
+const ReservationContainer = styled.div`
+    border: 1px solid #b0b0b0;
     border-radius: 8px;
-    input {
-        width: 100%;
-        padding: 20px;
-    }
 `;
 
 const PersonSelection = styled.div`
     flex-direction: column;
-    border: 1px solid ${(props) => props.theme.lightGrey};
-    border-radius: 8px;
-    background-color: aliceblue;
+    background-color: transparent;
     height: 50px;
 `;
 
@@ -146,15 +139,14 @@ export default function DetailedProduct() {
                     <InfoTitle>숙소 위치</InfoTitle>
                     <MapContainer />
                 </InfoBox>
-                <ReservationContainer>
+                <RoomActionContainer>
                     <DailyPrice>₩246,000 /박</DailyPrice>
-                    <DatePickerContainer>
-                        <ReactDatePicker />
-                        <ReactDatePicker />
-                    </DatePickerContainer>
-                    <PersonSelection>인원 선택</PersonSelection>
-                    <PersonSelection>객실 타입 선택</PersonSelection>
-                </ReservationContainer>
+                    <ReservationContainer>
+                        <Calender />
+                        <PersonSelection>인원 선택</PersonSelection>
+                        <PersonSelection>객실 타입 선택</PersonSelection>
+                    </ReservationContainer>
+                </RoomActionContainer>
             </MainContainer>
         </LayoutContainer>
     );
