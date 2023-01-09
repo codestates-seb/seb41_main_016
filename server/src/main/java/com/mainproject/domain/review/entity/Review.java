@@ -1,26 +1,26 @@
 package com.mainproject.domain.review.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mainproject.domain.hotel.entity.Hotel;
+import com.mainproject.global.audit.Auditable;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Getter
-@Setter
+
+@Data
+@Builder
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-public class Review {
+@NoArgsConstructor
+//@Embeddable
+public class Review{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewId;
 
-    @Column(nullable = false)
+    @Column(nullable = false)  // TODO: 직접 등록할 떄 Auditable 사용
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
@@ -30,6 +30,10 @@ public class Review {
     private int score;
 
 //    private List<String> image = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
 
 }
