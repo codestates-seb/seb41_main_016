@@ -36,7 +36,7 @@ public class MemberService {
         return memberRepository.save(findMember);
     }
 
-    public Member findMember(long memberId) {
+    public Member findMember(Long memberId) {
 
         return findExistedMember(memberId);
     }
@@ -46,7 +46,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public void deleteMember(long memberId) {
+    public void deleteMember(Long memberId) {
 
         memberRepository.delete(findExistedMember(memberId));
     }
@@ -58,7 +58,7 @@ public class MemberService {
         }
     }
 
-    private Member findExistedMember(long memberId) {
+    private Member findExistedMember(Long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
 
         return optionalMember.orElseThrow(
