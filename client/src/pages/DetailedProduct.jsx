@@ -156,17 +156,28 @@ const DependentText = styled.div`
 const DropdownMark = styled.div`
     position: absolute;
     right: 10%;
-    top: 50%;
+    top: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
+    svg {
+        font-weight: 800;
+    }
 `;
 
 export default function DetailedProduct() {
     const [ModalOpen, setModalOpen] = useState(false);
+    const [Modal2Open, setModal2Open] = useState(false);
+    const [roomType, setRoomType] = useState("객실 타입");
+
     const onSelectModal = () => {
         setModalOpen(!ModalOpen);
     };
+
+    const onSelectModal2 = () => {
+        setModal2Open(!Modal2Open);
+    };
+    console.log(Modal2Open);
 
     const [adultCount, setAdultCount] = useState(0);
     const [childrenCount, setChildrenCount] = useState(0);
@@ -239,7 +250,7 @@ export default function DetailedProduct() {
                             </FixedText>
                             {ModalOpen ? (
                                 <CountSelection
-                                    onSelectModal={onSelectModal}
+                                    onToggle={onSelectModal}
                                     adultCount={adultCount}
                                     removeAdultCount={removeAdultCount}
                                     addAdultCount={addAdultCount}
@@ -250,10 +261,10 @@ export default function DetailedProduct() {
                             ) : null}
                         </PersonSelection>
                         <RoomChoice>
-                            <FixedText>
-                                객실 타입 선택{" "}
-                                <DependentText>객실타입</DependentText>
-                                {ModalOpen ? (
+                            <FixedText onClick={onSelectModal2}>
+                                객실 타입 선택
+                                <DependentText>{roomType}</DependentText>
+                                {Modal2Open ? (
                                     <DropdownMark>
                                         <IoIosArrowUp />
                                     </DropdownMark>
@@ -263,8 +274,12 @@ export default function DetailedProduct() {
                                     </DropdownMark>
                                 )}
                             </FixedText>
-                            {ModalOpen ? (
-                                <RoomSelection onSelectModal={onSelectModal} />
+                            {Modal2Open ? (
+                                <RoomSelection
+                                    modalOpened={Modal2Open}
+                                    onToggle={onSelectModal2}
+                                    onOptionClick={setRoomType}
+                                />
                             ) : null}
                         </RoomChoice>
                     </ReservationContainer>
