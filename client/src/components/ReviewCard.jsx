@@ -47,6 +47,7 @@ const RegDate = styled.div`
 
 const ReviewContent = styled.div`
     color: ${(props) => props.theme.darkGrey};
+    line-height: 24px;
 `;
 
 const MoreContent = styled.div`
