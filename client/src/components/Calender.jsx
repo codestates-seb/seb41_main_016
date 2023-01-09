@@ -7,6 +7,7 @@ import styled from "styled-components";
 const DatePickerContainer = styled.div`
     display: flex;
     input {
+        cursor: pointer;
         background-color: transparent;
         width: 100%;
         height: 65px;
