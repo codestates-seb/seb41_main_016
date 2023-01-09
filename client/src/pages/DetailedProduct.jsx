@@ -4,6 +4,11 @@ import LayoutContainer from "../components/LayoutContainer";
 import { AiFillStar } from "react-icons/ai";
 import PicCarousel from "../components/Carousel";
 import Calender from "../components/Calender";
+import CountSelection from "../components/CountSelection";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
+import { useState } from "react";
+import RoomSelection from "../components/RoomSelection";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -104,12 +109,84 @@ const ReservationContainer = styled.div`
 `;
 
 const PersonSelection = styled.div`
+    display: flex;
     flex-direction: column;
     background-color: transparent;
-    height: 50px;
+    border-bottom: 1px solid #b0b0b0;
+    height: 65px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        border-radius: 8px;
+        border: 2px solid ${(props) => props.theme.darkBlack};
+    }
+`;
+
+const RoomChoice = styled.div`
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    height: 65px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        border-radius: 8px;
+        border: 2px solid ${(props) => props.theme.darkBlack};
+    }
+`;
+
+const FixedText = styled.div`
+    position: relative;
+    z-index: 1;
+    left: 5%;
+    top: 25%;
+    font-size: 14px;
+    font-weight: bold;
+`;
+
+const DependentText = styled.div`
+    position: relative;
+    top: 35%;
+    font-size: 12px;
+    font-weight: lighter;
+    color: rgb(113, 113, 113);
+`;
+
+const DropdownMark = styled.div`
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export default function DetailedProduct() {
+    const [ModalOpen, setModalOpen] = useState(false);
+    const onSelectModal = () => {
+        setModalOpen(!ModalOpen);
+    };
+
+    const [adultCount, setAdultCount] = useState(0);
+    const [childrenCount, setChildrenCount] = useState(0);
+
+    const addAdultCount = () => {
+        adultCount >= 0 && setAdultCount(adultCount + 1);
+    };
+
+    const removeAdultCount = () => {
+        adultCount && setAdultCount(adultCount - 1);
+    };
+
+    const addChildrenCount = () => {
+        childrenCount >= 0 && setChildrenCount(childrenCount + 1);
+    };
+
+    const removeChildrenCount = () => {
+        childrenCount && setChildrenCount(childrenCount - 1);
+    };
+
     return (
         <LayoutContainer>
             <TitleBox>
@@ -119,7 +196,7 @@ export default function DetailedProduct() {
                         <AiFillStar />
                         4.2
                     </ShortInfo>
-                    <ReviewNumber>후기 200개</ReviewNumber>
+                    <ReviewNumber>후기 2,077개</ReviewNumber>
                     <ShortInfo>서울 서초구 강남</ShortInfo>
                 </ShortInfoBox>
             </TitleBox>
@@ -143,8 +220,53 @@ export default function DetailedProduct() {
                     <DailyPrice>₩246,000 /박</DailyPrice>
                     <ReservationContainer>
                         <Calender />
-                        <PersonSelection>인원 선택</PersonSelection>
-                        <PersonSelection>객실 타입 선택</PersonSelection>
+                        <PersonSelection>
+                            <FixedText onClick={onSelectModal}>
+                                인원 선택
+                                <DependentText>
+                                    {" "}
+                                    성인 {adultCount}, 아동 {childrenCount}
+                                </DependentText>
+                                {ModalOpen ? (
+                                    <DropdownMark>
+                                        <IoIosArrowUp />
+                                    </DropdownMark>
+                                ) : (
+                                    <DropdownMark>
+                                        <IoIosArrowDown />
+                                    </DropdownMark>
+                                )}
+                            </FixedText>
+                            {ModalOpen ? (
+                                <CountSelection
+                                    onSelectModal={onSelectModal}
+                                    adultCount={adultCount}
+                                    removeAdultCount={removeAdultCount}
+                                    addAdultCount={addAdultCount}
+                                    childrenCount={childrenCount}
+                                    addChildrenCount={addChildrenCount}
+                                    removeChildrenCount={removeChildrenCount}
+                                />
+                            ) : null}
+                        </PersonSelection>
+                        <RoomChoice>
+                            <FixedText>
+                                객실 타입 선택{" "}
+                                <DependentText>객실타입</DependentText>
+                                {ModalOpen ? (
+                                    <DropdownMark>
+                                        <IoIosArrowUp />
+                                    </DropdownMark>
+                                ) : (
+                                    <DropdownMark>
+                                        <IoIosArrowDown />
+                                    </DropdownMark>
+                                )}
+                            </FixedText>
+                            {ModalOpen ? (
+                                <RoomSelection onSelectModal={onSelectModal} />
+                            ) : null}
+                        </RoomChoice>
                     </ReservationContainer>
                 </RoomActionContainer>
             </MainContainer>

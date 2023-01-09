@@ -9,6 +9,7 @@ const DatePickerContainer = styled.div`
     input {
         background-color: transparent;
         width: 100%;
+        height: 65px;
         border: none;
         padding: 40px 20px 13px 20px;
         &:hover {
@@ -49,8 +50,8 @@ const InOutBox = styled.div`
 const FixedText = styled.div`
     position: absolute;
     z-index: 1;
-    left: 10%;
-    top: 20%;
+    left: 11%;
+    top: 23%;
     font-size: 14px;
     font-weight: bold;
 `;
