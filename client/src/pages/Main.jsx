@@ -32,7 +32,7 @@ const SearchBarWrapper = styled.div`
 `;
 
 const MainContentBox = styled.div`
-  height: calc(100vh - 480px);
+  height: calc(100vh - 460px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
