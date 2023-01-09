@@ -156,12 +156,12 @@ const DependentText = styled.div`
 const DropdownMark = styled.div`
     position: absolute;
     right: 10%;
-    top: 40%;
+    top: 27%;
     display: flex;
     align-items: center;
     justify-content: center;
     svg {
-        font-weight: 800;
+        font-size: 20px;
     }
 `;
 
