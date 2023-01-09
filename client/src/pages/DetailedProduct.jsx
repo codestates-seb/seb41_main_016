@@ -10,6 +10,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 import RoomSelection from "../components/RoomSelection";
 import ReviewCard from "../components/ReviewCard";
+import { useRef } from "react";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -44,6 +45,7 @@ const ReviewNumber = styled(ShortInfo)`
     text-decoration: underline;
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
 `;
 
 const PictureContainer = styled.div`
@@ -218,6 +220,11 @@ const ReviewNumber2 = styled(ReviewNumber)`
 `;
 
 export default function DetailedProduct() {
+    const inputToFocus = useRef(); //한 page내에서 다른 component로 이동하기
+    const moveTo = () => {
+        inputToFocus.current.scrollIntoView({ behavior: "smooth" }); //이동하기 효과 -> 부드럽게
+    };
+
     const [ModalOpen, setModalOpen] = useState(false);
     const [Modal2Open, setModal2Open] = useState(false);
     const [roomType, setRoomType] = useState("객실 타입");
@@ -259,7 +266,7 @@ export default function DetailedProduct() {
                         <AiFillStar />
                         4.2
                     </ShortInfo>
-                    <ReviewNumber>후기 2,077개</ReviewNumber>
+                    <ReviewNumber onClick={moveTo}>후기 2,077개</ReviewNumber>
                     <ShortInfo>서울 서초구 강남</ShortInfo>
                 </ShortInfoBox>
             </TitleBox>
@@ -345,7 +352,7 @@ export default function DetailedProduct() {
                     </TotalBox>
                 </RoomActionContainer>
             </MainContainer>
-            <ReviewContainer>
+            <ReviewContainer ref={inputToFocus}>
                 <ShortInfoBox2>
                     <ShortInfo2>
                         <AiFillStar />
