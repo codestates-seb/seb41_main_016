@@ -1,13 +1,11 @@
 package com.mainproject.domain.payment.entity;
 
+import com.mainproject.domain.reservation.entity.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,4 +18,9 @@ public class Payment {
     private Long paymentId;
 
     private LocalDateTime paymentDate;
+
+    @OneToOne
+    @JoinColumn(name = "RESERVATION_ID")
+    private Reservation reservation;
+
 }

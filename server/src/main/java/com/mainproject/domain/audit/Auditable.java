@@ -1,4 +1,4 @@
-package com.stack.stackoverflow.audit;
+package com.mainproject.domain.audit;
 
 import lombok.Getter;
 import lombok.Setter;

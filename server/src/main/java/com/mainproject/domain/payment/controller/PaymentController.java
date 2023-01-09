@@ -1,2 +1,4 @@
-package com.mainproject.domain.payment.controller;public class PaymentController {
+package com.mainproject.domain.payment.controller;
+
+public class PaymentController {
 }

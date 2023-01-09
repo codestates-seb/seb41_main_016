@@ -25,5 +25,7 @@ public class Room {
     @Column
     private int price;
 
-
+    @ManyToOne
+    @JoinColumn(name = "HOTEL_ID")
+    private Hotel hotel;
 }

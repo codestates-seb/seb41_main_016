@@ -1,5 +1,6 @@
 package com.mainproject.domain.reservation.entity;
 
+import com.mainproject.domain.audit.Auditable;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.payment.entity.Payment;
 import com.mainproject.domain.room.entity.Room;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reservation {
+public class Reservation extends Auditable {
     @Id
     private Long reservationId;
 
@@ -24,20 +25,15 @@ public class Reservation {
 
     private int person;
 
+    private int price;
+
     private boolean status;
 
-    private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-//    @OneToOne
-//    @JoinColumn(name = "PAYMENT_ID")
-//    private Payment payment;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_ID")
-//    private Member member;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "ROOM_ID")
-//    private Room room;
-
+    @ManyToOne
+    @JoinColumn(name = "ROOM_ID")
+    private Room room;
 }
