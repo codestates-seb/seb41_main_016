@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { CgProfile } from "react-icons/cg";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { MdOutlineSearch } from "react-icons/md";
+import { useLocation } from "react-router-dom";
 
 const HeaderBox = styled.header`
   position: fixed;
   width: 100%;
   height: 80px;
-  background-color: ${(props) => props.theme.white};
+  background-color: ${(props) =>
+    props.selected ? props.theme.pointColor : props.theme.white};
   border-bottom: 1px solid ${(props) => props.theme.lightGrey};
   z-index: 5050;
   display: flex;
@@ -28,14 +30,16 @@ const HeaderBox = styled.header`
 
 const Title = styled.h1`
   color: ${(props) => props.theme.pointColor};
+  visibility: ${(props) => (props.selected ? "hidden" : "visible")};
 `;
 
 const SearchBox = styled.div`
   position: relative;
   width: 50%;
-  display: flex;
   justify-content: flex-end;
   align-items: center;
+  display: flex;
+  visibility: ${(props) => (props.selected ? "hidden" : "visible")};
 `;
 
 const Search = styled.input`
@@ -50,13 +54,13 @@ const Search = styled.input`
   &:focus-visible {
     width: 100%;
     border: none;
-    /* outline: 1px solid ${(props) => props.theme.pointColor}; */
     box-shadow: 0 2px 20px 0 ${(props) => props.theme.lightGrey};
   }
 `;
 
 const IconBox = styled.div`
-  color: ${(props) => props.theme.lightBlack};
+  color: ${(props) =>
+    props.selected ? props.theme.white : props.theme.lightBlack};
 `;
 
 const Icon = styled.span`
@@ -72,17 +76,18 @@ const SearchIcon = styled.div`
 `;
 
 export default function Header() {
+  const { pathname } = useLocation();
   return (
-    <HeaderBox>
+    <HeaderBox selected={pathname === "/" ? true : false}>
       <div>
-        <Title>Why Stay?</Title>
-        <SearchBox>
+        <Title selected={pathname === "/" ? true : false}>Why Stay?</Title>
+        <SearchBox selected={pathname === "/" ? true : false}>
           <Search type="text" placeholder="원하는 숙소명을 검색해주세요." />
           <SearchIcon>
             <MdOutlineSearch />
           </SearchIcon>
         </SearchBox>
-        <IconBox>
+        <IconBox selected={pathname === "/" ? true : false}>
           <CgProfile />
           <Icon>
             <CgMenuRightAlt />

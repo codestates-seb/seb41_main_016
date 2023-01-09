@@ -8,21 +8,6 @@ import LayoutContainer from "../components/LayoutContainer";
 const WishBox = styled.div`
   height: 100vh;
   overflow: auto;
-  ::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: transparent;
-  }
 `;
 
 const Title = styled.div`
@@ -46,18 +31,6 @@ export default function WishLists() {
         <WishBox>
           <Title>위시리스트</Title>
           <CardBox>
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
             <HotelCard />
             <HotelCard />
             <HotelCard />
