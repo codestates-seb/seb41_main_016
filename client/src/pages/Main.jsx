@@ -22,6 +22,10 @@ const MainTitleBox = styled.div`
     font-family: 'Leferi Point Type';
     font-weight: 900;
     white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 `;
 
