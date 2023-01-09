@@ -9,6 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 import RoomSelection from "../components/RoomSelection";
+import ReviewCard from "../components/ReviewCard";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -56,7 +57,7 @@ const MainContainer = styled.div`
     margin-top: 40px;
     border-bottom: 1px solid ${(props) => props.theme.lightGrey};
     padding-bottom: 48px;
-    margin-bottom: 50px; //임시
+    margin-bottom: 15px;
 `;
 
 const InfoBox = styled.div`
@@ -98,7 +99,7 @@ const RoomActionContainer = styled.div`
 `;
 
 const DailyPrice = styled.div`
-    margin-bottom: 24px;
+    margin: 14px 0 24px 0;
     font-weight: 700;
     font-size: 20px;
 `;
@@ -106,6 +107,7 @@ const DailyPrice = styled.div`
 const ReservationContainer = styled.div`
     border: 1px solid #b0b0b0;
     border-radius: 8px;
+    margin-bottom: 24px;
 `;
 
 const PersonSelection = styled.div`
@@ -163,6 +165,56 @@ const DropdownMark = styled.div`
     svg {
         font-size: 20px;
     }
+`;
+
+const ConfirmButton = styled.button`
+    background-color: ${(props) => props.theme.pointColor};
+    color: ${(props) => props.theme.white};
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 24px;
+`;
+
+const ConfirmAlert = styled.div`
+    color: ${(props) => props.theme.mediumGrey};
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #b0b0b0;
+`;
+
+const TotalBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const TotalText = styled.div`
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 20px;
+`;
+
+const TotalPrice = styled(TotalText)``;
+
+const ReviewContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const ShortInfoBox2 = styled(ShortInfoBox)`
+    margin-bottom: 30px;
+`;
+
+const ShortInfo2 = styled(ShortInfo)`
+    font-size: 24px;
+`;
+
+const ReviewNumber2 = styled(ReviewNumber)`
+    text-decoration: none;
 `;
 
 export default function DetailedProduct() {
@@ -228,7 +280,7 @@ export default function DetailedProduct() {
                     <MapContainer />
                 </InfoBox>
                 <RoomActionContainer>
-                    <DailyPrice>₩246,000 /박</DailyPrice>
+                    <DailyPrice>₩98,200 /박</DailyPrice>
                     <ReservationContainer>
                         <Calender />
                         <PersonSelection>
@@ -283,8 +335,26 @@ export default function DetailedProduct() {
                             ) : null}
                         </RoomChoice>
                     </ReservationContainer>
+                    <ConfirmButton>예약하기</ConfirmButton>
+                    <ConfirmAlert>
+                        예약하기를 누르면 결제 창이 뜹니다.
+                    </ConfirmAlert>
+                    <TotalBox>
+                        <TotalText>총 합계</TotalText>
+                        <TotalPrice>₩246,000</TotalPrice>
+                    </TotalBox>
                 </RoomActionContainer>
             </MainContainer>
+            <ReviewContainer>
+                <ShortInfoBox2>
+                    <ShortInfo2>
+                        <AiFillStar />
+                        4.2
+                    </ShortInfo2>
+                    <ReviewNumber2>후기 2,077개</ReviewNumber2>
+                </ShortInfoBox2>
+                <ReviewCard />
+            </ReviewContainer>
         </LayoutContainer>
     );
 }
