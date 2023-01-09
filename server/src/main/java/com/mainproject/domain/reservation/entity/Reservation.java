@@ -1,8 +1,5 @@
 package com.mainproject.domain.reservation.entity;
 
-import com.mainproject.domain.member.entity.Member;
-import com.mainproject.domain.payment.entity.Payment;
-import com.mainproject.domain.room.entity.Room;
 import lombok.*;
 
 import javax.persistence.*;
