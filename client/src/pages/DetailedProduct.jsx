@@ -12,6 +12,7 @@ import CountSelection from "../components/ForDetails.jsx/CountSelection";
 import RoomSelection from "../components/ForDetails.jsx/RoomSelection";
 import ReviewCard from "../components/ForDetails.jsx/ReviewCard";
 import ConfirmModal from "../components/ForDetails.jsx/ConfirmModal";
+import Paginations from "../components/Paginations";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -43,7 +44,7 @@ const ShortInfo = styled.span`
 `;
 
 const ReviewNumber = styled(ShortInfo)`
-    text-decoration: underline;
+    text-decoration: underline; //적용 안됐음
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
@@ -271,6 +272,14 @@ export default function DetailedProduct() {
         childrenCount && setChildrenCount(childrenCount - 1);
     };
 
+    //pagination
+    const [limit, setLimit] = useState(4);
+    const [page, setPage] = useState(1);
+
+    const handlePageChange = (page) => {
+        setPage(page);
+    };
+
     return (
         <LayoutContainer>
             <TitleBox>
@@ -383,6 +392,12 @@ export default function DetailedProduct() {
                 </ShortInfoBox2>
                 <ReviewCard />
             </ReviewContainer>
+            <Paginations
+                total={8}
+                limit={limit}
+                page={page}
+                handlePageChange={handlePageChange}
+            />
         </LayoutContainer>
     );
 }
