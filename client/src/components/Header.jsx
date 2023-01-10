@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CgProfile } from 'react-icons/cg';
 import { CgMenuRightAlt } from 'react-icons/cg';
 import SearchBar from './SearchBar';
+import { useNavigate } from 'react-router-dom';
+import HeaderDropdown from './HeaderDropdown';
+import LoginModal from './LoginModal';
 
 const HeaderBox = styled.header`
   position: fixed;
@@ -29,10 +32,17 @@ const HeaderBox = styled.header`
 const Title = styled.h1`
   color: ${(props) => props.theme.pointColor};
   font-weight: bold;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const IconBox = styled.div`
+  position: relative;
   color: ${(props) => props.theme.lightBlack};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Icon = styled.span`
@@ -40,18 +50,34 @@ const Icon = styled.span`
 `;
 
 export default function Header() {
+  const navigate = useNavigate();
+  const [menu, setMenu] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [inText, setInText] = useState('');
+
   return (
-    <HeaderBox>
-      <div>
-        <Title>Why Stay?</Title>
-        <SearchBar />
-        <IconBox>
-          <CgProfile />
-          <Icon>
-            <CgMenuRightAlt />
-          </Icon>
-        </IconBox>
-      </div>
-    </HeaderBox>
+    <>
+      {modalOpen && <LoginModal setModalOpen={setModalOpen} inText={inText} />}
+      <HeaderBox>
+        <div>
+          <Title onClick={() => navigate('/')}>Why Stay?</Title>
+          <SearchBar />
+          <IconBox>
+            <CgProfile onClick={() => navigate('/mypage/:id')} />
+            <Icon>
+              <CgMenuRightAlt onClick={() => setMenu(!menu)} />
+              {menu && (
+                <HeaderDropdown
+                  menu={menu}
+                  setMenu={setMenu}
+                  setModalOpen={setModalOpen}
+                  setInText={setInText}
+                />
+              )}
+            </Icon>
+          </IconBox>
+        </div>
+      </HeaderBox>
+    </>
   );
 }
