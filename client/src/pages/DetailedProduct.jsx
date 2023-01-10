@@ -1,9 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import LayoutContainer from "../components/LayoutContainer";
 import { AiFillStar } from "react-icons/ai";
-import PicCarousel from "../components/Carousel";
-import ReactDatePicker from "../components/Calender";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
+import { useState } from "react";
+import { useRef } from "react";
+import LayoutContainer from "../components/LayoutContainer";
+import PicCarousel from "../components/ForDetails.jsx/Carousel";
+import Calender from "../components/ForDetails.jsx/Calender";
+import CountSelection from "../components/ForDetails.jsx/CountSelection";
+import RoomSelection from "../components/ForDetails.jsx/RoomSelection";
+import ReviewCard from "../components/ForDetails.jsx/ReviewCard";
+import ConfirmModal from "../components/ForDetails.jsx/ConfirmModal";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -38,6 +46,7 @@ const ReviewNumber = styled(ShortInfo)`
     text-decoration: underline;
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
 `;
 
 const PictureContainer = styled.div`
@@ -51,7 +60,7 @@ const MainContainer = styled.div`
     margin-top: 40px;
     border-bottom: 1px solid ${(props) => props.theme.lightGrey};
     padding-bottom: 48px;
-    margin-bottom: 50px; //임시
+    margin-bottom: 15px;
 `;
 
 const InfoBox = styled.div`
@@ -81,7 +90,7 @@ const MapContainer = styled.div`
     height: 400px;
 `;
 
-const ReservationContainer = styled.div`
+const RoomActionContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 50px;
@@ -93,30 +102,175 @@ const ReservationContainer = styled.div`
 `;
 
 const DailyPrice = styled.div`
-    margin-bottom: 24px;
+    margin: 14px 0 24px 0;
     font-weight: 700;
     font-size: 20px;
 `;
 
-const DatePickerContainer = styled.div`
-    display: flex;
-    border: 1px solid ${(props) => props.theme.lightGrey};
+const ReservationContainer = styled.div`
+    border: 1px solid #b0b0b0;
     border-radius: 8px;
-    input {
-        width: 100%;
-        padding: 20px;
-    }
+    margin-bottom: 24px;
 `;
 
 const PersonSelection = styled.div`
+    display: flex;
     flex-direction: column;
-    border: 1px solid ${(props) => props.theme.lightGrey};
+    background-color: transparent;
+    border-bottom: 1px solid #b0b0b0;
+    height: 65px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        border-radius: 8px;
+        border: 2px solid ${(props) => props.theme.darkBlack};
+    }
+`;
+
+const RoomChoice = styled.div`
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    height: 65px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        border-radius: 8px;
+        border: 2px solid ${(props) => props.theme.darkBlack};
+    }
+`;
+
+const FixedText = styled.div`
+    position: relative;
+    z-index: 1;
+    left: 5%;
+    top: 25%;
+    font-size: 14px;
+    font-weight: bold;
+`;
+
+const DependentText = styled.div`
+    position: relative;
+    top: 35%;
+    font-size: 12px;
+    font-weight: lighter;
+    color: rgb(113, 113, 113);
+`;
+
+const DropdownMark = styled.div`
+    position: absolute;
+    right: 10%;
+    top: 27%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        font-size: 20px;
+    }
+`;
+
+const ConfirmContainer = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+`;
+
+const ConfirmButton = styled.button`
+    background-color: ${(props) => props.theme.pointColor};
+    color: ${(props) => props.theme.white};
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
     border-radius: 8px;
-    background-color: aliceblue;
-    height: 50px;
+    cursor: pointer;
+    margin-bottom: 24px;
+    &:hover {
+        background-color: #008080;
+    }
+`;
+
+const ConfirmAlert = styled.div`
+    color: ${(props) => props.theme.mediumGrey};
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #b0b0b0;
+`;
+
+const TotalBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const TotalText = styled.div`
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 20px;
+`;
+
+const TotalPrice = styled(TotalText)``;
+
+const ReviewContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const ShortInfoBox2 = styled(ShortInfoBox)`
+    margin-bottom: 30px;
+`;
+
+const ShortInfo2 = styled(ShortInfo)`
+    font-size: 24px;
+`;
+
+const ReviewNumber2 = styled(ReviewNumber)`
+    text-decoration: none;
 `;
 
 export default function DetailedProduct() {
+    const inputToFocus = useRef(); //한 page내에서 다른 component로 이동하기
+    const moveTo = () => {
+        inputToFocus.current.scrollIntoView({ behavior: "smooth" }); //이동하기 효과 -> 부드럽게
+    };
+
+    const [ModalOpen, setModalOpen] = useState(false);
+    const [Modal2Open, setModal2Open] = useState(false);
+    const [roomType, setRoomType] = useState("객실 타입");
+    const [ConfirmModalOpen, setConfirmModal] = useState(false);
+
+    const onSelectModal = () => {
+        setModalOpen(!ModalOpen);
+    };
+
+    const onSelectModal2 = () => {
+        setModal2Open(!Modal2Open);
+    };
+
+    const handleConfirm = () => {
+        setConfirmModal(!ConfirmModalOpen);
+    };
+
+    const [adultCount, setAdultCount] = useState(0);
+    const [childrenCount, setChildrenCount] = useState(0);
+
+    const addAdultCount = () => {
+        adultCount >= 0 && setAdultCount(adultCount + 1);
+    };
+
+    const removeAdultCount = () => {
+        adultCount && setAdultCount(adultCount - 1);
+    };
+
+    const addChildrenCount = () => {
+        childrenCount >= 0 && setChildrenCount(childrenCount + 1);
+    };
+
+    const removeChildrenCount = () => {
+        childrenCount && setChildrenCount(childrenCount - 1);
+    };
+
     return (
         <LayoutContainer>
             <TitleBox>
@@ -126,7 +280,7 @@ export default function DetailedProduct() {
                         <AiFillStar />
                         4.2
                     </ShortInfo>
-                    <ReviewNumber>후기 200개</ReviewNumber>
+                    <ReviewNumber onClick={moveTo}>후기 2,077개</ReviewNumber>
                     <ShortInfo>서울 서초구 강남</ShortInfo>
                 </ShortInfoBox>
             </TitleBox>
@@ -146,16 +300,89 @@ export default function DetailedProduct() {
                     <InfoTitle>숙소 위치</InfoTitle>
                     <MapContainer />
                 </InfoBox>
-                <ReservationContainer>
-                    <DailyPrice>₩246,000 /박</DailyPrice>
-                    <DatePickerContainer>
-                        <ReactDatePicker />
-                        <ReactDatePicker />
-                    </DatePickerContainer>
-                    <PersonSelection>인원 선택</PersonSelection>
-                    <PersonSelection>객실 타입 선택</PersonSelection>
-                </ReservationContainer>
+                <RoomActionContainer>
+                    <DailyPrice>₩98,200 /박</DailyPrice>
+                    <ReservationContainer>
+                        <Calender />
+                        <PersonSelection>
+                            <FixedText onClick={onSelectModal}>
+                                인원 선택
+                                <DependentText>
+                                    {" "}
+                                    성인 {adultCount}, 아동 {childrenCount}
+                                </DependentText>
+                                {ModalOpen ? (
+                                    <DropdownMark>
+                                        <IoIosArrowUp />
+                                    </DropdownMark>
+                                ) : (
+                                    <DropdownMark>
+                                        <IoIosArrowDown />
+                                    </DropdownMark>
+                                )}
+                            </FixedText>
+                            {ModalOpen ? (
+                                <CountSelection
+                                    onToggle={onSelectModal}
+                                    adultCount={adultCount}
+                                    removeAdultCount={removeAdultCount}
+                                    addAdultCount={addAdultCount}
+                                    childrenCount={childrenCount}
+                                    addChildrenCount={addChildrenCount}
+                                    removeChildrenCount={removeChildrenCount}
+                                />
+                            ) : null}
+                        </PersonSelection>
+                        <RoomChoice>
+                            <FixedText onClick={onSelectModal2}>
+                                객실 타입 선택
+                                <DependentText>{roomType}</DependentText>
+                                {Modal2Open ? (
+                                    <DropdownMark>
+                                        <IoIosArrowUp />
+                                    </DropdownMark>
+                                ) : (
+                                    <DropdownMark>
+                                        <IoIosArrowDown />
+                                    </DropdownMark>
+                                )}
+                            </FixedText>
+                            {Modal2Open ? (
+                                <RoomSelection
+                                    modalOpened={Modal2Open}
+                                    onToggle={onSelectModal2}
+                                    onOptionClick={setRoomType}
+                                />
+                            ) : null}
+                        </RoomChoice>
+                    </ReservationContainer>
+                    <ConfirmContainer>
+                        <ConfirmButton onClick={handleConfirm}>
+                            예약하기
+                        </ConfirmButton>
+                        {ConfirmModalOpen ? (
+                            <ConfirmModal handleConfirm={handleConfirm} />
+                        ) : null}
+                        <ConfirmAlert>
+                            예약하기를 누르면 결제 창이 뜹니다.
+                        </ConfirmAlert>
+                    </ConfirmContainer>
+                    <TotalBox>
+                        <TotalText>총 합계</TotalText>
+                        <TotalPrice>₩246,000</TotalPrice>
+                    </TotalBox>
+                </RoomActionContainer>
             </MainContainer>
+            <ReviewContainer ref={inputToFocus}>
+                <ShortInfoBox2>
+                    <ShortInfo2>
+                        <AiFillStar />
+                        4.2
+                    </ShortInfo2>
+                    <ReviewNumber2>후기 2,077개</ReviewNumber2>
+                </ShortInfoBox2>
+                <ReviewCard />
+            </ReviewContainer>
         </LayoutContainer>
     );
 }
