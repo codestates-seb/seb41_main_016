@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import LayoutContainer from "../components/LayoutContainer";
 import ReservationContainer from "../components/mypage/container/ReservationContainer";
 import ReviewContainer from "../components/mypage/container/ReviewContainer";
@@ -55,30 +53,26 @@ export default function MyPage() {
   };
 
   return (
-    <>
-      <Header />
-      <LayoutContainer>
-        <MyBox>
-          <Title>마이페이지</Title>
-          <MyLayout>
-            <Profile />
-            <Wrap>
-              <ReservationContainer handleBtnClick={handleBtnClick} />
-              <ReviewContainer handleBtnClick={handleBtnClick} ARRAY={ARRAY} />
-            </Wrap>
-          </MyLayout>
-        </MyBox>
-        {isModal && (
-          <ReviewModal
-            inText={inText}
-            openModal={openModal}
-            clicked={clicked}
-            handleStarClick={handleStarClick}
-            ARRAY={ARRAY}
-          />
-        )}
-      </LayoutContainer>
-      <Footer />
-    </>
+    <LayoutContainer>
+      <MyBox>
+        <Title>마이페이지</Title>
+        <MyLayout>
+          <Profile />
+          <Wrap>
+            <ReservationContainer handleBtnClick={handleBtnClick} />
+            <ReviewContainer handleBtnClick={handleBtnClick} ARRAY={ARRAY} />
+          </Wrap>
+        </MyLayout>
+      </MyBox>
+      {isModal && (
+        <ReviewModal
+          inText={inText}
+          openModal={openModal}
+          clicked={clicked}
+          handleStarClick={handleStarClick}
+          ARRAY={ARRAY}
+        />
+      )}
+    </LayoutContainer>
   );
 }

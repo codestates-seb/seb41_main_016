@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import HotelCard from "../components/HotelCard";
 import LayoutContainer from "../components/LayoutContainer";
 
@@ -25,19 +23,15 @@ const CardBox = styled.div`
 
 export default function WishLists() {
   return (
-    <>
-      <Header />
-      <LayoutContainer>
-        <WishBox>
-          <Title>위시리스트</Title>
-          <CardBox>
-            <HotelCard />
-            <HotelCard />
-            <HotelCard />
-          </CardBox>
-        </WishBox>
-      </LayoutContainer>
-      <Footer />
-    </>
+    <LayoutContainer>
+      <WishBox>
+        <Title>위시리스트</Title>
+        <CardBox>
+          <HotelCard />
+          <HotelCard />
+          <HotelCard />
+        </CardBox>
+      </WishBox>
+    </LayoutContainer>
   );
 }

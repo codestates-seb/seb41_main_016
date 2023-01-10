@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 const HeaderBox = styled.header`
   position: fixed;
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: ${(props) =>
     props.selected ? props.theme.pointColor : props.theme.white};
   border-bottom: 1px solid ${(props) => props.theme.lightGrey};
@@ -18,7 +18,7 @@ const HeaderBox = styled.header`
   align-items: center;
   > div {
     display: flex;
-    max-width: 1440px;
+    max-width: 1264px;
     min-width: 1024px;
     width: 100%;
     padding: 0 24px 0 24px;

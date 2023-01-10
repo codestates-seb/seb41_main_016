@@ -1,9 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useCallback } from "react";
-import axios from "axios";
 
 const ProfileBox = styled.div`
   width: 280px;
