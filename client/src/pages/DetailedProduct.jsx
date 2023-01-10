@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import LayoutContainer from "../components/LayoutContainer";
 import { AiFillStar } from "react-icons/ai";
-import PicCarousel from "../components/Carousel";
-import Calender from "../components/Calender";
-import CountSelection from "../components/CountSelection";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
-import RoomSelection from "../components/RoomSelection";
-import ReviewCard from "../components/ReviewCard";
 import { useRef } from "react";
+import LayoutContainer from "../components/LayoutContainer";
+import PicCarousel from "../components/ForDetails.jsx/Carousel";
+import Calender from "../components/ForDetails.jsx/Calender";
+import CountSelection from "../components/ForDetails.jsx/CountSelection";
+import RoomSelection from "../components/ForDetails.jsx/RoomSelection";
+import ReviewCard from "../components/ForDetails.jsx/ReviewCard";
+import ConfirmModal from "../components/ForDetails.jsx/ConfirmModal";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -169,6 +170,12 @@ const DropdownMark = styled.div`
     }
 `;
 
+const ConfirmContainer = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+`;
+
 const ConfirmButton = styled.button`
     background-color: ${(props) => props.theme.pointColor};
     color: ${(props) => props.theme.white};
@@ -179,6 +186,9 @@ const ConfirmButton = styled.button`
     border-radius: 8px;
     cursor: pointer;
     margin-bottom: 24px;
+    &:hover {
+        background-color: #008080;
+    }
 `;
 
 const ConfirmAlert = styled.div`
@@ -228,6 +238,7 @@ export default function DetailedProduct() {
     const [ModalOpen, setModalOpen] = useState(false);
     const [Modal2Open, setModal2Open] = useState(false);
     const [roomType, setRoomType] = useState("객실 타입");
+    const [ConfirmModalOpen, setConfirmModal] = useState(false);
 
     const onSelectModal = () => {
         setModalOpen(!ModalOpen);
@@ -236,7 +247,10 @@ export default function DetailedProduct() {
     const onSelectModal2 = () => {
         setModal2Open(!Modal2Open);
     };
-    console.log(Modal2Open);
+
+    const handleConfirm = () => {
+        setConfirmModal(!ConfirmModalOpen);
+    };
 
     const [adultCount, setAdultCount] = useState(0);
     const [childrenCount, setChildrenCount] = useState(0);
@@ -342,10 +356,17 @@ export default function DetailedProduct() {
                             ) : null}
                         </RoomChoice>
                     </ReservationContainer>
-                    <ConfirmButton>예약하기</ConfirmButton>
-                    <ConfirmAlert>
-                        예약하기를 누르면 결제 창이 뜹니다.
-                    </ConfirmAlert>
+                    <ConfirmContainer>
+                        <ConfirmButton onClick={handleConfirm}>
+                            예약하기
+                        </ConfirmButton>
+                        {ConfirmModalOpen ? (
+                            <ConfirmModal handleConfirm={handleConfirm} />
+                        ) : null}
+                        <ConfirmAlert>
+                            예약하기를 누르면 결제 창이 뜹니다.
+                        </ConfirmAlert>
+                    </ConfirmContainer>
                     <TotalBox>
                         <TotalText>총 합계</TotalText>
                         <TotalPrice>₩246,000</TotalPrice>
