@@ -53,7 +53,7 @@ export default function Footer() {
         <FooterBox>
             <Wrap>
                 <TextBox>
-                    <span className="temaText">@ 2023 Tema_16</span>
+                    <span className="temaText">@ 2023 Team_16</span>
                     <span>Copyright 2023. 왜 가? all rights reserved.</span>
                 </TextBox>
                 <TemaBox>

@@ -71,7 +71,7 @@ const SearchIcon = styled.div`
   position: absolute;
   right: 1rem;
   color: ${(props) => props.theme.pointColor};
-  margin-top: 1px;
+  margin-top: 5px;
   cursor: pointer;
 `;
 
