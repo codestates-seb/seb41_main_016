@@ -23,7 +23,7 @@ export default function ReservationContainer({ handleBtnClick }) {
         </ReservationWrap>
       </ReservationBox>
       <Paginations
-        total={40}
+        total={4}
         limit={limit}
         page={page}
         handlePageChange={handlePageChange}

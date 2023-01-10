@@ -30,5 +30,3 @@ export const ReservationWrap = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-gap: 20px;
 `;
-
-export const ReviewWrap = styled(ReservationWrap)``;

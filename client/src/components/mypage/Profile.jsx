@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCallback } from "react";
+import axios from "axios";
 
 const ProfileBox = styled.div`
   width: 280px;
@@ -37,7 +39,8 @@ const Wrap = styled.div`
   }
 `;
 
-const ProfileImgBox = styled.div`
+const ProfileImgBox = styled.input`
+  /* display: none; */
   border-radius: 50%;
   background-color: ${(props) => props.theme.lightGrey};
   height: 180px;
@@ -48,7 +51,6 @@ const ProfileImgBox = styled.div`
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   margin-left: 33px;
   line-height: 26px;
 
@@ -83,13 +85,15 @@ const UserInfo = styled.div`
     line-height: 26px;
   }
 
-  .modify_img {
+  /* .modify_img {
     font-weight: 700;
     text-decoration-line: underline;
     font-size: 18px;
     margin-bottom: 22px;
+    border: none;
     cursor: pointer;
-  }
+    background-color: transparent;
+  } */
   .modify_name {
     font-weight: 700;
     font-size: 18px;
@@ -140,20 +144,31 @@ const WishTextBox = styled.div`
   }
 `;
 
+const Btn = styled.button`
+  font-weight: 700;
+  text-decoration-line: underline;
+  font-size: 18px;
+  margin-bottom: 22px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+`;
+
 export default function Profile() {
   const [modify, setModify] = useState(false);
+
   return (
     <ProfileBox>
       <Wrap>
-        <ProfileImgBox></ProfileImgBox>
+        <ProfileImgBox />
         <ProfileText onClick={() => setModify((prev) => !prev)} modify={modify}>
           프로필 수정하기
         </ProfileText>
       </Wrap>
       {modify ? (
         <>
+          <Btn>사진 업데이트 하기</Btn>
           <UserInfo>
-            <span className="modify_img">사진 업데이트 하기</span>
             <label htmlFor="name" className="modify_name">
               이름
             </label>

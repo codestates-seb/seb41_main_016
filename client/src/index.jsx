@@ -12,9 +12,6 @@ const GlobalStyle = createGlobalStyle`
       outline: none;
       list-style: none;
       text-decoration: none;
-      ::-webkit-scrollbar {
-    width: 0.5rem;
-  }
     }
   }
 `;

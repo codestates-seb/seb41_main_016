@@ -21,7 +21,7 @@ export default function ReviewContainer({ handleBtnClick, ARRAY }) {
         </ReservationWrap>
       </ReviewBox>
       <Paginations
-        total={40}
+        total={4}
         limit={limit}
         page={page}
         handlePageChange={handlePageChange}

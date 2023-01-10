@@ -63,7 +63,7 @@ const Review = styled(Link)`
   text-underline-position: under;
   color: ${(props) => props.theme.pointColor};
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 1rem;
 `;
 
 export default function ReservationCard({ handleBtnClick }) {

@@ -33,6 +33,7 @@ const ModalView = styled.div`
   padding: 34px 56px 34px 56px;
   border-radius: 10px;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const HotelBox = styled.div`
@@ -88,6 +89,7 @@ const StarBox = styled.div`
   & svg {
     color: gray;
     cursor: pointer;
+    margin: 0.5rem;
   }
 
   :hover svg {
