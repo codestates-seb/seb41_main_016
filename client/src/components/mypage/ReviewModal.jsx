@@ -26,8 +26,8 @@ const ModalBackdrop = styled.div`
 
 const ModalView = styled.div`
   position: relative;
-  width: 40%;
-  height: 80%;
+  min-width: 40%;
+  min-height: 80%;
   background-color: ${(props) => props.theme.white};
   display: flex;
   padding: 34px 56px 34px 56px;
@@ -131,7 +131,7 @@ const Btn = styled.button`
   background-color: transparent;
   font-weight: 700;
   font-size: 18px;
-  padding: 2rem 6rem;
+  padding: 1rem 6rem;
   cursor: pointer;
 `;
 
