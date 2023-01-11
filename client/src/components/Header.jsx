@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CgProfile } from 'react-icons/cg';
 import { CgMenuRightAlt } from 'react-icons/cg';
 import SearchBar from './SearchBar';
+import { useNavigate } from 'react-router-dom';
+import HeaderDropdown from './HeaderDropdown';
+import LoginModal from './LoginModal';
 import { MdOutlineSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-
 
 const HeaderBox = styled.header`
   position: fixed;
@@ -34,7 +36,10 @@ const HeaderBox = styled.header`
 const Title = styled.h1`
   color: ${(props) => props.theme.pointColor};
   font-weight: bold;
-  visibility: ${(props) => (props.selected ? "hidden" : "visible")};
+   visibility: ${(props) => (props.selected ? "hidden" : "visible")};
+  &:hover {
+    cursor: pointer;
+    }
 `;
 
 const SearchBox = styled.div`
@@ -63,8 +68,12 @@ const Search = styled.input`
 `;
 
 const IconBox = styled.div`
+  position: relative;
   color: ${(props) =>
     props.selected ? props.theme.white : props.theme.lightBlack};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Icon = styled.span`
@@ -80,24 +89,40 @@ const SearchIcon = styled.div`
 `;
 
 export default function Header() {
+  const navigate = useNavigate();
+  const [menu, setMenu] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [inText, setInText] = useState('');
   const { pathname } = useLocation();
+  
   return (
-    <HeaderBox selected={pathname === "/" ? true : false}>
-      <div>
-        <Title selected={pathname === "/" ? true : false}>Why Stay?</Title>
-        <SearchBox selected={pathname === "/" ? true : false}>
+    <>
+      {modalOpen && <LoginModal setModalOpen={setModalOpen} inText={inText} />}
+      <HeaderBox selected={pathname === "/" ? true : false}>
+        <div>
+          <Title selected={pathname === "/" ? true : false} onClick={() => navigate('/')}>Why Stay?</Title>
+                  <SearchBox selected={pathname === "/" ? true : false}>
           <Search type="text" placeholder="원하는 숙소명을 검색해주세요." />
           <SearchIcon>
             <MdOutlineSearch />
           </SearchIcon>
         </SearchBox>
-        <IconBox selected={pathname === "/" ? true : false}>
-          <CgProfile />
-          <Icon>
-            <CgMenuRightAlt />
-          </Icon>
-        </IconBox>
-      </div>
-    </HeaderBox>
+          <IconBox selected={pathname === "/" ? true : false}>
+            <CgProfile onClick={() => navigate('/mypage/:id')} />
+            <Icon>
+              <CgMenuRightAlt onClick={() => setMenu(!menu)} />
+              {menu && (
+                <HeaderDropdown
+                  menu={menu}
+                  setMenu={setMenu}
+                  setModalOpen={setModalOpen}
+                  setInText={setInText}
+                />
+              )}
+            </Icon>
+          </IconBox>
+        </div>
+      </HeaderBox>
+    </>
   );
 }
