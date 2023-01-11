@@ -3,11 +3,11 @@ import styled from "styled-components";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
-import img1 from "../img/img1.webp";
-import img2 from "../img/img2.webp";
-import img3 from "../img/img3.webp";
-import img4 from "../img/img4.webp";
-import img5 from "../img/img5.webp";
+import img1 from "../../img/img1.webp";
+import img2 from "../../img/img2.webp";
+import img3 from "../../img/img3.webp";
+import img4 from "../../img/img4.webp";
+import img5 from "../../img/img5.webp";
 
 const SlideContainer = styled.div`
     display: flex;

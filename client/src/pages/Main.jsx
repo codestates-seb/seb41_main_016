@@ -22,6 +22,10 @@ const MainTitleBox = styled.div`
     font-family: 'Leferi Point Type';
     font-weight: 900;
     white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 `;
 
@@ -32,7 +36,6 @@ const SearchBarWrapper = styled.div`
 `;
 
 const MainContentBox = styled.div`
-  height: calc(100vh - 460px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -42,6 +45,7 @@ const MainContentBox = styled.div`
 
 const CategoryTitleBox = styled.div`
   width: 100%;
+  margin-bottom: 28px;
   h2 {
     font-weight: bold;
     font-size: 32px;
@@ -58,6 +62,7 @@ const CategoryCardBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 80px;
 `;
 
 const AllCategoryButton = styled.a`
