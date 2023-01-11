@@ -13,7 +13,7 @@ const FooterBox = styled.footer`
 
 const Wrap = styled.div`
     display: flex;
-    max-width: 1440px;
+    max-width: 1264px;
     min-width: 1024px;
     width: 100%;
     padding: 0 24px 0 24px;

@@ -44,7 +44,7 @@ const ShortInfo = styled.span`
 `;
 
 const ReviewNumber = styled(ShortInfo)`
-    text-decoration: underline; //적용 안됐음
+    border-bottom: 2px solid ${(props) => props.theme.lightBlack};
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
@@ -230,6 +230,12 @@ const ReviewNumber2 = styled(ReviewNumber)`
     text-decoration: none;
 `;
 
+const PaginationBox = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+`;
+
 export default function DetailedProduct() {
     const inputToFocus = useRef(); //한 page내에서 다른 component로 이동하기
     const moveTo = () => {
@@ -392,12 +398,14 @@ export default function DetailedProduct() {
                 </ShortInfoBox2>
                 <ReviewCard />
             </ReviewContainer>
-            <Paginations
-                total={8}
-                limit={limit}
-                page={page}
-                handlePageChange={handlePageChange}
-            />
+            <PaginationBox>
+                <Paginations
+                    total={8}
+                    limit={limit}
+                    page={page}
+                    handlePageChange={handlePageChange}
+                />
+            </PaginationBox>
         </LayoutContainer>
     );
 }

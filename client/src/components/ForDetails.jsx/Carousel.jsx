@@ -11,7 +11,7 @@ import img5 from "../../img/img5.webp";
 
 const SlideContainer = styled.div`
     display: flex;
-    width: 70%;
+    width: 100%;
     margin-top: 24px;
 
     .carousel:hover .slide .legend {
@@ -19,6 +19,10 @@ const SlideContainer = styled.div`
     }
     .carousel.carousel-slider {
         border-radius: 10px;
+        height: 600px;
+    }
+    .carousel .slide img {
+        height: 600px;
     }
 `;
 export default function PicCarousel() {
