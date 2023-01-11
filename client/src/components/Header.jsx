@@ -1,14 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import { CgProfile } from "react-icons/cg";
-import { CgMenuRightAlt } from "react-icons/cg";
+import React from 'react';
+import styled from 'styled-components';
+import { CgProfile } from 'react-icons/cg';
+import { CgMenuRightAlt } from 'react-icons/cg';
+import SearchBar from './SearchBar';
 import { MdOutlineSearch } from "react-icons/md";
 import { useLocation } from "react-router-dom";
+
 
 const HeaderBox = styled.header`
   position: fixed;
   width: 100%;
   height: 60px;
+
   background-color: ${(props) =>
     props.selected ? props.theme.pointColor : props.theme.white};
   border-bottom: 1px solid ${(props) => props.theme.lightGrey};
@@ -30,6 +33,7 @@ const HeaderBox = styled.header`
 
 const Title = styled.h1`
   color: ${(props) => props.theme.pointColor};
+  font-weight: bold;
   visibility: ${(props) => (props.selected ? "hidden" : "visible")};
 `;
 
