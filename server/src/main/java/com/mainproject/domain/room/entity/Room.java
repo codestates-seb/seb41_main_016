@@ -1,5 +1,6 @@
 package com.mainproject.domain.room.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.hotel.entity.Hotel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Room {
     @Column
     private int price;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "HOTEL_ID")
     private Hotel hotel;

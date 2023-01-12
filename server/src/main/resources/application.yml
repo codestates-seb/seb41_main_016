@@ -1,4 +1,7 @@
 spring:
+  redis:
+    host: localhost
+    port: 6379
   jpa:
     hibernate:
       ddl-auto: create
@@ -20,3 +23,10 @@ spring:
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
+jwt:
+  key: ${JWT_SECRET_KEY}
+  refresh-token-expiration-minutes: 120
+  access-token-expiration-minutes: 10
+mail:
+  address:
+    admin: admin@gmail.com

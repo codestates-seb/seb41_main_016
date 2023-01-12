@@ -2,6 +2,10 @@ package com.mainproject.domain.member.service;
 
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.repository.MemberRepository;
+import com.mainproject.global.auth.CustomAuthorityUtils;
+import com.mainproject.global.exception.BusinessLogicException;
+import com.mainproject.global.exception.ExceptionCode;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,13 +14,23 @@ import java.util.Optional;
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final CustomAuthorityUtils authorityUtils;
+    private final PasswordEncoder passwordEncoder;
 
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, CustomAuthorityUtils authorityUtils, PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
+        this.authorityUtils = authorityUtils;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
+
+        String password = passwordEncoder.encode(member.getPassword());
+        member.setPassword(password);
+
+        List<String> roles = authorityUtils.createRoles(member.getEmail());
+        member.setRoles(roles);
 
         return memberRepository.save(member);
     }
@@ -37,8 +51,9 @@ public class MemberService {
     }
 
     public Member findMember(Long memberId) {
+        Member member = findExistedMember(memberId);
 
-        return findExistedMember(memberId);
+        return member;
     }
 
     public List<Member> findMembers() {
@@ -54,7 +69,7 @@ public class MemberService {
     private void verifyExistsEmail(String email) {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         if(optionalMember.isPresent()) {
-            throw new RuntimeException("Member already exists");
+            throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
         }
     }
 
@@ -62,7 +77,7 @@ public class MemberService {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
 
         return optionalMember.orElseThrow(
-                () -> new RuntimeException("Member not found")
+                () -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND)
         );
     }
 }

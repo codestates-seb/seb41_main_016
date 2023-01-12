@@ -23,18 +23,11 @@ public class HotelService {
     @Transactional(readOnly = true)
     public Hotel findHotel(Long hotelId){
         Optional<Hotel> optionalHotel = hotelRepository.findById(hotelId);
+//        System.out.println("아이디 = "+ hotelRepository.findById(hotelId));
         return optionalHotel.orElseThrow(() ->
             new BusinessLogicException(ExceptionCode.HOTEL_NOT_FOUND));
     }
 
-//    public Hotel findTravel(Long hotelId){ // 카테고리
-//
-//        return null;
-//    }
-    public Page<Hotel> findAllHotels(int page, int size){
-        Pageable pageable = PageRequest.of(page,size, Sort.by("hotelId").descending());
-        return hotelRepository.findAll(pageable);
-    }
 
 
 }

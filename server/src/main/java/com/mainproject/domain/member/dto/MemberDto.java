@@ -52,8 +52,21 @@ public class MemberDto {
         private String name;
         private String image;
         private String nickname;
-        private List<Review> reviews;
-        private List<Reservation> reservations;
-        private List<Bucket> buckets;
+    }
+
+    @Getter
+    @Setter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    static public class MyPageResponse {
+        private long memberId;
+        private String email;
+        private String name;
+        private String image;
+        private String nickname;
+        List<Review> reviews;
+        List<Reservation> reservations;
+        List<Bucket> buckets;
     }
 }
