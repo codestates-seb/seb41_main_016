@@ -80,7 +80,8 @@ public class HotelController {
         return null;
     }
 
-    public ResponseEntity<MultiResponseDto<HotelHomeDto>> getMultiRewsponseDtoFromResponseEntity(Page<Hotel> allHotelByPageNation, List<Hotel> hotels){
+    public ResponseEntity<MultiResponseDto<HotelHomeDto>> getMultiRewsponseDtoFromResponseEntity(
+            Page<Hotel> allHotelByPageNation, List<Hotel> hotels){
 
         return new ResponseEntity<>(new MultiResponseDto<>(
                 mapper.hotelInfoToHotelHomeDto(hotels), allHotelByPageNation),HttpStatus.OK);

@@ -16,7 +16,7 @@ public interface RoomMapper {
     RoomDto.Response roomToRoomResponseDto(Room room);
 
 
-    public default List<RoomResponseDto> roomToRoomList(List<Room> rooms){ // HOTEL컨트롤러에서 room 리스트로 변환 하는데 사용
+    default List<RoomResponseDto> roomToRoomList(List<Room> rooms){ // room 컨트롤러에서 room 리스트로 변환 하는데 사용
         return rooms.stream()
                 .map(room ->{
                     return RoomResponseDto.builder()

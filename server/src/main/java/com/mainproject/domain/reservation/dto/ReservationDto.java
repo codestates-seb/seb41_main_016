@@ -60,5 +60,8 @@ public class ReservationDto {
         private int price;
 
         private boolean status;
+
+        private String date;
+
     }
 }

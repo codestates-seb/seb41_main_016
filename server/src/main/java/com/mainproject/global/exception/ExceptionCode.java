@@ -4,7 +4,9 @@ import lombok.Getter;
 
 public enum ExceptionCode {
     HOTEL_NOT_FOUND(404,"hotel not found"),
-    ROOM_NOT_FOUND(404,"roon not found");
+    ROOM_NOT_FOUND(404,"roon not found"),
+
+    RESERVATION_NOT_FOUNT(404, "reservation not found");
     @Getter
     private int status;
 

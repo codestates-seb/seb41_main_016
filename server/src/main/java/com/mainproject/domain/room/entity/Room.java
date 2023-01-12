@@ -2,6 +2,7 @@ package com.mainproject.domain.room.entity;
 
 import com.mainproject.domain.hotel.entity.Hotel;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,8 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "ROOM")
+@Data
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +22,7 @@ public class Room {
     @Column
     private int headCount;
 
-    @Column
+    @Column(name = "room_type")
     private String roomType;
 
     @Column

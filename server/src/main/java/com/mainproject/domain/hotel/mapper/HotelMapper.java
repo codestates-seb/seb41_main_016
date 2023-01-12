@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class HotelMapper {
-    public HotelDetailResponseDto hotelToDetailResponse(Hotel hotel, List<ImageToImageListDto> image, List<RoomResponseDto> rooms, List<ReviewResponseDto> reviews){
+    public HotelDetailResponseDto hotelToDetailResponse(Hotel hotel, List<ImageToImageListDto> image,
+                                                        List<RoomResponseDto> rooms, List<ReviewResponseDto> reviews){
         return HotelDetailResponseDto.builder()
             .hotelId(hotel.getHotelId())
             .image(image)
