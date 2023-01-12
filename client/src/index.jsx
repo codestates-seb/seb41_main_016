@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import reset from 'styled-reset';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import reset from "styled-reset";
+import App from "./App";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -17,19 +17,6 @@ const GlobalStyle = createGlobalStyle`
       display: none;
       }
     }
-  }
-  @font-face {
-    font-family: 'Leferi Point Type';
-    src: url('./src/fonts/LeferiPoint-Black.eot');
-    src: local('./src/fonts/Leferi Point Type Black'), local('./src/fonts/LeferiPoint-Black'),
-        url('./src/fonts/LeferiPoint-Black.eot?#iefix') format('embedded-opentype'),
-        url('./src/fonts/LeferiPoint-Black.woff2') format('woff2'),
-        url('./src/fonts/LeferiPoint-Black.woff') format('woff'),
-        url('./src/fonts/LeferiPoint-Black.ttf') format('truetype'),
-        url('./src/fonts/LeferiPoint-Black.svg#LeferiPoint-Black') format('svg');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
   }
   @font-face {
       font-family: 'Noto Sans KR', sans-serif;
@@ -69,22 +56,22 @@ const GlobalStyle = createGlobalStyle`
   } 
 `;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const colorTheme = {
-  darkBlack: '#000',
-  mediumBlack: '#333',
-  lightBlack: '#4a4a4a',
-  darkGrey: '#999',
-  mediumGrey: '#a4a4a4',
-  lightGrey: '#ccc',
-  white: '#fff',
-  pointColor: '#20b2aa',
+    darkBlack: "#000",
+    mediumBlack: "#333",
+    lightBlack: "#4a4a4a",
+    darkGrey: "#999",
+    mediumGrey: "#a4a4a4",
+    lightGrey: "#ccc",
+    white: "#fff",
+    pointColor: "#20b2aa",
 };
 
 root.render(
-  <ThemeProvider theme={colorTheme}>
-    <GlobalStyle />
-    <App />
-  </ThemeProvider>
+    <ThemeProvider theme={colorTheme}>
+        <GlobalStyle />
+        <App />
+    </ThemeProvider>
 );

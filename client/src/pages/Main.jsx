@@ -19,7 +19,6 @@ const MainTitleBox = styled.div`
         transform: translateX(-50%);
         color: ${(props) => props.theme.white};
         font-size: 210px;
-        font-family: "Leferi Point Type";
         font-weight: 900;
         white-space: nowrap;
         -webkit-user-select: none;

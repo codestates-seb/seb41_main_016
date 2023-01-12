@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
@@ -13,6 +13,7 @@ import RoomSelection from "../components/ForDetails.jsx/RoomSelection";
 import ReviewCard from "../components/ForDetails.jsx/ReviewCard";
 import ConfirmModal from "../components/ForDetails.jsx/ConfirmModal";
 import Paginations from "../components/Paginations";
+import axios from "axios";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -286,17 +287,33 @@ export default function DetailedProduct() {
         setPage(page);
     };
 
+    const [pageDetail, setpageDetail] = useState([]);
+    const handleDetail = async () => {
+        try {
+            await axios.get("http://localhost:3001/hoteldetail").then((res) => {
+                setpageDetail(res.data[0]);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        handleDetail();
+    }, []);
+    console.log(pageDetail);
+
     return (
         <LayoutContainer>
             <TitleBox>
-                <HotelName>호텔 이름</HotelName>
+                <HotelName>{pageDetail.title}</HotelName>
                 <ShortInfoBox>
                     <ShortInfo>
                         <AiFillStar />
                         4.2
                     </ShortInfo>
-                    <ReviewNumber onClick={moveTo}>후기 2,077개</ReviewNumber>
-                    <ShortInfo>서울 서초구 강남</ShortInfo>
+                    <ReviewNumber onClick={moveTo}>후기</ReviewNumber>
+                    <ShortInfo>{pageDetail.address}</ShortInfo>
                 </ShortInfoBox>
             </TitleBox>
             <PictureContainer>
