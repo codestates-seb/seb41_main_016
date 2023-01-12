@@ -2,12 +2,13 @@ package com.mainproject.domain.review.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.hotel.entity.Hotel;
-import com.mainproject.domain.member.entity.Member;
+import com.mainproject.domain.image.entity.ReviewImage;
 import com.mainproject.global.audit.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -16,29 +17,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 //@Embeddable
-public class Review{
+public class Review extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long reviewId;
-
-    @Column(nullable = false)  // TODO: 직접 등록할 떄 Auditable 사용
-    private LocalDateTime createdAt;
 
     @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
     private int score;
-
-//    private List<String> image = new ArrayList<>();
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @OneToMany(mappedBy = "review",cascade = CascadeType.REMOVE)
+    private List<ReviewImage> reviewImageList = new ArrayList<>();
 }

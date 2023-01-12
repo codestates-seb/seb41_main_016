@@ -10,7 +10,10 @@ public enum ExceptionCode {
     MEMBER_NOT_FOUND(404, "Member not found"),
     MEMBER_EXISTS(409, "Member exists"),
 
-    REFRESHTOKEN_NOT_FOUND(404, "RefreshToken not found");
+    REFRESHTOKEN_NOT_FOUND(404, "RefreshToken not found"),
+
+    REVIEW_NOT_FOUND(404,"review not found");
+
     @Getter
     private int status;
 
