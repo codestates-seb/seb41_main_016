@@ -1,13 +1,13 @@
 package com.mainproject.domain.reservation.service;
 
-import com.mainproject.domain.exception.BusinessLogicException;
-import com.mainproject.domain.exception.ExceptionCode;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.service.MemberService;
 import com.mainproject.domain.reservation.entity.Reservation;
 import com.mainproject.domain.reservation.repository.ReservationRepository;
 import com.mainproject.domain.room.entity.Room;
 import com.mainproject.domain.room.service.RoomService;
+import com.mainproject.global.exception.BusinessLogicException;
+import com.mainproject.global.exception.ExceptionCode;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

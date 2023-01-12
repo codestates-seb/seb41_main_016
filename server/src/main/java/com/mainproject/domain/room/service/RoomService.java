@@ -1,9 +1,9 @@
 package com.mainproject.domain.room.service;
 
-import com.mainproject.domain.exception.BusinessLogicException;
-import com.mainproject.domain.exception.ExceptionCode;
 import com.mainproject.domain.room.entity.Room;
 import com.mainproject.domain.room.repository.RoomRepository;
+import com.mainproject.global.exception.BusinessLogicException;
+import com.mainproject.global.exception.ExceptionCode;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 

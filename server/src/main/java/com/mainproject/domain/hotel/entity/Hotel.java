@@ -1,5 +1,6 @@
 package com.mainproject.domain.hotel.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.image.entity.Image;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.room.entity.Room;
@@ -44,12 +45,15 @@ public class Hotel {
     private String category;
 
 //    @ElementCollection(fetch = FetchType.EAGER)
+    @JsonIgnore
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE) //2
     private List<Image> images = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "hotel",cascade = CascadeType.REMOVE)
     private List<Room> roomList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE) //TODO: review 게시판 기능
     private List<Review> reviewList = new ArrayList<>();
 }

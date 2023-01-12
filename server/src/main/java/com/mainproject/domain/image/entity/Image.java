@@ -1,5 +1,6 @@
 package com.mainproject.domain.image.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.hotel.entity.Hotel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,8 @@ public class Image {
     private Long imageId;
     private String image;
     private String title;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;

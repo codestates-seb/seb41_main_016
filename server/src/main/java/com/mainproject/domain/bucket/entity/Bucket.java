@@ -11,7 +11,9 @@ public class Bucket {
     @Id
     private Long bucketId;
 
-//    private Member member;
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
 //    private List<Hotel> hotels = new ArrayList<>();
 }
