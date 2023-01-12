@@ -72,7 +72,7 @@ public class ReservationService {
 
         Reservation findReservation =
                 optionalReservation.orElseThrow(() -> {
-                    return new BusinessLogicException(ExceptionCode.RESERVATION_NOT_FOUNT);
+                    return new BusinessLogicException(ExceptionCode.RESERVATION_NOT_FOUND);
                 });
 
         return findReservation;
