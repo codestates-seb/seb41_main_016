@@ -10,16 +10,25 @@ import java.util.List;
 public interface MemberMapper {
     Member memberPostToMember(MemberDto.Post post);
     Member memberPatchToMember(MemberDto.Patch patch);
-    default MemberDto.Response memberToMemberResponseDto(Member member) {
-        MemberDto.Response.ResponseBuilder response = MemberDto.Response.builder();
-        response.memberId(member.getMemberId());
-        response.name(member.getName());
-        response.email(member.getEmail());
-        response.image(member.getImage());
-        response.nickname(member.getNickname());
-
-        return response.build();
-    }
+    MemberDto.Response memberToMemberResponseDto(Member member);
     List<MemberDto.Response> membersToMemberResponseDtos(List<Member> members);
+    //MemberDto.MyPageResponse memberToMyPageResponseDto(Member member);
 
+    default MemberDto.MyPageResponse memberToMyPageResponseDto(Member member) {
+        if(member == null) return null;
+        else {
+            MemberDto.MyPageResponse.MyPageResponseBuilder response = MemberDto.MyPageResponse.builder();
+                    response.memberId(member.getMemberId())
+                            .email(member.getEmail())
+                            .image(member.getImage())
+                            .nickname(member.getNickname())
+                            .name(member.getName())
+                            .reviews(member.getReviews())
+                            .reservations(member.getReservations())
+                            .buckets(member.getBuckets());
+
+                return response.build();
+        }
+
+    }
 }
