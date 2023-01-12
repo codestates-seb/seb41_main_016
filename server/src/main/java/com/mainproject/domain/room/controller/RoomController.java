@@ -28,7 +28,7 @@ public class RoomController {
     }
 
     // find room
-    @GetMapping
+    @GetMapping("{room-id}")
     public ResponseEntity getfindRoom(@PathVariable("room-id") @Positive long roomId){
         Room room = roomService.findRoom(roomId);
 
