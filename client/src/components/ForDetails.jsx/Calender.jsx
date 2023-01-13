@@ -57,10 +57,12 @@ const FixedText = styled.div`
     font-weight: bold;
 `;
 
-export default function Calender() {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-
+export default function Calender({
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+}) {
     return (
         <>
             <DatePickerContainer>

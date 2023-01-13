@@ -57,10 +57,13 @@ export default function RoomSelection({
     return (
         <DropdownContainer>
             <SelectionBox>
-                <SelectionText onClick={handleOptionClick} value="1 King Bed" />
                 <SelectionText
                     onClick={handleOptionClick}
-                    value="2 Twin Beds"
+                    defaultValue="1 King Bed"
+                />
+                <SelectionText
+                    onClick={handleOptionClick}
+                    defaultValue="2 Twin Beds"
                 />
             </SelectionBox>
         </DropdownContainer>

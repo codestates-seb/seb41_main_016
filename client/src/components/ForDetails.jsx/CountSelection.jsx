@@ -54,13 +54,23 @@ export default function CountSelection({
                 <SelectionText>성인</SelectionText>
                 <MinusButton onClick={removeAdultCount}>-</MinusButton>
                 <CountNumber>{adultCount}</CountNumber>
-                <PlusButton onClick={addAdultCount}>+</PlusButton>
+                <PlusButton
+                    onClick={addAdultCount}
+                    disabled={adultCount > 1 ? "disabled" : null}
+                >
+                    +
+                </PlusButton>
             </SelectionBox>
             <SelectionBox>
                 <SelectionText>아동</SelectionText>
                 <MinusButton onClick={removeChildrenCount}>-</MinusButton>
                 <CountNumber>{childrenCount}</CountNumber>
-                <PlusButton onClick={addChildrenCount}>+</PlusButton>
+                <PlusButton
+                    onClick={addChildrenCount}
+                    disabled={childrenCount > 1 ? "disabled" : null}
+                >
+                    +
+                </PlusButton>
             </SelectionBox>
         </DropdownContainer>
     );

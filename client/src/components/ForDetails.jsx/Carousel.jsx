@@ -19,11 +19,18 @@ const SlideContainer = styled.div`
         height: 600px;
     }
 `;
-export default function PicCarousel() {
+export default function PicCarousel({ img }) {
+    console.log(img);
     return (
         <SlideContainer>
             <Carousel infiniteLoop showThumbs={false}>
-                <div>
+                {img?.map((el, idx) => (
+                    <div key={idx}>
+                        <img src={"/img/img1.webp"} alt="이미지" />
+                        <p className="legend">{el.title}</p>
+                    </div>
+                ))}
+                {/* <div>
                     <img src={"/img/img1.webp"} alt="이미지" />
                     <p className="legend">외관</p>
                 </div>
@@ -42,7 +49,7 @@ export default function PicCarousel() {
                 <div>
                     <img src={"/img/img5.webp"} alt="이미지" />
                     <p className="legend">2층 침실</p>
-                </div>
+                </div> */}
             </Carousel>
         </SlideContainer>
     );

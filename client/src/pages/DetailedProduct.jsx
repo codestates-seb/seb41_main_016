@@ -14,6 +14,8 @@ import ReviewCard from "../components/ForDetails.jsx/ReviewCard";
 import ConfirmModal from "../components/ForDetails.jsx/ConfirmModal";
 import Paginations from "../components/Paginations";
 import axios from "axios";
+import { priceFormatter } from "../utils/priceFormatter";
+import { KakaoMap } from "../components/ForDetails.jsx/KakaoMap";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -86,11 +88,11 @@ const InfoText = styled.div`
     color: rgb(113, 113, 113);
 `;
 
-const MapContainer = styled.div`
-    background-color: #cccccc;
-    width: 100%;
-    height: 400px;
-`;
+// const MapContainer = styled.div`
+//     background-color: #cccccc;
+//     width: 100%;
+//     height: 400px;
+// `;
 
 const RoomActionContainer = styled.div`
     display: flex;
@@ -245,7 +247,7 @@ export default function DetailedProduct() {
 
     const [ModalOpen, setModalOpen] = useState(false);
     const [Modal2Open, setModal2Open] = useState(false);
-    const [roomType, setRoomType] = useState("객실 타입");
+    const [roomType, setRoomType] = useState("1 King Bed");
     const [ConfirmModalOpen, setConfirmModal] = useState(false);
 
     const onSelectModal = () => {
@@ -298,10 +300,28 @@ export default function DetailedProduct() {
         }
     };
 
+    //api가 늦게올때 (optional) 처리 고민해보기
     useEffect(() => {
         handleDetail();
     }, []);
     console.log(pageDetail);
+
+    //calender 일정 조정
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    //두 날짜 사이 계산
+    const getDateDiff = (d1, d2) => {
+        if (d1 !== null && d2 !== null) {
+            const date1 = new Date(d1);
+            const date2 = new Date(d2);
+
+            const DateDiff = date1.getTime() - date2.getTime();
+
+            return Math.abs(DateDiff / (1000 * 60 * 60 * 24));
+        }
+    };
+    console.log(getDateDiff(startDate, endDate));
 
     return (
         <LayoutContainer>
@@ -310,32 +330,45 @@ export default function DetailedProduct() {
                 <ShortInfoBox>
                     <ShortInfo>
                         <AiFillStar />
-                        4.2
+                        {pageDetail.hotelScore}
                     </ShortInfo>
-                    <ReviewNumber onClick={moveTo}>후기</ReviewNumber>
+                    <ReviewNumber onClick={moveTo}>
+                        후기 {pageDetail.reviews?.length}개
+                    </ReviewNumber>
                     <ShortInfo>{pageDetail.address}</ShortInfo>
                 </ShortInfoBox>
             </TitleBox>
             <PictureContainer>
-                <PicCarousel />
+                <PicCarousel img={pageDetail.image} />
             </PictureContainer>
             <MainContainer>
                 <InfoBox>
                     <InfoTitle>숙소 기본정보</InfoTitle>
-                    <InfoText>
-                        모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한
-                        숙소는 관광 명소 및 흥미로운 레스토랑과 거리가
-                        가깝습니다. 숙소와 가까운 위치에 있는 경복궁을 방문해
-                        보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및
-                        스팀룸을 제공합니다.
-                    </InfoText>
+                    <InfoText>{pageDetail.service}</InfoText>
                     <InfoTitle>숙소 위치</InfoTitle>
-                    <MapContainer />
+                    {/* <MapContainer /> */}
+                    <KakaoMap location={pageDetail} />
                 </InfoBox>
                 <RoomActionContainer>
-                    <DailyPrice>₩98,200 /박</DailyPrice>
+                    <DailyPrice>
+                        {priceFormatter.format(
+                            roomType === "1 King Bed"
+                                ? pageDetail.rooms
+                                    ? pageDetail.rooms[0].price
+                                    : 0
+                                : pageDetail.rooms
+                                ? pageDetail.rooms[1].price
+                                : 0
+                        )}
+                        /박
+                    </DailyPrice>
                     <ReservationContainer>
-                        <Calender />
+                        <Calender
+                            startDate={startDate}
+                            endDate={endDate}
+                            setStartDate={setStartDate}
+                            setEndDate={setEndDate}
+                        />
                         <PersonSelection>
                             <FixedText onClick={onSelectModal}>
                                 인원 선택
@@ -401,7 +434,27 @@ export default function DetailedProduct() {
                     </ConfirmContainer>
                     <TotalBox>
                         <TotalText>총 합계</TotalText>
-                        <TotalPrice>₩246,000</TotalPrice>
+                        <TotalPrice>
+                            {startDate === null || endDate === null
+                                ? priceFormatter.format(
+                                      roomType === "1 King Bed"
+                                          ? pageDetail.rooms
+                                              ? pageDetail.rooms[0].price
+                                              : 0
+                                          : pageDetail.rooms
+                                          ? pageDetail.rooms[1].price
+                                          : 0
+                                  )
+                                : priceFormatter.format(
+                                      (roomType === "1 King Bed"
+                                          ? pageDetail.rooms
+                                              ? pageDetail.rooms[0].price
+                                              : 0
+                                          : pageDetail.rooms
+                                          ? pageDetail.rooms[1].price
+                                          : 0) * getDateDiff(startDate, endDate)
+                                  )}
+                        </TotalPrice>
                     </TotalBox>
                 </RoomActionContainer>
             </MainContainer>
@@ -409,9 +462,11 @@ export default function DetailedProduct() {
                 <ShortInfoBox2>
                     <ShortInfo2>
                         <AiFillStar />
-                        4.2
+                        {pageDetail.hotelScore}
                     </ShortInfo2>
-                    <ReviewNumber2>후기 2,077개</ReviewNumber2>
+                    <ReviewNumber2>
+                        후기 {pageDetail.reviews?.length}개
+                    </ReviewNumber2>
                 </ShortInfoBox2>
                 <ReviewCard />
             </ReviewContainer>
