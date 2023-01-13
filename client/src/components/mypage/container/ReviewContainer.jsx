@@ -6,6 +6,7 @@ import { Line, ReservationWrap, ReviewBox } from "./style";
 export default function ReviewContainer({ handleBtnClick, ARRAY }) {
   const [limit, setLimit] = useState(2);
   const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
 
   const handlePageChange = (page) => {
     setPage(page);

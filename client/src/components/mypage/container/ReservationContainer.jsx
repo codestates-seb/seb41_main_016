@@ -6,6 +6,7 @@ import { Line, ReservationBox, ReservationWrap } from "./style";
 export default function ReservationContainer({ handleBtnClick }) {
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
 
   const handlePageChange = (page) => {
     setPage(page);
