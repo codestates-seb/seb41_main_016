@@ -8,10 +8,10 @@ const MapContainer = styled.div`
 
 const { kakao } = window;
 
-export const KakaoMap = ({ location }) => {
+export default function KakaoMap({ location }) {
     useEffect(() => {
-        var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
-        var options = {
+        const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
+        const options = {
             center: new kakao.maps.LatLng(
                 location.location_x,
                 location.location_y
@@ -19,12 +19,12 @@ export const KakaoMap = ({ location }) => {
             level: 3,
         };
 
-        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-        var markerPosition = new kakao.maps.LatLng(
+        const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+        const markerPosition = new kakao.maps.LatLng(
             location.location_x,
             location.location_y
         );
-        var marker = new kakao.maps.Marker({
+        const marker = new kakao.maps.Marker({
             position: markerPosition,
         });
         marker.setMap(map);
@@ -35,4 +35,4 @@ export const KakaoMap = ({ location }) => {
             <MapContainer id="map"></MapContainer>
         </div>
     );
-};
+}

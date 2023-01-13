@@ -15,7 +15,7 @@ import ConfirmModal from "../components/ForDetails.jsx/ConfirmModal";
 import Paginations from "../components/Paginations";
 import axios from "axios";
 import { priceFormatter } from "../utils/priceFormatter";
-import { KakaoMap } from "../components/ForDetails.jsx/KakaoMap";
+import KakaoMap from "../components/ForDetails.jsx/KakaoMap";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -87,12 +87,6 @@ const InfoText = styled.div`
     font-weight: 400;
     color: rgb(113, 113, 113);
 `;
-
-// const MapContainer = styled.div`
-//     background-color: #cccccc;
-//     width: 100%;
-//     height: 400px;
-// `;
 
 const RoomActionContainer = styled.div`
     display: flex;
@@ -346,7 +340,6 @@ export default function DetailedProduct() {
                     <InfoTitle>숙소 기본정보</InfoTitle>
                     <InfoText>{pageDetail.service}</InfoText>
                     <InfoTitle>숙소 위치</InfoTitle>
-                    {/* <MapContainer /> */}
                     <KakaoMap location={pageDetail} />
                 </InfoBox>
                 <RoomActionContainer>
