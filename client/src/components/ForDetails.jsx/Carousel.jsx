@@ -20,7 +20,6 @@ const SlideContainer = styled.div`
     }
 `;
 export default function PicCarousel({ img }) {
-    console.log(img);
     return (
         <SlideContainer>
             <Carousel infiniteLoop showThumbs={false}>

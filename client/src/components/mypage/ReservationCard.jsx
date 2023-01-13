@@ -59,12 +59,11 @@ const HotelText2 = styled(HotelText)`
 
 const Review = styled.span`
     display: inline-flex;
-    border-bottom: 2px solid ${(props) => props.theme.pointColor};
+    text-decoration: underline !important;
     color: ${(props) => props.theme.pointColor};
     font-weight: 700;
     margin-top: 1rem;
     cursor: pointer;
-    width: 60%;
 `;
 
 export default function ReservationCard({ handleBtnClick }) {
