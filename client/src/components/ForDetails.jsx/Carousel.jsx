@@ -29,26 +29,6 @@ export default function PicCarousel({ img }) {
                         <p className="legend">{el.title}</p>
                     </div>
                 ))}
-                {/* <div>
-                    <img src={"/img/img1.webp"} alt="이미지" />
-                    <p className="legend">외관</p>
-                </div>
-                <div>
-                    <img src={"/img/img2.webp"} alt="이미지" />
-                    <p className="legend">거실</p>
-                </div>
-                <div>
-                    <img src={"/img/img3.webp"} alt="이미지" />
-                    <p className="legend">테라스</p>
-                </div>
-                <div>
-                    <img src={"/img/img4.webp"} alt="이미지" />
-                    <p className="legend">1층 거실</p>
-                </div>
-                <div>
-                    <img src={"/img/img5.webp"} alt="이미지" />
-                    <p className="legend">2층 침실</p>
-                </div> */}
             </Carousel>
         </SlideContainer>
     );

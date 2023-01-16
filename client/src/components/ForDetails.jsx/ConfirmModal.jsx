@@ -1,17 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-//backdrop주면 자꾸 위치들이 바뀜.. 포기
-// const ModalBackDrop = styled.div`
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     bottom: 0;
-//     right: 0;
-//     background: hsla(358, 67%, 6%, 0.5);
-//     z-index: 9999;
-// `;
-
 const ModalContainer = styled.div`
     width: 100%;
     border-radius: 4px;

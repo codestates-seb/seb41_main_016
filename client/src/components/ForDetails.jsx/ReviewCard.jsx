@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { CgProfile } from "react-icons/cg";
+import DetailReview from "./DetailReview";
 
 const ReviewContainer = styled.div`
     width: 100%;
@@ -51,6 +52,12 @@ const ReviewContent = styled.div`
     white-space: nowrap; //여러줄 안보이게 하기
 `;
 
+const MoreContent = styled.div`
+    text-decoration: underline !important;
+    margin-top: 15px;
+    cursor: pointer;
+`;
+
 export default function ReviewCard({ review }) {
     const getToday = () => {
         const date = new Date(review.createdAt);
@@ -59,6 +66,11 @@ export default function ReviewCard({ review }) {
         const day = ("0" + date.getDate()).slice(-2);
 
         return `${year}년 ${month}월 ${day}일`;
+    };
+
+    const [openModal, SetOpenModal] = useState(false);
+    const handleModal = () => {
+        SetOpenModal(!openModal);
     };
     return (
         <ReviewContainer>
@@ -73,6 +85,20 @@ export default function ReviewCard({ review }) {
                     </ProfileInfo>
                 </ProfileContainer>
                 <ReviewContent>{review.content}</ReviewContent>
+                {review.content.length >= 30 ? (
+                    <MoreContent onClick={handleModal}>
+                        더보기
+                        {openModal ? (
+                            <DetailReview
+                                review={review}
+                                handleModal={handleModal}
+                                getToday={getToday}
+                            />
+                        ) : null}
+                    </MoreContent>
+                ) : (
+                    ""
+                )}
             </CardContainer>
         </ReviewContainer>
     );
