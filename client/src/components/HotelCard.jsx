@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
+import { priceFormatter } from "../utils/priceFormatter";
 
 const CardBox = styled.div`
   /* position: relative; */
@@ -60,8 +61,9 @@ const PriceBox = styled.div`
   font-weight: 700;
 `;
 
-export default function HotelCard() {
+export default function HotelCard({ title, price }) {
   const [icon, setIcon] = useState(false);
+
   return (
     <CardBox>
       <ImgBox>
@@ -70,7 +72,7 @@ export default function HotelCard() {
         </Icon>
       </ImgBox>
       <TextBox>
-        <span className="title">더 리버사이드 호텔</span>
+        <span className="title">{title}</span>
         <ScopeBox>
           <Star>
             <AiFillStar />
@@ -78,7 +80,7 @@ export default function HotelCard() {
           <span>4.2 (2,077)</span>
         </ScopeBox>
       </TextBox>
-      <PriceBox>₩ 76,643</PriceBox>
+      <PriceBox>{price}</PriceBox>
     </CardBox>
   );
 }

@@ -62,9 +62,9 @@ const StarBox = styled.div`
     color: gray;
   }
 
-  /* & svg:hover ~ svg {
+  & svg:hover ~ svg {
     color: gray;
-  } */
+  }
 
   .yellowStar {
     color: #fbbc05;

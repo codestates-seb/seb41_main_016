@@ -19,7 +19,7 @@ const ProfileBox = styled.div`
 const ProfileText = styled.span`
   margin: 1.5rem 0 4rem 0;
   font-weight: 700;
-  text-decoration-line: underline;
+  text-decoration: underline !important;
   color: ${(props) =>
     props.modify ? props.theme.lightGrey : props.theme.mediumBlack};
   pointer-events: ${(props) => (props.modify ? "none" : null)};
@@ -152,7 +152,7 @@ const Btn = styled.button`
   background-color: transparent;
 `;
 
-export default function Profile() {
+export default function Profile({ email, name, image }) {
   const [modify, setModify] = useState(false);
 
   return (
@@ -170,7 +170,7 @@ export default function Profile() {
             <label htmlFor="name" className="modify_name">
               이름
             </label>
-            <NameInput type="text" id="name" />
+            <NameInput type="text" id="name" value={name} />
           </UserInfo>
 
           <UserInfo2>
@@ -190,9 +190,9 @@ export default function Profile() {
       ) : (
         <>
           <UserInfo>
-            <span className="name">Dabin</span>
+            <span className="name">{name}</span>
             <span className="sign">회원가입 : 2023</span>
-            <span className="email">dabin@gmail.com</span>
+            <span className="email">{email}</span>
           </UserInfo>
           <UserInfo2>
             <span className="info">소개글</span>
