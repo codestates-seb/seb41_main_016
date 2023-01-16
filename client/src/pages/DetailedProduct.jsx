@@ -327,7 +327,7 @@ export default function DetailedProduct() {
         for (let i = 0; i < pageDetail.reviews?.length; i++) {
             sum = sum + pageDetail.reviews[i].score;
         }
-        return sum / pageDetail.reviews?.length;
+        return (sum / pageDetail.reviews?.length).toFixed(2);
     };
 
     return (
