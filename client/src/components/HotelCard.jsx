@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { priceFormatter } from "../utils/priceFormatter";
 
 const CardBox = styled.div`
     /* position: relative; */
@@ -71,7 +72,7 @@ export default function HotelCard({ title, price, score, img, id }) {
     };
 
     return (
-        <CardBox onClick={handleNavigate}>
+        <CardBox>
             <ImgBox>
                 <Icon onClick={() => setIcon((prev) => !prev)}>
                     {icon ? (
@@ -81,7 +82,7 @@ export default function HotelCard({ title, price, score, img, id }) {
                     )}
                 </Icon>
             </ImgBox>
-            <TextBox>
+            <TextBox onClick={handleNavigate}>
                 <span className="title">{title}</span>
                 <ScopeBox>
                     <Star>
@@ -90,7 +91,7 @@ export default function HotelCard({ title, price, score, img, id }) {
                     <span>{score} (2,077)</span>
                 </ScopeBox>
             </TextBox>
-            <PriceBox>{price}</PriceBox>
+            <PriceBox>{priceFormatter.format(price)}</PriceBox>
         </CardBox>
     );
 }
