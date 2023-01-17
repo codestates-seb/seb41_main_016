@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { IoMdClose } from 'react-icons/io';
 import { FcGoogle } from 'react-icons/fc';
 import { RiKakaoTalkFill } from 'react-icons/ri';
+import { BiErrorCircle } from 'react-icons/bi';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -99,6 +100,12 @@ const ModalInputBox = styled.form`
   div:not(:last-of-type) {
     margin-bottom: 20px;
   }
+`;
+
+const ErrorBox = styled.span`
+  padding-top: 6px;
+  font-size: 12px;
+  color: #c2223e;
 `;
 
 const LoginBox = styled.div`
@@ -233,7 +240,12 @@ export default function LoginModal({
                   },
                 })}
               />
-              <span>{errors?.email?.message}</span>
+              <ErrorBox>
+                {errors?.email?.message === undefined ? null : (
+                  <BiErrorCircle />
+                )}{' '}
+                {errors?.email?.message}
+              </ErrorBox>
             </div>
             <div>
               <label htmlFor="password">비밀번호</label>
@@ -251,7 +263,12 @@ export default function LoginModal({
                   },
                 })}
               />
-              <span>{errors?.password?.message}</span>
+              <ErrorBox>
+                {errors?.email?.message === undefined ? null : (
+                  <BiErrorCircle />
+                )}{' '}
+                {errors?.password?.message}
+              </ErrorBox>
             </div>
             {inText === '회원가입' ? (
               <div>
@@ -264,7 +281,12 @@ export default function LoginModal({
                     required: '비밀번호 확인을 입력해주세요.',
                   })}
                 />
-                <span>{errors?.passwordConfirm?.message}</span>
+                <ErrorBox>
+                  {errors?.email?.message === undefined ? null : (
+                    <BiErrorCircle />
+                  )}{' '}
+                  {errors?.passwordConfirm?.message}
+                </ErrorBox>
               </div>
             ) : null}
             <LoginBox>
