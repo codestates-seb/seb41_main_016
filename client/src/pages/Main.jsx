@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import LayoutContainer from '../components/LayoutContainer';
-import SearchBar from '../components/SearchBar';
-import CategoryCard from '../components/CategoryCard';
-import { ImAirplane } from 'react-icons/im';
-import { RiBriefcase4Fill } from 'react-icons/ri';
-import { MdKingBed } from 'react-icons/md';
+import React from "react";
+import styled from "styled-components";
+import LayoutContainer from "../components/LayoutContainer";
+import SearchBar from "../components/SearchBar";
+import CategoryCard from "../components/CategoryCard";
+import { ImAirplane } from "react-icons/im";
+import { RiBriefcase4Fill } from "react-icons/ri";
+import { MdKingBed } from "react-icons/md";
 
 const MainTitleBox = styled.div`
   height: 400px;
@@ -80,25 +80,25 @@ const AllCategoryButton = styled.a`
 export default function Main() {
   const categoryData = [
     {
-      href: '/category/travel',
+      href: "/category/travel",
       icon: <ImAirplane />,
-      title: '여행',
-      hashTag: '#일상탈출 #욜로',
-      url: 'img/travel.jpg',
+      title: "여행",
+      hashTag: "#일상탈출 #욜로",
+      url: "img/travel.jpg",
     },
     {
-      href: '/category/business',
+      href: "/category/business",
       icon: <RiBriefcase4Fill />,
-      title: '워캉스',
-      hashTag: '#비지니스 #미팅룸',
-      url: 'img/work.jpg',
+      title: "워캉스",
+      hashTag: "#비지니스 #미팅룸",
+      url: "img/work.jpg",
     },
     {
-      href: '/category/residence',
+      href: "/category/residence",
       icon: <MdKingBed />,
-      title: '한달살이',
-      hashTag: '#레지던스 #장기투숙',
-      url: 'img/longStay.jpg',
+      title: "한달살이",
+      hashTag: "#레지던스 #장기투숙",
+      url: "img/longStay.jpg",
     },
   ];
 
@@ -130,7 +130,7 @@ export default function Main() {
               );
             })}
           </CategoryCardBox>
-          <AllCategoryButton href={'/category/all'}>
+          <AllCategoryButton href={"/category/all"}>
             숙소 리스트 전체 보기
           </AllCategoryButton>
         </MainContentBox>
