@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
 public class ReviewImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,7 @@ public class ReviewImage {
     private Hotel hotel;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "review_id")
     private Review review;
 

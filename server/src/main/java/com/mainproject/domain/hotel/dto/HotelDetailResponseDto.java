@@ -22,5 +22,5 @@ public class HotelDetailResponseDto {
     private String address;
     private List<RoomResponseDto> rooms;
     private String category;
-    private List<Review> reviews;
+    private List<ReviewResponseDto> reviews;
 }

@@ -3,10 +3,7 @@ package com.mainproject.domain.image.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.hotel.entity.Hotel;
 import com.mainproject.domain.review.entity.Review;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,6 +13,7 @@ import javax.persistence.*;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
 public class HotelImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
