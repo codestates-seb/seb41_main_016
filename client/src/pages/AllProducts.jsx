@@ -5,7 +5,7 @@ import HotelCard from "../components/HotelCard";
 import { ImAirplane } from "react-icons/im";
 import { RiBriefcase4Fill } from "react-icons/ri";
 import { MdKingBed } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AllProductsBox = styled.div`
@@ -70,7 +70,7 @@ const CardBox = styled.div`
 `;
 
 export default function AllProducts() {
-  const pathname = window.location.pathname;
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const [productsList, setProductsList] = useState([]);
 
