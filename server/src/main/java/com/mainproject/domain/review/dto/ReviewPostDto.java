@@ -1,5 +1,6 @@
 package com.mainproject.domain.review.dto;
 
+import com.mainproject.domain.image.dto.ReviewImagePostDto;
 import com.mainproject.domain.image.entity.ReviewImage;
 import lombok.Builder;
 import lombok.Data;

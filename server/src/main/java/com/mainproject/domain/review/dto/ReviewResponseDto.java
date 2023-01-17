@@ -16,7 +16,8 @@ public class ReviewResponseDto {
     private String memberImage;
     private Long memberId;
     private LocalDateTime createdAt;
-    private List<ReviewImage> reviewImage;
     private String content;
+    private List<ReviewImage> reviewImage;
+
     private int score; //TODO: 별점 전체 실수형으로 바꿀 것  2.5, 4.3 등등
 }
