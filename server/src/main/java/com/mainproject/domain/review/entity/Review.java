@@ -36,6 +36,7 @@ public class Review extends Auditable{
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "member_id")
     private Member member;
 
 

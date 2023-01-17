@@ -1,13 +1,12 @@
 package com.mainproject.domain.member.dto;
 
-import com.mainproject.domain.bucket.entity.Bucket;
+import com.mainproject.domain.wishlist.entity.WishList;
 import com.mainproject.domain.reservation.entity.Reservation;
 import com.mainproject.domain.review.entity.Review;
 import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class MemberDto {
@@ -67,6 +66,6 @@ public class MemberDto {
         private String nickname;
         List<Review> reviews;
         List<Reservation> reservations;
-        List<Bucket> buckets;
+//        List<WishList> buckets;
     }
 }

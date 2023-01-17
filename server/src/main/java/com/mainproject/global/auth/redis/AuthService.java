@@ -19,14 +19,21 @@ public class AuthService {
     private final JwtProvider jwtProvider;
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final BlackListRepository blackListRepository;
 
-    public AuthService(JwtProvider jwtProvider, MemberRepository memberRepository, RefreshTokenRepository refreshTokenRepository) {
+    public AuthService(JwtProvider jwtProvider,
+                       MemberRepository memberRepository,
+                       RefreshTokenRepository refreshTokenRepository,
+                       BlackListRepository blackListRepository) {
         this.jwtProvider = jwtProvider;
         this.memberRepository = memberRepository;
         this.refreshTokenRepository = refreshTokenRepository;
+        this.blackListRepository = blackListRepository;
     }
 
+
     public Long getAccessTokenExpiration(String accessToken) {
+        String jws = accessToken.replace("Bearer ", "");
         String encodedSecretKey = jwtProvider.encodeBase64SecretKey(jwtProvider.getSecretKey());
         Key key = jwtProvider.getKeyFromBase64EncodedKey(encodedSecretKey);
 
@@ -34,17 +41,30 @@ public class AuthService {
                 .parserBuilder()
                 .setSigningKey(key)
                 .build()
-                .parseClaimsJws(accessToken)
+                .parseClaimsJws(jws)
                 .getBody().getExpiration();
 
         long now = new Date().getTime();
-
         return expiration.getTime() - now;
     }
 
-//    public void logout(TokenDto.ATNRequest request) {
-//        Long memberId = jwtProvider.extractMemberId(request.getAccessToken());
-//        refreshTokenRepository.
-//    }
+    public void logout(TokenDto.ATNRequest request) {
+        String accessToken = request.getAccessToken();
+        String jws = accessToken.replace("Bearer ", "");
+        Long memberId = jwtProvider.extractMemberId(accessToken);
+
+        RefreshToken refreshToken = refreshTokenRepository.findById(memberId).orElseThrow(
+                () -> new BusinessLogicException(ExceptionCode.REFRESHTOKEN_NOT_FOUND)
+        );
+
+        refreshTokenRepository.delete(refreshToken);
+
+        Long expiration = getAccessTokenExpiration(accessToken);
+
+        BlackListAccessToken bat = new BlackListAccessToken(jws, expiration);
+        blackListRepository.save(bat);
+
+        System.out.println(blackListRepository.findById(jws));
+    }
 
 }
