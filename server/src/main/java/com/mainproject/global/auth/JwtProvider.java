@@ -2,6 +2,7 @@ package com.mainproject.global.auth;
 
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.repository.MemberRepository;
+import com.mainproject.global.auth.redis.BlackListRepository;
 import com.mainproject.global.auth.redis.RefreshToken;
 import com.mainproject.global.auth.redis.TokenDto;
 import com.mainproject.global.auth.redis.RefreshTokenRepository;
@@ -29,11 +30,14 @@ import java.util.Map;
 public class JwtProvider {
     private final RefreshTokenRepository refreshTokenRepository;
     private final MemberRepository memberRepository;
+    private final BlackListRepository blackListRepository;
 
-    public JwtProvider(RefreshTokenRepository refreshTokenRepository, MemberRepository memberRepository) {
+    public JwtProvider(RefreshTokenRepository refreshTokenRepository, MemberRepository memberRepository, BlackListRepository blackListRepository) {
         this.refreshTokenRepository = refreshTokenRepository;
         this.memberRepository = memberRepository;
+        this.blackListRepository = blackListRepository;
     }
+
 
     @Getter
     @Value("${jwt.key}")
@@ -47,7 +51,7 @@ public class JwtProvider {
     @Value("${jwt.refresh-token-expiration-minutes}")
     private int refreshTokenExpirationMinutes;
 
-    public Date getTokenExpiration(int minutes) {
+    public Date makeTokenExpiration(int minutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, minutes);
 
@@ -75,7 +79,7 @@ public class JwtProvider {
         payloads.put("roles", member.getRoles());
         payloads.put("nickname", member.getNickname());
 
-        Date expiration = getTokenExpiration(getAccessTokenExpirationMinutes());
+        Date expiration = makeTokenExpiration(getAccessTokenExpirationMinutes());
 
         String encodedSecretKey = encodeBase64SecretKey(getSecretKey());
         Key key = getKeyFromBase64EncodedKey(encodedSecretKey);
@@ -91,7 +95,7 @@ public class JwtProvider {
     }
 
     public String createRefreshToken(Member member) {
-        Date expiration = getTokenExpiration(getRefreshTokenExpirationMinutes());
+        Date expiration = makeTokenExpiration(getRefreshTokenExpirationMinutes());
 
         String encodedSecretKey = encodeBase64SecretKey(getSecretKey());
         Key key = getKeyFromBase64EncodedKey(encodedSecretKey);
@@ -109,13 +113,14 @@ public class JwtProvider {
         return tokenValue;
     }
 
-    public TokenDto.RTNResponse generateAccessTokenWithRefreshToken(String value) {
-        RefreshToken refreshToken =
-                refreshTokenRepository.findById(value).orElseThrow(
-                        () -> new BusinessLogicException(ExceptionCode.REFRESHTOKEN_NOT_FOUND)
-                );
+    public TokenDto.RTNResponse generateAccessTokenWithRefreshToken(Long memberId, String refreshTokenValue) {
+        RefreshToken refreshToken = refreshTokenRepository.findById(memberId).orElseThrow(
+                () -> new BusinessLogicException(ExceptionCode.REFRESHTOKEN_NOT_FOUND)
+        );
 
-        Long memberId = refreshToken.getMemberId();
+        if( !refreshTokenValue.equals(refreshToken.getRefreshToken()) )
+            throw new BusinessLogicException(ExceptionCode.DIFFERENT_REFRESHTOKEN);
+
         Member member = memberRepository.findById(memberId).orElseThrow(
                 () -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND)
         );
@@ -140,16 +145,29 @@ public class JwtProvider {
         Key key = getKeyFromBase64EncodedKey(encodedSecretKey);
 
         try {
-            String memberId = Jwts.parserBuilder()
+            String email = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(jws)
                 .getBody()
                 .getSubject();
-            return Long.parseLong(memberId);
+
+            return memberRepository.findByEmail(email).orElseThrow(
+                    () -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND)
+            ).getMemberId();
         } catch(JwtException e) {
             throw new JwtException("Invalid AccessToken");
         }
+    }
 
+    public boolean validateToken(String token) {
+        String encodedSecretKey = encodeBase64SecretKey(getSecretKey());
+        Key key = getKeyFromBase64EncodedKey(encodedSecretKey);
+        Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token);
+
+        return blackListRepository.findById(token).isPresent();
     }
 }

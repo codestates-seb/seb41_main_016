@@ -1,5 +1,6 @@
 package com.mainproject.domain.reservation.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.room.entity.Room;
 import com.mainproject.global.audit.Auditable;
@@ -38,6 +39,7 @@ public class Reservation extends Auditable {
     @Column
     private String date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;

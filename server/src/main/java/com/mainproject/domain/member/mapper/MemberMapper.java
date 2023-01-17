@@ -24,8 +24,7 @@ public interface MemberMapper {
                             .nickname(member.getNickname())
                             .name(member.getName())
                             .reviews(member.getReviews())
-                            .reservations(member.getReservations())
-                            .buckets(member.getBuckets());
+                            .reservations(member.getReservations());
 
                 return response.build();
         }
