@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { MdOutlineSearch } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { MdOutlineSearch } from "react-icons/md";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SearchBox = styled.form`
   position: relative;
@@ -39,20 +39,21 @@ const SearchIcon = styled.div`
 
 export default function SearchBar() {
   const navigate = useNavigate();
-  const [userValue, setUserValue] = useState('');
+  const [userValue, setUserValue] = useState("");
 
   const handleUserValue = (e) => {
     setUserValue(e.target.value);
   };
 
   const handleNavigate = () => {
-    navigate(`/search?search=${userValue}`);
+    navigate(`/search?search=${userValue}`, { state: userValue });
   };
 
   const handleOnKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleNavigate();
+      setUserValue("");
     }
   };
 

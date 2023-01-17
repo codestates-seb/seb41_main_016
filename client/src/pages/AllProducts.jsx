@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import styled from 'styled-components';
-import LayoutContainer from '../components/LayoutContainer';
-import HotelCard from '../components/HotelCard';
-import { ImAirplane } from 'react-icons/im';
-import { RiBriefcase4Fill } from 'react-icons/ri';
-import { MdKingBed } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState, useCallback } from "react";
+import styled from "styled-components";
+import LayoutContainer from "../components/LayoutContainer";
+import HotelCard from "../components/HotelCard";
+import { ImAirplane } from "react-icons/im";
+import { RiBriefcase4Fill } from "react-icons/ri";
+import { MdKingBed } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AllProductsBox = styled.div`
   height: calc(100vh - 60px);
@@ -78,35 +78,35 @@ export default function AllProducts() {
     {
       id: 1,
       icon: <ImAirplane />,
-      title: '여행',
+      title: "여행",
       description:
-        '혼자, 친구와 혹은 연인과 함께 여행하기 좋은 호텔을 추천해드려요.',
-      path: '/category/travel',
-      query: 'travel',
+        "혼자, 친구와 혹은 연인과 함께 여행하기 좋은 호텔을 추천해드려요.",
+      path: "/category/travel",
+      query: "travel",
     },
     {
       id: 2,
       icon: <RiBriefcase4Fill />,
-      title: '워캉스',
-      description: '일하면서 편안하게 휴식 취하기 좋은 호텔을 추천해드려요.',
-      path: '/category/business',
-      query: 'workance',
+      title: "워캉스",
+      description: "일하면서 편안하게 휴식 취하기 좋은 호텔을 추천해드려요.",
+      path: "/category/business",
+      query: "workance",
     },
     {
       id: 3,
       icon: <MdKingBed />,
-      title: '한달살이',
+      title: "한달살이",
       description:
-        '한달 이상 내 집 처럼 묵을 수 있는 좋은 호텔을 추천해드려요.',
-      path: '/category/residence',
-      query: 'onemonth',
+        "한달 이상 내 집 처럼 묵을 수 있는 좋은 호텔을 추천해드려요.",
+      path: "/category/residence",
+      query: "onemonth",
     },
     {
       id: 4,
       icon: null,
-      title: '전체',
-      description: '호텔 전체 상품을 보실 수 있어요.',
-      path: '/category/all',
+      title: "전체",
+      description: "호텔 전체 상품을 보실 수 있어요.",
+      path: "/category/all",
     },
   ];
 
@@ -139,7 +139,7 @@ export default function AllProducts() {
             {categoryData.map((el) => (
               <li
                 key={el.id}
-                className={pathname === el.path ? 'active' : null}
+                className={pathname === el.path ? "active" : null}
                 onClick={() => navigateHandler(el.path)}
               >
                 <span>{el.icon}</span>

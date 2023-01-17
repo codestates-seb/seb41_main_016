@@ -1,424 +1,425 @@
 {
-    "hoteldetail": [
+  "hoteldetail": [
+    {
+      "hotelId": 1,
+      "title": "화순 더원 비지니스 호텔",
+      "hotelScore": 1,
+      "image": [
         {
+          "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+          "title": "외관"
+        },
+        {
+          "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+          "title": "침실"
+        },
+        {
+          "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+          "title": "외부"
+        }
+      ],
+      "service": "모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.\n숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.",
+      "location_x": "35.0318117460508",
+      "location_y": "126.901948257849",
+      "address": "전라남도 화순군 도곡면 온천1길 77",
+      "rooms": [
+        {
+          "roomId": 1,
+          "roomType": "king",
+          "head_count": 4,
+          "price": 1500000
+        },
+        {
+          "roomId": 2,
+          "roomType": "twin",
+          "head_count": 2,
+          "price": 1000000
+        }
+      ],
+      "category": "비즈니스",
+      "reviews": [
+        {
+          "reviewId": 1,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
+          "score": 5
+        },
+        {
+          "reviewId": 2,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 좋아요",
+          "score": 5
+        },
+        {
+          "reviewId": 3,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 좋아요. 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요! 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
+          "score": 5
+        },
+        {
+          "reviewId": 4,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 좋아요",
+          "score": 5
+        },
+        {
+          "reviewId": 5,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 좋아요",
+          "score": 5
+        },
+        {
+          "reviewId": 6,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 좋아요",
+          "score": 5
+        },
+        {
+          "reviewId": 7,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 좋아요",
+          "score": 5
+        },
+        {
+          "reviewId": 8,
+          "createdAt": "2023-01-01T00:00:00",
+          "content": "화순 더원 비지니스 호텔 싫어요",
+          "score": 1
+        }
+      ]
+    }
+  ],
+  "login": [],
+  "signup": [],
+  "members": [
+    {
+      "memberId": 1,
+      "email": "user@gmail.com",
+      "name": "김맹구",
+      "image": "프로필 이미지",
+      "nickname": "김맹구",
+      "review": [
+        {
+          "review_id": 1,
+          "review_date": "2023.01.05",
+          "content": "너무너무 좋았는데 바퀴벌레가 나왔어요 ㅠㅜㅠ",
+          "score": 1,
+          "review_photo": "바퀴벌레_사진"
+        },
+        {
+          "review_id": 2,
+          "review_date": "2023.01.05",
+          "content": "역시 우주최고 짱짱호텔",
+          "score": 5,
+          "review_photo": ""
+        }
+      ],
+      "reservation": [
+        {
+          "reservation_id": 1,
+          "memberid": 1,
+          "checkin": "2023.01.05",
+          "checkout": "2023.01.28",
+          "person": 2,
+          "price": 70000,
+          "status": true,
+          "room": {
+            "roomId": 1,
             "hotelId": 1,
-            "title": "화순 더원 비지니스 호텔",
-            "hotelScore": 1,
-            "image": [
-                {
-                    "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
-                    "title": "외관"
-                },
-                {
-                    "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
-                    "title": "침실"
-                },
-                {
-                    "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
-                    "title": "외부"
-                }
-            ],
-            "service": "모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.\n숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.",
-            "location_x": "35.0318117460508",
-            "location_y": "126.901948257849",
-            "address": "전라남도 화순군 도곡면 온천1길 77",
-            "rooms": [
-                {
-                    "roomId": 1,
-                    "roomType": "king",
-                    "head_count": 4,
-                    "price": 1500000
-                },
-                {
-                    "roomId": 2,
-                    "roomType": "twin",
-                    "head_count": 2,
-                    "price": 1000000
-                }
-            ],
-            "category": "비즈니스",
-            "reviews": [
-                {
-                    "reviewId": 1,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
-                    "score": 5
-                },
-                {
-                    "reviewId": 2,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 좋아요",
-                    "score": 5
-                },
-                {
-                    "reviewId": 3,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 좋아요. 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요! 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
-                    "score": 5
-                },
-                {
-                    "reviewId": 4,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 좋아요",
-                    "score": 5
-                },
-                {
-                    "reviewId": 5,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 좋아요",
-                    "score": 5
-                },
-                {
-                    "reviewId": 6,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 좋아요",
-                    "score": 5
-                },
-                {
-                    "reviewId": 7,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 좋아요",
-                    "score": 5
-                },
-                {
-                    "reviewId": 8,
-                    "createdAt": "2023-01-01T00:00:00",
-                    "content": "화순 더원 비지니스 호텔 싫어요",
-                    "score": 1
-                }
-            ]
-        }
-    ],
-    "login": [],
-    "signup": [],
-    "members": [
-        {
-            "memberId": 1,
-            "email": "user@gmail.com",
-            "name": "김맹구",
-            "image": "프로필 이미지",
-            "nickname": "김맹구",
-            "review": [
-                {
-                    "review_id": 1,
-                    "review_date": "2023.01.05",
-                    "content": "너무너무 좋았는데 바퀴벌레가 나왔어요 ㅠㅜㅠ",
-                    "score": 1,
-                    "review_photo": "바퀴벌레_사진"
-                },
-                {
-                    "review_id": 2,
-                    "review_date": "2023.01.05",
-                    "content": "역시 우주최고 짱짱호텔",
-                    "score": 5,
-                    "review_photo": ""
-                }
-            ],
-            "reservation": [
-                {
-                    "reservation_id": 1,
-                    "memberid": 1,
-                    "checkin": "2023.01.05",
-                    "checkout": "2023.01.28",
-                    "person": 2,
-                    "price": 70000,
-                    "status": true,
-                    "room": {
-                        "roomId": 1,
-                        "hotelId": 1,
-                        "headcount": 4,
-                        "roomnumber": "103호"
-                    }
-                },
-                {
-                    "reservation_id": 2,
-                    "memberid": 2,
-                    "checkin": "2023.01.05",
-                    "checkout": "2023.01.28",
-                    "person": 1,
-                    "price": 70000,
-                    "status": true,
-                    "room": {
-                        "roomId": 2,
-                        "hotelId": 2,
-                        "headcount": 4,
-                        "roomnumber": "103호"
-                    }
-                }
-            ],
-            "bucket": [
-                {
-                    "hotelid": 1,
-                    "hotel_image": "이미지 경로",
-                    "hotel_title": "우주최강짱짱호텔",
-                    "hotel_price": "가격"
-                },
-                {
-                    "hotelid": 2,
-                    "hotel_image": "이미지 경로",
-                    "hotel_title": "우주최강짱짱호텔",
-                    "hotel_price": "가격"
-                }
-            ]
-        }
-    ],
-    "hotellist": [
-        {
-            "hotelid": 1,
-            "image": "/img/img1.webp",
-            "title": "세계최고짱짱호텔",
-            "price": "500,000,000"
+            "headcount": 4,
+            "roomnumber": "103호"
+          }
         },
         {
-            "hotelid": 2,
-            "image": "/img/img2.webp",
-            "title": "우주최고짱짱호텔",
-            "price": "500,000,000,000"
+          "reservation_id": 2,
+          "memberid": 2,
+          "checkin": "2023.01.05",
+          "checkout": "2023.01.28",
+          "person": 1,
+          "price": 70000,
+          "status": true,
+          "room": {
+            "roomId": 2,
+            "hotelId": 2,
+            "headcount": 4,
+            "roomnumber": "103호"
+          }
         }
-    ],
-    "wishlist": [
+      ],
+      "bucket": [
         {
-            "hotelid": 1,
-            "image": "이미지 링크",
-            "title": "세계최고짱짱호텔",
-            "price": "500,000,000"
+          "hotelid": 1,
+          "hotel_image": "이미지 경로",
+          "hotel_title": "우주최강짱짱호텔",
+          "hotel_price": "가격"
         },
         {
-            "hotelid": 2,
-            "image": "이미지 링크",
-            "title": "우주최고짱짱호텔",
-            "price": "500,000,000,000"
+          "hotelid": 2,
+          "hotel_image": "이미지 경로",
+          "hotel_title": "우주최강짱짱호텔",
+          "hotel_price": "가격"
         }
-    ],
-    "mypage": [
+      ]
+    }
+  ],
+  "hotellist": [
+    {
+      "hotelid": 1,
+      "image": "/img/img1.webp",
+      "title": "세계최고짱짱호텔",
+      "price": "500,000,000"
+    },
+    {
+      "hotelid": 2,
+      "image": "/img/img2.webp",
+      "title": "우주최고짱짱호텔",
+      "price": "500,000,000,000"
+    }
+  ],
+  "wishlist": [
+    {
+      "hotelid": 1,
+      "image": "이미지 링크",
+      "title": "세계최고짱짱호텔",
+      "price": "500,000,000"
+    },
+    {
+      "hotelid": 2,
+      "image": "이미지 링크",
+      "title": "우주최고짱짱호텔",
+      "price": "500,000,000,000"
+    }
+  ],
+  "mypage": [
+    {
+      "memberId": 1,
+      "email": "user@gmail.com",
+      "name": "김맹구",
+      "image": "프로필 이미지",
+      "nickname": "김맹구",
+      "review": [
         {
-            "memberId": 1,
-            "email": "user@gmail.com",
-            "name": "김맹구",
-            "image": "프로필 이미지",
-            "nickname": "김맹구",
-            "review": [
-                {
-                    "review_id": 1,
-                    "review_date": "2023.01.05",
-                    "content": "너무너무 좋았는데 바퀴벌레가 나왔어요 ㅠㅜㅠ",
-                    "score": 1,
-                    "review_photo": "바퀴벌레_사진"
-                },
-                {
-                    "review_id": 2,
-                    "review_date": "2023.01.05",
-                    "content": "역시 우주최고 짱짱호텔",
-                    "score": 5,
-                    "review_photo": ""
-                }
-            ],
-            "reservation": [
-                {
-                    "reservation_id": 1,
-                    "memberid": 1,
-                    "checkin": "2023.01.05",
-                    "checkout": "2023.01.28",
-                    "person": 2,
-                    "price": 70000,
-                    "status": true,
-                    "room": {
-                        "roomId": 1,
-                        "hotelId": 1,
-                        "headcount": 4,
-                        "roomnumber": "103호"
-                    }
-                },
-                {
-                    "reservation_id": 2,
-                    "memberid": 2,
-                    "checkin": "2023.01.05",
-                    "checkout": "2023.01.28",
-                    "person": 1,
-                    "price": 70000,
-                    "status": true,
-                    "room": {
-                        "roomId": 2,
-                        "hotelId": 2,
-                        "headcount": 4,
-                        "roomnumber": "103호"
-                    },
+          "review_id": 1,
+          "review_date": "2023.01.05",
+          "content": "너무너무 좋았는데 바퀴벌레가 나왔어요 ㅠㅜㅠ",
+          "score": 1,
+          "review_photo": "바퀴벌레_사진"
+        },
+        {
+          "review_id": 2,
+          "review_date": "2023.01.05",
+          "content": "역시 우주최고 짱짱호텔",
+          "score": 5,
+          "review_photo": ""
+        }
+      ],
+      "reservation": [
+        {
+          "reservation_id": 1,
+          "memberid": 1,
+          "checkin": "2023.01.05",
+          "checkout": "2023.01.28",
+          "person": 2,
+          "price": 70000,
+          "status": true,
+          "room": {
+            "roomId": 1,
+            "hotelId": 1,
+            "headcount": 4,
+            "roomnumber": "103호"
+          }
+        },
+        {
+          "reservation_id": 2,
+          "memberid": 2,
+          "checkin": "2023.01.05",
+          "checkout": "2023.01.28",
+          "person": 1,
+          "price": 70000,
+          "status": true,
+          "room": {
+            "roomId": 2,
+            "hotelId": 2,
+            "headcount": 4,
+            "roomnumber": "103호"
+          },
 
-                    "title": "화순 더원 비지니스 호텔",
-                    "hotelScore": 1,
-                    "image": [
-                        {
-                            "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
-                            "title": "외관"
-                        },
-                        {
-                            "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
-                            "title": "침실"
-                        },
-                        {
-                            "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
-                            "title": "외부"
-                        }
-                    ],
-                    "service": "모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.\n숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.",
-                    "location_x": "35.0318117460508",
-                    "location_y": "126.901948257849",
-                    "address": "전라남도 화순군 도곡면 온천1길 77",
-                    "rooms": [
-                        {
-                            "roomId": 1,
-                            "roomType": "king",
-                            "head_count": 4,
-                            "price": 1500000
-                        },
-                        {
-                            "roomId": 2,
-                            "roomType": "twin",
-                            "head_count": 2,
-                            "price": 1000000
-                        }
-                    ],
-                    "category": "비즈니스",
-                    "reviews": [
-                        {
-                            "reviewId": 1,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
-                            "score": 4
-                        },
-                        {
-                            "reviewId": 2,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 좋아요",
-                            "score": 5
-                        },
-                        {
-                            "reviewId": 3,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 좋아요. 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요! 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
-                            "score": 5
-                        },
-                        {
-                            "reviewId": 4,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 좋아요",
-                            "score": 5
-                        },
-                        {
-                            "reviewId": 5,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 좋아요",
-                            "score": 5
-                        },
-                        {
-                            "reviewId": 6,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 좋아요",
-                            "score": 5
-                        },
-                        {
-                            "reviewId": 7,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 좋아요",
-                            "score": 5
-                        },
-                        {
-                            "reviewId": 8,
-                            "createdAt": "2023-01-01T00:00:00",
-                            "content": "화순 더원 비지니스 호텔 싫어요. 객실 상태도 더러웠고 서비스도 불친절했어요.. 다시는 오고 싶지 않은 호텔입니다",
-                            "score": 1
-                        }
-                    ]
-                }
-            ],
-            "login": [],
-            "signup": [],
-            "members": [
-                {
-                    "memberId": 1,
-                    "email": "user@gmail.com",
-                    "name": "김맹구",
-                    "image": "프로필 이미지",
-                    "nickname": "김맹구",
-                    "review": [
-                        {
-                            "review_id": 1,
-                            "review_date": "2023.01.05",
-                            "content": "너무너무 좋았는데 바퀴벌레가 나왔어요 ㅠㅜㅠ",
-                            "score": 1,
-                            "review_photo": "바퀴벌레_사진"
-                        },
-                        {
-                            "review_id": 2,
-                            "review_date": "2023.01.05",
-                            "content": "역시 우주최고 짱짱호텔",
-                            "score": 5,
-                            "review_photo": ""
-                        }
-                    ],
-                    "reservation": [
-                        {
-                            "reservation_id": 1,
-                            "memberid": 1,
-                            "checkin": "2023.01.05",
-                            "checkout": "2023.01.28",
-                            "person": 2,
-                            "price": 70000,
-                            "status": true,
-                            "room": {
-                                "roomId": 1,
-                                "hotelId": 1,
-                                "headcount": 4,
-                                "roomnumber": "103호"
-                            }
-                        },
-                        {
-                            "reservation_id": 2,
-                            "memberid": 2,
-                            "checkin": "2023.01.05",
-                            "checkout": "2023.01.28",
-                            "person": 1,
-                            "price": 70000,
-                            "status": true,
-                            "room": {
-                                "roomId": 2,
-                                "hotelId": 2,
-                                "headcount": 4,
-                                "roomnumber": "103호"
-                            }
-                        }
-                    ],
-                    "bucket": [
-                        {
-                            "hotelid": 1,
-                            "hotel_image": "이미지 경로",
-                            "hotel_title": "우주최강짱짱호텔",
-                            "hotel_price": "가격"
-                        },
-                        {
-                            "hotelid": 2,
-                            "hotel_image": "이미지 경로",
-                            "hotel_title": "우주최강짱짱호텔",
-                            "hotel_price": "가격"
-                        }
-                    ]
-                }
-            ],
-            "bucket": [
-                {
-                    "hotelid": 1,
-                    "hotel_image": "이미지 경로",
-                    "hotel_title": "우주최강짱짱호텔",
-                    "hotel_price": "가격"
-                },
-                {
-                    "hotelid": 2,
-                    "hotel_image": "이미지 경로",
-                    "hotel_title": "우주최강짱짱호텔",
-                    "hotel_price": "가격"
-                }
-            ]
+          "title": "화순 더원 비지니스 호텔",
+          "hotelScore": 1,
+          "image": [
+            {
+              "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+              "title": "외관"
+            },
+            {
+              "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+              "title": "침실"
+            },
+            {
+              "image": "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+              "title": "외부"
+            }
+          ],
+          "service": "모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.\n숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.",
+          "location_x": "35.0318117460508",
+          "location_y": "126.901948257849",
+          "address": "전라남도 화순군 도곡면 온천1길 77",
+          "rooms": [
+            {
+              "roomId": 1,
+              "roomType": "king",
+              "head_count": 4,
+              "price": 1500000
+            },
+            {
+              "roomId": 2,
+              "roomType": "twin",
+              "head_count": 2,
+              "price": 1000000
+            }
+          ],
+          "category": "비즈니스",
+          "reviews": [
+            {
+              "reviewId": 1,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
+              "score": 4
+            },
+            {
+              "reviewId": 2,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 좋아요",
+              "score": 5
+            },
+            {
+              "reviewId": 3,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 좋아요. 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요! 화순 더원 비지니스 호텔 좋아요. 경치도 이쁘고 분위기도 좋고 오랜만에 친구들과 좋은 시간 보내다가 왔어요! 사장님께서도 너무 친절하셔서 여행이 마무리가 즐겁게 되어서 감사하네요!",
+              "score": 5
+            },
+            {
+              "reviewId": 4,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 좋아요",
+              "score": 5
+            },
+            {
+              "reviewId": 5,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 좋아요",
+              "score": 5
+            },
+            {
+              "reviewId": 6,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 좋아요",
+              "score": 5
+            },
+            {
+              "reviewId": 7,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 좋아요",
+              "score": 5
+            },
+            {
+              "reviewId": 8,
+              "createdAt": "2023-01-01T00:00:00",
+              "content": "화순 더원 비지니스 호텔 싫어요. 객실 상태도 더러웠고 서비스도 불친절했어요.. 다시는 오고 싶지 않은 호텔입니다",
+              "score": 1
+            }
+          ]
         }
-    ],
-    "review": []
+      ],
+      "login": [],
+      "signup": [],
+      "members": [
+        {
+          "memberId": 1,
+          "email": "user@gmail.com",
+          "name": "김맹구",
+          "image": "프로필 이미지",
+          "nickname": "김맹구",
+          "review": [
+            {
+              "review_id": 1,
+              "review_date": "2023.01.05",
+              "content": "너무너무 좋았는데 바퀴벌레가 나왔어요 ㅠㅜㅠ",
+              "score": 1,
+              "review_photo": "바퀴벌레_사진"
+            },
+            {
+              "review_id": 2,
+              "review_date": "2023.01.05",
+              "content": "역시 우주최고 짱짱호텔",
+              "score": 5,
+              "review_photo": ""
+            }
+          ],
+          "reservation": [
+            {
+              "reservation_id": 1,
+              "memberid": 1,
+              "checkin": "2023.01.05",
+              "checkout": "2023.01.28",
+              "person": 2,
+              "price": 70000,
+              "status": true,
+              "room": {
+                "roomId": 1,
+                "hotelId": 1,
+                "headcount": 4,
+                "roomnumber": "103호"
+              }
+            },
+            {
+              "reservation_id": 2,
+              "memberid": 2,
+              "checkin": "2023.01.05",
+              "checkout": "2023.01.28",
+              "person": 1,
+              "price": 70000,
+              "status": true,
+              "room": {
+                "roomId": 2,
+                "hotelId": 2,
+                "headcount": 4,
+                "roomnumber": "103호"
+              }
+            }
+          ],
+          "bucket": [
+            {
+              "hotelid": 1,
+              "hotel_image": "이미지 경로",
+              "hotel_title": "우주최강짱짱호텔",
+              "hotel_price": "가격"
+            },
+            {
+              "hotelid": 2,
+              "hotel_image": "이미지 경로",
+              "hotel_title": "우주최강짱짱호텔",
+              "hotel_price": "가격"
+            }
+          ]
+        }
+      ],
+      "bucket": [
+        {
+          "hotelid": 1,
+          "hotel_image": "이미지 경로",
+          "hotel_title": "우주최강짱짱호텔",
+          "hotel_price": "가격"
+        },
+        {
+          "hotelid": 2,
+          "hotel_image": "이미지 경로",
+          "hotel_title": "우주최강짱짱호텔",
+          "hotel_price": "가격"
+        }
+      ]
+    }
+  ],
+  "review": [],
+  "hotel": []
 }

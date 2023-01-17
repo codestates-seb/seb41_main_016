@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import LayoutContainer from '../components/LayoutContainer';
-import HotelCard from '../components/HotelCard';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import LayoutContainer from "../components/LayoutContainer";
+import HotelCard from "../components/HotelCard";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { useCallback } from "react";
 
 const AllProductsBox = styled.div`
   height: calc(100vh - 60px);
@@ -32,24 +33,23 @@ const CardBox = styled.div`
 `;
 
 export default function SearchProducts() {
-  const location = useLocation();
-  const keyword = location.search.slice(8);
-  // decodeURIComponent 디코딩
+  const { state } = useLocation();
+  console.log(state);
   const [searchList, setSearchList] = useState([]);
 
-  const handleSearchList = async () => {
+  const handleSearchList = useCallback(async () => {
     try {
-      await axios.get(`/main?search=${keyword}`).then((res) => {
+      await axios.get(`/main?search=${state}`).then((res) => {
         setSearchList(res.data);
       });
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [state]);
 
   useEffect(() => {
     handleSearchList();
-  }, [keyword]);
+  }, [handleSearchList]);
 
   return (
     <LayoutContainer>
