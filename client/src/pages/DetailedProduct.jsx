@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
@@ -15,6 +15,7 @@ import Paginations from "../components/Paginations";
 import axios from "axios";
 import { priceFormatter } from "../utils/priceFormatter";
 import KakaoMap from "../components/ForDetails.jsx/KakaoMap";
+import { useParams } from "react-router-dom";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -291,19 +292,24 @@ export default function DetailedProduct() {
 
     //axios
     const [pageDetail, setpageDetail] = useState([]);
-    const handleDetail = async () => {
+
+    const { id } = useParams();
+
+    const handleDetail = useCallback(async () => {
         try {
-            await axios.get("http://localhost:3001/hoteldetail").then((res) => {
-                setpageDetail(res.data[0]);
+            await axios.get(`/hotel/detail/${id}`).then((res) => {
+                setpageDetail(res.data);
             });
         } catch (error) {
             console.error(error);
         }
-    };
+    }, [id]);
+
     useEffect(() => {
         handleDetail();
-    }, []);
-    console.log(pageDetail);
+    }, [handleDetail]);
+
+    const handleSubmit = useCallback(async () => {});
 
     //calender 일정 조정
     const [startDate, setStartDate] = useState(null);
@@ -468,7 +474,7 @@ export default function DetailedProduct() {
                 <ShortInfoBox2>
                     <ShortInfo2>
                         <AiFillStar />
-                        {scoreAvg()}
+                        {pageDetail.reviews?.length === 0 ? 0 : scoreAvg()}
                     </ShortInfo2>
                     <ReviewNumber2>
                         후기 {pageDetail.reviews?.length}개

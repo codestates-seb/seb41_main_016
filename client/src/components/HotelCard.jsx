@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CardBox = styled.div`
     /* position: relative; */
+    cursor: pointer;
 `;
 
 const ImgBox = styled.div`
@@ -60,11 +62,16 @@ const PriceBox = styled.div`
     font-weight: 700;
 `;
 
-export default function HotelCard({ title, price }) {
+export default function HotelCard({ title, price, score, img, id }) {
     const [icon, setIcon] = useState(false);
 
+    const navigate = useNavigate();
+    const handleNavigate = () => {
+        navigate(`/rooms/${id}`, { state: id });
+    };
+
     return (
-        <CardBox>
+        <CardBox onClick={handleNavigate}>
             <ImgBox>
                 <Icon onClick={() => setIcon((prev) => !prev)}>
                     {icon ? (
@@ -80,7 +87,7 @@ export default function HotelCard({ title, price }) {
                     <Star>
                         <AiFillStar />
                     </Star>
-                    <span>4.2 (2,077)</span>
+                    <span>{score} (2,077)</span>
                 </ScopeBox>
             </TextBox>
             <PriceBox>{price}</PriceBox>
