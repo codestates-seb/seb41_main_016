@@ -19,8 +19,8 @@ public class MemberDto {
         private String email;
         @NotBlank(message = "이름을 입력해주세요.")
         private String name;
-        @NotBlank(message = "사용할 닉네임을 입력해주세요.")
-        private String nickname;
+//        @NotBlank(message = "사용할 닉네임을 입력해주세요.")
+//        private String nickname;
         @NotBlank(message = "비밀번호를 입력해주세요.")
 //        @Pattern(regexp = "^(?=.*[a-zA-z])(?=.*[0-9])(?!.*[^a-zA-z0-9]).{4,20}$", message = "영문자/숫자 포함 4~20")
         private String password;
@@ -31,8 +31,8 @@ public class MemberDto {
     @NoArgsConstructor
     static public class Patch {
         private long memberId;
-        @NotBlank(message = "닉네임은 공백일 수 없습니다.")
-        private String nickname;
+//        @NotBlank(message = "닉네임은 공백일 수 없습니다.")
+//        private String nickname;
 
         @NotBlank(message = "비밀번호는 공백일 수 없습니다.")
 //        @Pattern(regexp = "^(?=.*[a-zA-z])(?=.*[0-9])(?!.*[^a-zA-z0-9]).{4,20}$", message = "영문자/숫자 포함 4~20")
@@ -63,7 +63,7 @@ public class MemberDto {
         private String email;
         private String name;
         private String image;
-        private String nickname;
+//        private String nickname;
         List<Review> reviews;
         List<Reservation> reservations;
 //        List<WishList> buckets;

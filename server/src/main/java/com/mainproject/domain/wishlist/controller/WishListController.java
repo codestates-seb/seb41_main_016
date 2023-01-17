@@ -17,7 +17,7 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wishlists")
+@RequestMapping("/member/wishlists")
 public class WishListController {
     private final WishListService wishListService;
     private final MemberService memberService;

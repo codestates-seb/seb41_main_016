@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/members")
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
@@ -21,7 +20,7 @@ public class MemberController {
         this.mapper = mapper;
     }
 
-    @PostMapping
+    @PostMapping("/members")
     public ResponseEntity<?> postMember(@RequestBody MemberDto.Post post) {
         Member member = mapper.memberPostToMember(post);
 
@@ -29,7 +28,8 @@ public class MemberController {
                 mapper.memberToMemberResponseDto(memberService.createMember(member)), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{member-id}")
+
+    @PatchMapping("/members/{member-id}")
     public ResponseEntity<?> patchMember(@PathVariable("member-id") Long memberId,
                                          @RequestBody MemberDto.Patch patch) {
 
@@ -39,21 +39,21 @@ public class MemberController {
         return new ResponseEntity<>(mapper.memberToMemberResponseDto(member), HttpStatus.OK);
     }
 
-    @GetMapping("/{member-id}")
+    @GetMapping(value = {"/members/{member-id}", "/member/{member-id}/mypage"})
     public ResponseEntity<?> getMember(@PathVariable("member-id") Long memberId) {
         Member member = memberService.findMember(memberId);
         return new ResponseEntity<>(
                 mapper.memberToMyPageResponseDto(member), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/members")
     public ResponseEntity<?> getMembers() {
 
         return new ResponseEntity<>(
                 mapper.membersToMemberResponseDtos(memberService.findMembers()), HttpStatus.OK);
     }
 
-    @DeleteMapping("{member-id}")
+    @DeleteMapping("/members/{member-id}")
     public ResponseEntity<?> deleteMember(@PathVariable("member-id") Long memberId) {
         memberService.deleteMember(memberId);
 
