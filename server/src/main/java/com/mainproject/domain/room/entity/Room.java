@@ -2,10 +2,7 @@ package com.mainproject.domain.room.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.hotel.entity.Hotel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "ROOM")
 @Data
+@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

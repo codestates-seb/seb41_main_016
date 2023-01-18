@@ -1,6 +1,8 @@
 package com.mainproject.domain.hotel.service;
 
+import com.mainproject.domain.hotel.dto.HotelToHotelListResponseDto;
 import com.mainproject.domain.hotel.entity.Hotel;
+import com.mainproject.domain.hotel.mapper.HotelMapper;
 import com.mainproject.domain.hotel.repository.HotelRepository;
 import com.mainproject.global.exception.BusinessLogicException;
 import com.mainproject.global.exception.ExceptionCode;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +23,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class HotelService {
     private final HotelRepository hotelRepository;
+    private final HotelMapper mapper;
     @Transactional(readOnly = true)
     public Hotel findHotel(Long hotelId){
         Optional<Hotel> optionalHotel = hotelRepository.findById(hotelId);
@@ -28,6 +32,8 @@ public class HotelService {
             new BusinessLogicException(ExceptionCode.HOTEL_NOT_FOUND));
     }
 
-
+    public List<Hotel> findHotelList(){
+        return hotelRepository.findAll();
+    }
 
 }

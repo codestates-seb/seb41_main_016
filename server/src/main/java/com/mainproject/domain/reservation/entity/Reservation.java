@@ -5,11 +5,9 @@ import com.mainproject.domain.payment.dto.KakaoApproveResponse;
 import com.mainproject.domain.room.entity.Room;
 import com.mainproject.global.audit.Auditable;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Builder
@@ -17,7 +15,6 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
 @Table(name = "RESERVATION")
 public class Reservation extends Auditable {
     @Id

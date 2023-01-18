@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@Embeddable
+@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
 public class Review extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +33,10 @@ public class Review extends Auditable{
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
-
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "member_id")
     private Member member;
-
-
     @JsonIgnore
     @OneToMany(mappedBy = "review",cascade = CascadeType.REMOVE)
     private List<ReviewImage> reviewImageList = new ArrayList<>();

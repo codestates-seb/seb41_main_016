@@ -21,11 +21,10 @@ public interface MemberMapper {
                     response.memberId(member.getMemberId())
                             .email(member.getEmail())
                             .image(member.getImage())
-                            .nickname(member.getNickname())
+//                            .nickname(member.getNickname())
                             .name(member.getName())
                             .reviews(member.getReviews())
-                            .reservations(member.getReservations())
-                            .buckets(member.getBuckets());
+                            .reservations(member.getReservations());
 
                 return response.build();
         }

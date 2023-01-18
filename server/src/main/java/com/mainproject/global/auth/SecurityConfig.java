@@ -48,11 +48,12 @@ public class SecurityConfig {
                 .httpBasic().disable()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeRequests(auth ->
-                        auth
-                                .antMatchers(HttpMethod.GET, "/members").permitAll()
-                                .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("USER", "ADMIN")
-                );
+                .authorizeRequests().anyRequest().permitAll();
+//                .authorizeRequests(auth ->
+//                        auth
+//                                .antMatchers(HttpMethod.GET, "/members").permitAll()
+//                                .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("USER", "ADMIN")
+//                );
 
         return httpSecurity.build();
     }

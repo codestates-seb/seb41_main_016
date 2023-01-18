@@ -1,11 +1,10 @@
 package com.mainproject.domain.member.entity;
 
-import com.mainproject.domain.bucket.entity.Bucket;
+import com.mainproject.domain.wishlist.entity.WishList;
 import com.mainproject.domain.reservation.entity.Reservation;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.global.audit.Auditable;
 import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 import javax.persistence.*;
@@ -37,7 +36,7 @@ public class Member extends Auditable{
     List<Review> reviews = new ArrayList<>();
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     List<Reservation> reservations = new ArrayList<>();
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
-    List<Bucket> buckets = new ArrayList<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+//    List<WishList> wishLists = new ArrayList<>();
 
 }

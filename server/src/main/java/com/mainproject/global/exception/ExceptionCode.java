@@ -11,7 +11,10 @@ public enum ExceptionCode {
     MEMBER_EXISTS(409, "Member exists"),
 
     REFRESHTOKEN_NOT_FOUND(404, "RefreshToken not found"),
+    DIFFERENT_REFRESHTOKEN(409, "RefreshTokens are different"),
 
+    WISHLIST_NOT_FOUND(404, "WishList not found"),
+    WISHLIST_EXISTS(409, "WishList exists"),
     REVIEW_NOT_FOUND(404,"review not found"),
 
     PAY_CANCEL(401, "Pay cancel"),
