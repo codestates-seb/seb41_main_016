@@ -27,8 +27,8 @@ public class Member extends Auditable{
     private String image;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String nickname;
+//    @Column(nullable = false)
+//    private String nickname;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 

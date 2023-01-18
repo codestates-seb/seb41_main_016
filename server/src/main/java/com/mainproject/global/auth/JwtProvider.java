@@ -77,7 +77,7 @@ public class JwtProvider {
         Map<String, Object> payloads = new HashMap<>();
         payloads.put("username", member.getEmail());
         payloads.put("roles", member.getRoles());
-        payloads.put("nickname", member.getNickname());
+//        payloads.put("nickname", member.getNickname());
 
         Date expiration = makeTokenExpiration(getAccessTokenExpirationMinutes());
 

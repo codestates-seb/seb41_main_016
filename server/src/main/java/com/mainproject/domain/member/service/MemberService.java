@@ -37,8 +37,8 @@ public class MemberService {
 
     public Member updateMember(Member member) {
         Member findMember = findExistedMember(member.getMemberId());
-        Optional.ofNullable(member.getNickname())
-                .ifPresent(findMember::setNickname);
+//        Optional.ofNullable(member.getNickname())
+//                .ifPresent(findMember::setNickname);
 
         Optional.ofNullable(member.getPassword())
                 .ifPresent(findMember::setPassword);

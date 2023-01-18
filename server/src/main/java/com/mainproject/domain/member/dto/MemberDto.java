@@ -50,7 +50,7 @@ public class MemberDto {
         private String email;
         private String name;
         private String image;
-        private String nickname;
+//        private String nickname;
     }
 
     @Getter
