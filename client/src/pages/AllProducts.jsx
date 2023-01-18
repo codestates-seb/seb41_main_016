@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import LayoutContainer from "../components/LayoutContainer";
 import HotelCard from "../components/HotelCard";
@@ -74,7 +74,6 @@ const CardBox = styled.div`
 
 export default function AllProducts() {
     const isLogin = useSelector((state) => state.Login.isLogin);
-    const isModal = useSelector((state) => state.Modal.isModal);
 
     const { pathname } = useLocation();
     const navigate = useNavigate();

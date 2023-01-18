@@ -61,7 +61,6 @@ const Icon = styled.span`
 export default function Header() {
     const isLogin = useSelector((state) => state.Login.isLogin);
     const isModal = useSelector((state) => state.Modal.isModal);
-    console.log(isModal);
 
     const [signupOpen, setSignupOpen] = useState(false);
 

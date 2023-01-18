@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../store/LoginSlice";
 import { modalOpen } from "../store/ModalSlice";
-import LoginModal from "./LoginModal";
-import SignupModal from "./SignupModal";
 
 const MenuBox = styled.div`
     display: flex;
@@ -69,6 +67,11 @@ export default function HeaderDropdown({
         setMenu(!menu);
     };
 
+    const handleLogout = () => {
+        dispatch(logout());
+        setMenu(!menu);
+    };
+
     return (
         <>
             {isLogin ? (
@@ -82,7 +85,7 @@ export default function HeaderDropdown({
                         </li>
                     </ul>
                     <ul className="logout">
-                        <li onClick={() => dispatch(logout())}>로그아웃</li>
+                        <li onClick={handleLogout}>로그아웃</li>
                     </ul>
                 </MenuBox>
             ) : (

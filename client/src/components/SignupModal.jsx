@@ -9,7 +9,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import useScrollPrevent from "../utils/useScrollPrevent";
 import { useDispatch } from "react-redux";
-import { modalClose, modalOpen } from "../store/ModalSlice";
+import { modalOpen } from "../store/ModalSlice";
 
 const ModalContainer = styled.div`
     display: flex;

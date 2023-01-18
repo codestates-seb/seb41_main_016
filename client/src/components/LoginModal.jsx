@@ -178,7 +178,6 @@ export default function LoginModal({ isModal }) {
     const closeModal = () => {
         dispatch(modalClose());
     };
-    console.log(isModal);
 
     const {
         register,

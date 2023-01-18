@@ -16,6 +16,8 @@ import axios from "axios";
 import { priceFormatter } from "../utils/priceFormatter";
 import KakaoMap from "../components/ForDetails.jsx/KakaoMap";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { modalOpen } from "../store/ModalSlice";
 
 const TitleBox = styled.div`
     padding-top: 24px;
@@ -249,6 +251,9 @@ export default function DetailedProduct() {
     const [Modal2Open, setModal2Open] = useState(false);
     const [roomType, setRoomType] = useState("1 King Bed");
     const [ConfirmModalOpen, setConfirmModal] = useState(false);
+    const isLogin = useSelector((state) => state.Login.isLogin);
+    const isModal = useSelector((state) => state.Modal.isModal);
+    const dispatch = useDispatch();
 
     const onSelectModal = () => {
         setModalOpen(!ModalOpen);
@@ -434,7 +439,14 @@ export default function DetailedProduct() {
                         </RoomChoice>
                     </ReservationContainer>
                     <ConfirmContainer>
-                        <ConfirmButton onClick={handleConfirm}>
+                        <ConfirmButton
+                            onClick={
+                                isLogin
+                                    ? handleConfirm
+                                    : () => dispatch(modalOpen())
+                            }
+                            isModal={isModal}
+                        >
                             예약하기
                         </ConfirmButton>
                         {ConfirmModalOpen ? (

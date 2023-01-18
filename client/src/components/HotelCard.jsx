@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { priceFormatter } from "../utils/priceFormatter";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { modalOpen } from "../store/ModalSlice";
 
 const CardBox = styled.div`
