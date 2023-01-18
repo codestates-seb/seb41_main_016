@@ -6,6 +6,7 @@ import CategoryCard from "../components/CategoryCard";
 import { ImAirplane } from "react-icons/im";
 import { RiBriefcase4Fill } from "react-icons/ri";
 import { MdKingBed } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const MainTitleBox = styled.div`
   height: 400px;
@@ -64,7 +65,7 @@ const CategoryCardBox = styled.div`
   margin-bottom: 80px;
 `;
 
-const AllCategoryButton = styled.a`
+const AllCategoryButton = styled(Link)`
   width: 100%;
   height: 64px;
   display: flex;
@@ -130,7 +131,7 @@ export default function Main() {
               );
             })}
           </CategoryCardBox>
-          <AllCategoryButton href={"/category/all"}>
+          <AllCategoryButton to={"/category/all"}>
             숙소 리스트 전체 보기
           </AllCategoryButton>
         </MainContentBox>

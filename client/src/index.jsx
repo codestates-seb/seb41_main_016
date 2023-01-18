@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset";
 import App from "./App";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -17,6 +19,16 @@ const GlobalStyle = createGlobalStyle`
       display: none;
       }
     }
+    .my-swal {
+      z-index: 6000;
+    }
+    .icon-class {
+      font-size: 10px !important;
+    }
+    .swal2-success-line-long{
+      left:5px;
+    }
+
   }
   @font-face {
       font-family: 'Noto Sans KR', sans-serif;
@@ -59,19 +71,24 @@ const GlobalStyle = createGlobalStyle`
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const colorTheme = {
-    darkBlack: "#000",
-    mediumBlack: "#333",
-    lightBlack: "#4a4a4a",
-    darkGrey: "#999",
-    mediumGrey: "#a4a4a4",
-    lightGrey: "#ccc",
-    white: "#fff",
-    pointColor: "#20b2aa",
+  darkBlack: "#000",
+  mediumBlack: "#333",
+  lightBlack: "#4a4a4a",
+  darkGrey: "#999",
+  mediumGrey: "#a4a4a4",
+  lightGrey: "#ccc",
+  white: "#fff",
+  pointColor: "#20b2aa",
 };
 
+const queryClient = new QueryClient();
+
 root.render(
+  <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={colorTheme}>
-        <GlobalStyle />
-        <App />
+      <GlobalStyle />
+      <App />
+      <ReactQueryDevtools initialIsOpen={true} />
     </ThemeProvider>
+  </QueryClientProvider>
 );

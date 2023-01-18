@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
+import useScrollPrevent from "../../utils/useScrollPrevent";
 const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -165,6 +166,7 @@ export default function ReviewModal({
   handleText,
   handleReview,
 }) {
+  useScrollPrevent();
   return (
     <ModalContainer>
       <ModalBackdrop>

@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const CategoryBox = styled.a`
+const CategoryBox = styled(Link)`
   width: 360px;
   display: flex;
   flex-direction: column;
@@ -43,7 +44,7 @@ const ImageBox = styled.div`
 
 export default function CategoryCard({ href, icon, title, hashTag, url }) {
   return (
-    <CategoryBox href={href}>
+    <CategoryBox to={href}>
       <TextBox>
         <CategoryTitleBox>
           <span>{icon}</span>
