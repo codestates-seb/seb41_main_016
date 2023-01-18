@@ -8,6 +8,7 @@ import com.mainproject.domain.image.mapper.ImageMapper;
 import com.mainproject.domain.image.service.ReviewImageService;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.service.MemberService;
+import com.mainproject.domain.review.dto.ReviewEditDto;
 import com.mainproject.domain.review.dto.ReviewPostDto;
 import com.mainproject.domain.review.dto.ReviewResponseDto;
 import com.mainproject.domain.review.entity.Review;
@@ -46,7 +47,7 @@ public class ReviewController {
 //        log.info("review = {}" ,review);
         Review createReview = reviewService.postReview(review,reviewImages); // reviewImages 는 id값이 없다 리뷰 등록시 id값이 없는건 당연
 //        List<ReviewImage> reviewImageList = reviewImageService.postReviewImage(reviewImages,createReview);
-        log.info("createReview = {} ", createReview);
+
         return new ResponseEntity<>(mapper.reviewToreview(createReview), HttpStatus.CREATED);
     }
 
@@ -54,6 +55,24 @@ public class ReviewController {
     public ResponseEntity getReview(@PathVariable("review-id") Long reviewId){
         Review review = reviewService.findReview(reviewId);
 
-        return new ResponseEntity<>(review, HttpStatus.OK);
+        return new ResponseEntity<>(mapper.reviewToreview(review), HttpStatus.OK);
+    }
+
+    @PatchMapping("/edit/{hotel-id}/{review-id}") // TODO: 리뷰 수정 진행 중
+    public ResponseEntity patchReview(@PathVariable("review-id") Long reviewId,
+                                      @PathVariable("hotel-id") Long hotelId,
+                                      @RequestBody ReviewEditDto reviewEditDto){
+        reviewEditDto.setReviewId(reviewId);
+        log.info(" reviewEditDto = {}",reviewEditDto);
+        Hotel hotel = hotelService.findHotel(hotelId);
+        Review review = reviewService.updateReview(mapper.reviewPatchToReview(reviewEditDto, hotel));
+        log.info("review = {} ", review);
+        return new ResponseEntity<>(mapper.reviewToreview(review),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{review-id}")
+    public ResponseEntity deleteReview(@PathVariable("review-id") Long reviewId){
+        reviewService.deleteReview(reviewId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -5,6 +5,7 @@ import com.mainproject.domain.image.entity.HotelImage;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.room.entity.Room;
 import lombok.*;
+import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class Hotel {
     private String title;
 
     @Column(name = "hotel_score")
-    private int hotelScore;
+    private Double hotelScore;
 
     @Column(name = "address")
     private String address;
@@ -52,4 +53,5 @@ public class Hotel {
     @JsonIgnore
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     private List<Review> reviewList = new ArrayList<>();
+
 }

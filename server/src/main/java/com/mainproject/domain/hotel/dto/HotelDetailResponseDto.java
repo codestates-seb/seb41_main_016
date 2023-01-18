@@ -14,7 +14,7 @@ import java.util.List;
 public class HotelDetailResponseDto {
     private Long hotelId;
     private String title;
-    private int hotelScore;
+    private Double hotelScore;
     private List<HotelImage> image;
     private String service;
     private String location_x;

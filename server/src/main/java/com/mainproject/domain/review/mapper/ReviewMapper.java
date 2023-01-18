@@ -5,6 +5,7 @@ import com.mainproject.domain.image.dto.ReviewImagePostDto;
 import com.mainproject.domain.image.entity.ReviewImage;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.repository.MemberRepository;
+import com.mainproject.domain.review.dto.ReviewEditDto;
 import com.mainproject.domain.review.dto.ReviewPostDto;
 import com.mainproject.domain.review.dto.ReviewResponseDto;
 import com.mainproject.domain.review.entity.Review;
@@ -41,6 +42,7 @@ public class ReviewMapper {
                             .hotelId(review.getHotel().getHotelId())
                             .memberImage(review.getMember().getImage())
                             .memberId(review.getMember().getMemberId())
+                            .memberName(review.getMember().getName())
                             .createdAt(review.getCreatedAt())
                             .content(review.getContent())
                             .reviewImage(review.getReviewImageList()) // 가져오기 위해선 review에 이미지를 등록
@@ -72,8 +74,9 @@ public class ReviewMapper {
 //        log.info("reviewPostDto == {}",reviewPostDto);
         return Review.builder()
                 .reviewId(reviewPostDto.getReviewId())
-//                .reviewImageList(imageList(reviewImageList,hotel,reviewPostDto)) // 리뷰 이미지 수정 매우 필요
-                .reviewImageList(reviewImageList) // 리뷰 이미지 수정 매우 필요
+                .reviewImageList(reviewImageList)
+//                .createdAt()
+//                .modifiedAt()
                 .content(reviewPostDto.getContent())
                 .score(reviewPostDto.getScore())
                 .hotel(hotel)
@@ -82,11 +85,13 @@ public class ReviewMapper {
 
     }
     public ReviewResponseDto reviewToreview(Review review){ // 리뷰컨트롤러 사용
+        log.info(" memberName = {}", review.getMember().getName());
         return ReviewResponseDto.builder()
                 .reviewId(review.getReviewId())
                 .hotelId(review.getHotel().getHotelId())
                 .memberImage(review.getMember().getImage())
                 .memberId(review.getMember().getMemberId())
+                .memberName(review.getMember().getName())
                 .createdAt(review.getCreatedAt())
                 .reviewImage(review.getReviewImageList())
                 .content(review.getContent())
@@ -95,15 +100,6 @@ public class ReviewMapper {
     }
 
     public List<ReviewImage> reviewimageListToReview(List<ReviewImage> reviewImages, Review review){
-        // TODO: reviewImage + review -> reviewimage에 review를 넣기 위해 사용
-        // id null 값
-        // image 들어감
-        // review reviewId가 null 값인 review가 들어감
-//        log.info("리뷰아이디 = {}",review.getReviewId());
-//        log.info("리뷰이미지 리스트 = {}",review.getReviewImageList());
-//        log.info("리뷰 시간 = {}",review.getCreatedAt());
-//        log.info("멤버 = {}",review.getMember());
-//        log.info("호텔 = {}",review.getHotel());
         return reviewImages.stream().map(
                 reviewImage -> {
                     return ReviewImage.builder()
@@ -124,5 +120,17 @@ public class ReviewMapper {
                             .reviewImageList(reviewImageList)
                             .build();
 
+    }
+
+    public Review reviewPatchToReview(ReviewEditDto reviewEditDto, Hotel hotel){
+        return Review.builder()
+                .reviewId(reviewEditDto.getReviewId())
+                .hotel(hotel)
+//                .createdAt(reviewEditDto.getCreatedAt())
+//                .modifiedAt(reviewEditDto.getModifiedAt())
+                .reviewImageList(reviewEditDto.getReviewImageList())
+                .content(reviewEditDto.getContent())
+                .score(reviewEditDto.getScore())
+                .build();
     }
 }

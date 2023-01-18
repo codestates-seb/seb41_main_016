@@ -6,6 +6,7 @@ import com.mainproject.domain.image.repositroy.ReviewImageRepository;
 import com.mainproject.domain.image.service.ReviewImageService;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.repository.MemberRepository;
+import com.mainproject.domain.review.dto.ReviewEditDto;
 import com.mainproject.domain.review.dto.ReviewResponseDto;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.review.mapper.ReviewMapper;
@@ -15,6 +16,8 @@ import com.mainproject.global.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,15 +36,15 @@ public class ReviewService {
 
     public Review postReview(Review review, List<ReviewImage> reviewImageList){
 
-        List<ReviewImage> rr = reviewImageService.postReviewImage(reviewImageList, review); // 원하는 값? 얻고자하는 값 =
-//        rr.stream().forEach(reviewImage -> log.info("reviewImage 출력 = {}",reviewImage));
-        Review review1 = reviewMapper.reviewListGetToReview(rr, review); // 리뷰 + 이미지
-        log.info("리뷰 = {}", review1);
+        List<ReviewImage> postReviewImage = reviewImageService.postReviewImage(reviewImageList, review);
+        Review review1 = reviewMapper.reviewListGetToReview(postReviewImage, review);
+        log.info(" createdAt review1 = {}", review1.getCreatedAt());
         Review review2 = reviewRepository.save(review1);
-        log.info("review2 = {} ", review2);
-        return review2; // 리뷰 등록  -> 여기서 에러가 나나????????
+        log.info(" createdAt review2 = {}", review2.getCreatedAt());
+        return review2;
     }
 
+    @Transactional(readOnly = true)
     public Review findReview(Long reviewId){
         Optional<Review> findReview = reviewRepository.findById(reviewId);
         return findReview.orElseThrow(() ->
@@ -50,10 +53,30 @@ public class ReviewService {
 
     public List<ReviewResponseDto> findReviewList(Hotel hotel){ //
 
-        List<Review> ww = reviewRepository.findByHotel(hotel);
+        List<Review> reviewList = reviewRepository.findByHotel(hotel);
 
-        List<ReviewResponseDto> re = reviewMapper.reviewListToReviewResponseDto(ww);
+        List<ReviewResponseDto> responseDtoList = reviewMapper.reviewListToReviewResponseDto(reviewList);
+//        responseDtoList.stream().forEach(review -> log.info(" createdAt = {}", review.getCreatedAt() ));
+        return responseDtoList;
+    }
 
-        return re;
+    public void deleteReview(Long reviewId){
+        Review findReview = findReview(reviewId);
+        reviewRepository.delete(findReview);
+    }
+    @Transactional
+    public Review updateReview(Review review){ // TODO: 리뷰 수정 진행 중
+        Review findReview = findReview(review.getReviewId());
+        log.info(" findReview = {}", findReview);
+//
+////        Optional.ofNullable(review.getModifiedAt())  //
+////                .isPresent(modified -> findReview.setModifiedAt(modified));
+//        Optional.ofNullable(review.getReviewImageList())
+//                .isPresent(n -> findReview.setReviewImageList(rr));
+//        Optional.ofNullable(review.getContent())
+//                .isPresent(content -> findReview.setContent(content));
+////        Optional.ofNullable(review.getScore())
+////                .isPresent(score -> findReview.setReviewId(score));
+        return findReview;
     }
 }

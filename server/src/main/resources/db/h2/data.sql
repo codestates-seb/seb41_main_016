@@ -1,21 +1,21 @@
 INSERT INTO hotel(title,hotel_Score,address,location_x, location_y, service, category ) VALUES --lodging_policy 삭제 -> '아동입실 허용, 전 객실 금연', service -> 설명으로 변경
-('화순 더원 비지니스 호텔',1,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('화순 더원 비지니스 호텔',0,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('부산 서면 비지니스 호텔 J7',2,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('부산 서면 비지니스 호텔 J7',0,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('광주 어반라이프 호텔',3,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('광주 어반라이프 호텔',0,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('화순 더원 비지니스 호텔',4,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('화순 더원 비지니스 호텔',0,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('부산 서면 비지니스 호텔 J7',5,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('부산 서면 비지니스 호텔 J7',0,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('광주 어반라이프 호텔',6,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('광주 어반라이프 호텔',0,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('화순 더원 비지니스 호텔',7,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('화순 더원 비지니스 호텔',0,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('부산 서면 비지니스 호텔 J7',8,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('부산 서면 비지니스 호텔 J7',0,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('광주 어반라이프 호텔',9,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('광주 어반라이프 호텔',0,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스');
 
 
@@ -116,9 +116,30 @@ INSERT INTO room(room_type, head_count, price,hotel_id, quantity) VALUES
 
 
 INSERT INTO hotel_image(image,title,hotel_id) VALUES
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',1),
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',1),
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',1),
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',2),
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',2),
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',2);
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',1),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',1),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',1),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',2),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',2),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',2),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',3),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',3),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',3),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',4),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',4),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',4),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',5),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',5),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',5),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',6),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',6),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',6),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',7),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',7),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',7),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',8),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',8),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',8),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',9),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',9),
+                                                  ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',9);
