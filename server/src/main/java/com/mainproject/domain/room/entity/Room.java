@@ -27,6 +27,9 @@ public class Room {
     private String roomType;
 
     @Column
+    private int quantity;
+
+    @Column
     private int price;
 
     @JsonIgnore

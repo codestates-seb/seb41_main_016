@@ -27,6 +27,7 @@ public class ReservationController {
     private final ReservationMapper reservationMapper;
 
     private final ReservationRepository reservationRepository;
+
     private final RoomService roomService;
 
     public ReservationController(ReservationService reservationService,
@@ -40,13 +41,12 @@ public class ReservationController {
     }
 
     // Post reservation
-    @PostMapping("/{reservation-id}")
-    public ResponseEntity postReservation(@PathVariable("reservation-id") @Positive long reservationId,
-                                          @Valid @RequestBody ReservationDto.Post requestBody){
+    @PostMapping
+    public ResponseEntity postReservation(@Valid @RequestBody ReservationDto.Post requestBody){
         Reservation reservation =
                 reservationService.createReservation(
                         reservationMapper.reservationPostDtoToReservation(requestBody),
-                        requestBody.getRoomId(), reservationId);
+                        requestBody.getRoomId(), requestBody.getMemberId());
 
         return new ResponseEntity<>(
                 (reservationMapper.reservationToReservationResponseDto(reservation)),

@@ -12,6 +12,8 @@ public class RoomDto {
 
         private String roomType;
 
+        private int quantity;
+
         private int price;
     }
 
@@ -23,6 +25,8 @@ public class RoomDto {
         private int headCount;
 
         private String roomType;
+
+        private int quantity;
 
         private int price;
     }

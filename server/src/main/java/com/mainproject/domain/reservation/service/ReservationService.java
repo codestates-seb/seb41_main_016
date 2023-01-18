@@ -62,7 +62,6 @@ public class ReservationService {
     // Reservation 취소하기
     public void deleteReservation(Long reservationId) {
         Reservation findReservation = findVerifiedReservation(reservationId);
-
         reservationRepository.delete(findReservation);
     }
 
@@ -83,86 +82,4 @@ public class ReservationService {
         List<Room> roomList = roomService.findRooms();
         return roomList;
     }
-
-    /*
-    public List<Reservation> getReservations() {
-        List<Reservation> reservationList = new ArrayList<>();
-        List<Room> rooms = getRoomList();
-
-        DateFormat df2 = new SimpleDateFormat("yyyy.MM.dd");
-        Calendar calendar = Calendar.getInstance();
-
-        for (int i = 0; i < 356; i++) {
-            for (Room room : rooms) {
-                DateFormat df = new SimpleDateFormat("HH:mm");
-                Calendar cal = Calendar.getInstance();
-                cal.set(Calendar.HOUR_OF_DAY, 0);
-                cal.set(Calendar.MINUTE, 0);
-                cal.set(Calendar.SECOND, 0);
-
-                int startDate = cal.get(Calendar.DATE);
-
-                while (cal.get(Calendar.DATE) == startDate) {
-                    Reservation reservation = new Reservation();
-
-                    reservation.setRoom(room);
-                    reservation.setDate(df2.format(calendar.getTime()));
-                    reservation.setCheckin(df.format(cal.getTime()));
-                    reservation.setCheckout(df.format(cal.getTime()));
-                    cal.add(Calendar.DATE, 0);
-                    reservation.isStatus();
-                }
-            }
-            calendar.add(Calendar.YEAR, 0);
-        }
-        return reservationList;
-    }
-
-   public List<Reservation> saveAllReservation(ReservationDto.Response reservationDto) {
-        List<String> dateList = getDateList(reservationDto.getCheckin());
-        List<String> checkinList = Lists.newArrayList(reservationDto.getCheckin().split(","));
-        List<Reservation> reservationList = reservationRepository.findByRoomIdAndDateInAndCheckin(
-                Long.valueOf(reservationDto.getRoomId()), dateList, checkinList);
-
-        for (Reservation reservation : reservationList){
-            reservation.setReservationId(reservationDto.getReservationId());
-            reservation.setStatus(true);
-            reservationRepository.save(reservation);
-        }
-        return reservationList;
-    }
-
-    private List<String> getDateList(String date) {
-        List<String> dateList = new ArrayList<>();
-        DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(convertDate(date));
-        String transDate = df.format(calendar.getTime());
-        dateList.add(transDate);
-
-        for (int i = 0; i < date.length(); i++) {
-            calendar.add(Calendar.DAY_OF_MONTH, Calendar.DATE);
-            String tranDate = df.format(calendar.getTime());
-            dateList.add(tranDate);
-        }
-        return dateList;
-    }
-
-    private Date convertDate(String date){
-        SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyy.MM.dd");
-        SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date tempDate = null;
-
-        try {
-            tempDate = beforeFormat.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        String transDate = afterFormat.format(tempDate);
-        Date d = java.sql.Date.valueOf(transDate);
-        return d;
-    }
-    */
 }

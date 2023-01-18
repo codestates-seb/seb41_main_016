@@ -22,6 +22,7 @@ public interface RoomMapper {
                     return RoomResponseDto.builder()
                             .roomId(room.getRoomId())
                             .roomType(room.getRoomType())
+                            .quantity(room.getQuantity())
                             .head_count(room.getHeadCount())
                             .price(room.getPrice())
                             .build();

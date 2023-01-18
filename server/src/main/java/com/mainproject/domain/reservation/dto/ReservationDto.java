@@ -1,10 +1,13 @@
 package com.mainproject.domain.reservation.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
+import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
 
 public class ReservationDto {
 
@@ -20,7 +23,9 @@ public class ReservationDto {
 
         private LocalDateTime checkout;
 
-        private int person;
+        private int adult;
+
+        private int child;
 
         private int price;
     }
@@ -37,7 +42,9 @@ public class ReservationDto {
 
         private LocalDateTime checkout;
 
-        private int person;
+        private int adult;
+
+        private int child;
 
         private int price;
     }
@@ -55,13 +62,13 @@ public class ReservationDto {
 
         private LocalDateTime checkout;
 
-        private int person;
+        private int adult;
+
+        private int child;
 
         private int price;
 
         private boolean status;
-
-        private String date;
 
     }
 }

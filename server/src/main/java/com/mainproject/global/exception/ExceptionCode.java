@@ -12,7 +12,11 @@ public enum ExceptionCode {
 
     REFRESHTOKEN_NOT_FOUND(404, "RefreshToken not found"),
 
-    REVIEW_NOT_FOUND(404,"review not found");
+    REVIEW_NOT_FOUND(404,"review not found"),
+
+    PAY_CANCEL(401, "Pay cancel"),
+
+    PAY_FAILED(401, "Pay failed");
 
     @Getter
     private int status;

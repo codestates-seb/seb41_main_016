@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ReservationMapper {
 
+    Reservation getReservationId(Long reservationId);
+
     Reservation reservationPostDtoToReservation(ReservationDto.Post requestBody);
 
     Reservation reservationPatchDtoToReservation(ReservationDto.Patch requestBody);
@@ -22,10 +24,10 @@ public interface ReservationMapper {
                 reservation.getRoom().getRoomId(),
                 reservation.getCheckin(),
                 reservation.getCheckout(),
+                reservation.getAdult(),
+                reservation.getChild(),
                 reservation.getPrice(),
-                reservation.getPerson(),
-                reservation.isStatus(),
-                reservation.getDate()
+                reservation.isStatus()
         );
         return reservationResponseDto;
     }
