@@ -118,4 +118,7 @@ INSERT INTO room(room_type, head_count, price,hotel_id, quantity) VALUES
 INSERT INTO hotel_image(image,title,hotel_id) VALUES
 ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',1),
 ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',1),
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',1);
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',1),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',2),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',2),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',2);
