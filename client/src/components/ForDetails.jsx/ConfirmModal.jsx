@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import LoginModal from "../LoginModal";
 
 const ModalContainer = styled.div`
     width: 100%;
@@ -39,13 +41,22 @@ const ConfirmButton = styled.button`
 const CancelButton = styled(ConfirmButton)``;
 
 export default function ConfirmModal({ handleConfirm }) {
+    const isLogin = useSelector((state) => state.isLogin);
     return (
-        <ModalContainer>
-            <ConfirmText>예약하시겠습니까?</ConfirmText>
-            <ButtonBox>
-                <ConfirmButton>확인</ConfirmButton>
-                <CancelButton onClick={handleConfirm}>취소</CancelButton>
-            </ButtonBox>
-        </ModalContainer>
+        <>
+            {isLogin ? (
+                <ModalContainer>
+                    <ConfirmText>예약하시겠습니까?</ConfirmText>
+                    <ButtonBox>
+                        <ConfirmButton>확인</ConfirmButton>
+                        <CancelButton onClick={handleConfirm}>
+                            취소
+                        </CancelButton>
+                    </ButtonBox>
+                </ModalContainer>
+            ) : (
+                <LoginModal />
+            )}
+        </>
     );
 }

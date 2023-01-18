@@ -8,9 +8,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useScrollPrevent from "../utils/useScrollPrevent";
-import { login } from "../store/LoginSlice";
 import { useDispatch } from "react-redux";
-import { modalClose } from "../store/ModalSlice";
+import { modalClose, modalOpen } from "../store/ModalSlice";
 
 const ModalContainer = styled.div`
     display: flex;
@@ -171,14 +170,13 @@ const SocialLoginBox = styled.div`
     }
 `;
 
-export default function LoginModal({ isModal }) {
+export default function SignupModal({ setSignupOpen }) {
     const dispatch = useDispatch();
 
     useScrollPrevent();
     const closeModal = () => {
-        dispatch(modalClose());
+        setSignupOpen(false);
     };
-    console.log(isModal);
 
     const {
         register,
@@ -210,18 +208,18 @@ export default function LoginModal({ isModal }) {
 
         try {
             await axios
-                .post("http://localhost:3001/login", data)
+                .post("http://localhost:3001/signup", data)
                 .then((data) => {
-                    closeModal();
-                    dispatch(login());
                     Toast.fire({
-                        title: "로그인 성공!",
+                        title: "회원가입 성공!",
                         icon: "success",
                         customClass: {
                             icon: "icon-class",
                             container: "my-swal",
                         },
                     });
+                    setSignupOpen(false);
+                    dispatch(modalOpen());
                 });
         } catch (error) {
             console.error(error);
@@ -233,12 +231,31 @@ export default function LoginModal({ isModal }) {
             <ModalBackground>
                 <ModalBox>
                     <ModalTitleBox>
-                        <h2>로그인</h2>
+                        <h2>회원가입</h2>
                         <span onClick={closeModal}>
                             <IoMdClose />
                         </span>
                     </ModalTitleBox>
                     <ModalInputBox onSubmit={handleSubmit(onValid)}>
+                        <div>
+                            <label htmlFor="username">사용자 이름</label>
+                            <input
+                                id="username"
+                                type="text"
+                                placeholder="홍길동"
+                                {...register("username", {
+                                    required: "사용자 이름을 입력해주세요.",
+                                })}
+                            />
+                            <ErrorBox>
+                                {errors?.username?.message ===
+                                undefined ? null : (
+                                    <BiErrorCircle />
+                                )}{" "}
+                                {errors?.username?.message}
+                            </ErrorBox>
+                        </div>
+
                         <div>
                             <label htmlFor="email">이메일</label>
                             <input
@@ -283,9 +300,29 @@ export default function LoginModal({ isModal }) {
                                 {errors?.password?.message}
                             </ErrorBox>
                         </div>
+
+                        <div>
+                            <label htmlFor="passwordConfirm">
+                                비밀번호 확인
+                            </label>
+                            <input
+                                id="passwordConfirm"
+                                type="password"
+                                placeholder="8자 이상의 숫자, 영대소문자, 특수문자 포함"
+                                {...register("passwordConfirm", {
+                                    required: "비밀번호 확인을 입력해주세요.",
+                                })}
+                            />
+                            <ErrorBox>
+                                {errors?.email?.message === undefined ? null : (
+                                    <BiErrorCircle />
+                                )}{" "}
+                                {errors?.passwordConfirm?.message}
+                            </ErrorBox>
+                        </div>
+
                         <LoginBox>
-                            <button type="submit">로그인하기</button>
-                            <span>아이디/비밀번호 찾기</span>
+                            <button type="submit">가입완료</button>
                         </LoginBox>
                     </ModalInputBox>
                     <SocialLoginBox>
@@ -293,13 +330,13 @@ export default function LoginModal({ isModal }) {
                             <span>
                                 <RiKakaoTalkFill />
                             </span>
-                            카카오로 간편 로그인하기
+                            카카오로 간편 가입하기
                         </button>
                         <button className="google">
                             <span>
                                 <FcGoogle />
                             </span>
-                            구글로 간편 로그인하기
+                            구글로 간편 가입하기
                         </button>
                     </SocialLoginBox>
                 </ModalBox>

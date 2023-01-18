@@ -5,6 +5,8 @@ import reset from "styled-reset";
 import App from "./App";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Provider } from "react-redux";
+import store from "./store/Store";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -18,6 +20,10 @@ const GlobalStyle = createGlobalStyle`
       ::-webkit-scrollbar {
       display: none;
       }
+      user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     }
     .my-swal {
       z-index: 6000;
@@ -71,24 +77,26 @@ const GlobalStyle = createGlobalStyle`
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const colorTheme = {
-  darkBlack: "#000",
-  mediumBlack: "#333",
-  lightBlack: "#4a4a4a",
-  darkGrey: "#999",
-  mediumGrey: "#a4a4a4",
-  lightGrey: "#ccc",
-  white: "#fff",
-  pointColor: "#20b2aa",
+    darkBlack: "#000",
+    mediumBlack: "#333",
+    lightBlack: "#4a4a4a",
+    darkGrey: "#999",
+    mediumGrey: "#a4a4a4",
+    lightGrey: "#ccc",
+    white: "#fff",
+    pointColor: "#20b2aa",
 };
 
 const queryClient = new QueryClient();
 
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider theme={colorTheme}>
-      <GlobalStyle />
-      <App />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </ThemeProvider>
-  </QueryClientProvider>
+    <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={colorTheme}>
+                <GlobalStyle />
+                <App />
+                <ReactQueryDevtools initialIsOpen={true} />
+            </ThemeProvider>
+        </QueryClientProvider>
+    </Provider>
 );
