@@ -5,8 +5,10 @@ import com.mainproject.domain.image.entity.HotelImage;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.room.entity.Room;
 import lombok.*;
+import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
+//@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,8 @@ public class Hotel {
     private String title;
 
     @Column(name = "hotel_score")
-    private int hotelScore;
+    @NotNull
+    private Double hotelScore;
 
     @Column(name = "address")
     private String address;
@@ -52,4 +55,5 @@ public class Hotel {
     @JsonIgnore
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     private List<Review> reviewList = new ArrayList<>();
+
 }

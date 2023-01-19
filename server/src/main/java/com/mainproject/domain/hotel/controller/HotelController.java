@@ -37,11 +37,8 @@ public class HotelController {
         Hotel hotel = hotelService.findHotel(hotelId);
         List<Room> rooms = hotel.getRoomList();
         List<RoomResponseDto> hotelFindRoomDto = roomMapper.roomToRoomList(rooms);
-//        Member member = memberService.findMember(memberId);
-//        List<Review> hotelFindReviewDto = reviewService.findReviewList(hotel);
         List<ReviewResponseDto> hotelFindReviewDto = reviewService.findReviewList(hotel);
         List<HotelImage> hotelImages = hotel.getImages();
-
         return new ResponseEntity<>(
                 mapper.hotelToDetailResponse(hotel, hotelImages, hotelFindRoomDto, hotelFindReviewDto), HttpStatus.OK);
     }

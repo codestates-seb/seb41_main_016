@@ -16,6 +16,6 @@ public class WishListDto {
         private Long hotelId;
         private String image;
         private String title;
-        private int hotelScore;
+        private Double hotelScore;
     }
 }

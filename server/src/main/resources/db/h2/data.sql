@@ -1,21 +1,21 @@
 INSERT INTO hotel(title,hotel_Score,address,location_x, location_y, service, category ) VALUES --lodging_policy 삭제 -> '아동입실 허용, 전 객실 금연', service -> 설명으로 변경
-('화순 더원 비지니스 호텔',1,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('화순 더원 비지니스 호텔',0,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('부산 서면 비지니스 호텔 J7',2,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('부산 서면 비지니스 호텔 J7',0,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('광주 어반라이프 호텔',3,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('광주 어반라이프 호텔',0,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('화순 더원 비지니스 호텔',4,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('화순 더원 비지니스 호텔',0,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('부산 서면 비지니스 호텔 J7',5,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('부산 서면 비지니스 호텔 J7',0,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('광주 어반라이프 호텔',6,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('광주 어반라이프 호텔',0,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('화순 더원 비지니스 호텔',7,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('화순 더원 비지니스 호텔',0,'전라남도 화순군 도곡면 온천1길 77','35.0318117460508','126.901948257849','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('부산 서면 비지니스 호텔 J7',8,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('부산 서면 비지니스 호텔 J7',0,'부산광역시 부산진구 부전로20번길 10','35.1524900057768','129.057031051322','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스'),
-('광주 어반라이프 호텔',9,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
+('광주 어반라이프 호텔',0,'광주광역시 서구 죽봉대로78번길 9','35.1603721624188','126.884556777217','모든 객실 내 무료 Wi-Fi가 제공. 서울 강남에 위치한 숙소는 관광 명소 및 흥미로운 레스토랑과 거리가 가깝습니다.
 숙소와 가까운 위치에 있는 경복궁을 방문해 보세요. 투숙객에게 숙소 내 레스토랑, 실내 수영장 및 스팀룸을 제공합니다.','비즈니스');
 
 
@@ -85,24 +85,24 @@ INSERT INTO hotel(title,hotel_Score,address,location_x, location_y, service, cat
 -- ('라한셀렉트 경주', '경상북도 경주시 보문로 338', '35.8503570280783', '129.277096540037', '주차기능, 야외수영장, 수영장, 와이파이, 사우나, 객실금연, 레스토랑, 피트니스, 뷔페, 어메니티, 24시간데스크, 커피숍, 비즈니스', '아동입실 허용, 전 객실 금연', '여행');
 
 INSERT INTO room(room_type, head_count, price,hotel_id, quantity) VALUES
-('king', 4, 1500000,1,1),
-('twin', 2, 1000000,1,1),
-('king', 4, 2500000,2,1),
-('twin', 2, 2000000,2,1),
-('king', 4, 3500000,3,1),
-('twin', 2, 3000000,3,1),
-('king', 4, 4500000,4,1),
-('twin', 2, 4000000,4,1),
-('king', 4, 5500000,5,1),
-('twin', 2, 5000000,5,1),
-('king', 4, 6500000,6,1),
-('twin', 2, 6000000,6,1),
-('king', 4, 7500000,7,1),
-('twin', 2, 7000000,7,1),
-('king', 4, 8500000,8,1),
-('twin', 2, 8000000,8,1),
-('king', 4, 9500000,9,1),
-('twin', 2, 9000000,9,1);
+('king', 4, 150000,1,1),
+('twin', 2, 100000,1,1),
+('king', 4, 250000,2,1),
+('twin', 2, 200000,2,1),
+('king', 4, 300000,3,1),
+('twin', 2, 300000,3,1),
+('king', 4, 450000,4,1),
+('twin', 2, 400000,4,1),
+('king', 4, 500000,5,1),
+('twin', 2, 500000,5,1),
+('king', 4, 650000,6,1),
+('twin', 2, 600000,6,1),
+('king', 4, 750000,7,1),
+('twin', 2, 700000,7,1),
+('king', 4, 650000,8,1),
+('twin', 2, 600000,8,1),
+('king', 4, 550000,9,1),
+('twin', 2, 400000,9,1);
 -- INSERT INTO review(created_At,content,score,hotel_id) VALUES
 -- ('2023-01-01 00:00:00', '화순 더원 비지니스 호텔 좋아요', 5, 1),
 -- -- ('2023-01-01 23:11:25','분위기 있어요!!',5,1),
@@ -121,4 +121,25 @@ INSERT INTO hotel_image(image,title,hotel_id) VALUES
 ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',1),
 ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',2),
 ('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',2),
-('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',2);
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',2),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',3),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',3),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',3),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',4),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',4),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',4),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',5),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',5),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',5),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',6),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',6),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',6),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',7),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',7),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',7),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',8),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',8),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',8),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외관',9),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','침실',9),
+('https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link','외부',9);

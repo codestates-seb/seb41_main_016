@@ -8,6 +8,7 @@ import com.mainproject.global.audit.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,10 @@ public class Review extends Auditable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long reviewId;
-
+//    @Column
+//    private LocalDateTime createdAt;
+//    @Column
+//    private LocalDateTime modifiedAt;
     @Column(nullable = false)
     private String content;
 
