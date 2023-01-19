@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { CgProfile } from 'react-icons/cg';
-import { CgMenuRightAlt } from 'react-icons/cg';
-import { useNavigate } from 'react-router-dom';
-import HeaderDropdown from './HeaderDropdown';
-import LoginModal from './LoginModal';
-import { useLocation } from 'react-router-dom';
-import SearchBar from './SearchBar';
-import { useSelector } from 'react-redux';
-import SignupModal from './SignupModal';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { CgProfile } from "react-icons/cg";
+import { CgMenuRightAlt } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
+import HeaderDropdown from "./HeaderDropdown";
+import LoginModal from "./LoginModal";
+import { useLocation } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import { useSelector } from "react-redux";
+import SignupModal from "./SignupModal";
 
 const HeaderBox = styled.header`
   position: fixed;
@@ -39,7 +39,7 @@ const HeaderBox = styled.header`
 const Title = styled.h1`
   color: ${(props) => props.theme.pointColor};
   font-weight: bold;
-  visibility: ${(props) => (props.selected ? 'hidden' : 'visible')};
+  visibility: ${(props) => (props.selected ? "hidden" : "visible")};
   &:hover {
     cursor: pointer;
   }
@@ -85,21 +85,21 @@ export default function Header() {
     <>
       {isModal ? <LoginModal isModal={isModal} /> : null}
       {signupOpen ? <SignupModal setSignupOpen={setSignupOpen} /> : null}
-      <HeaderBox selected={pathname === '/' ? true : false}>
+      <HeaderBox selected={pathname === "/" ? true : false}>
         <div>
           <Title
-            selected={pathname === '/' ? true : false}
-            onClick={() => navigate('/')}
+            selected={pathname === "/" ? true : false}
+            onClick={() => navigate("/")}
           >
             Why Stay?
           </Title>
-          {pathname === '/' ? null : <SearchBar />}
+          {pathname === "/" ? null : <SearchBar />}
           <IconBox
             onBlur={(e) => handleDismiss(e)}
-            selected={pathname === '/' ? true : false}
+            selected={pathname === "/" ? true : false}
           >
             {isLogin ? (
-              <CgProfile onClick={() => navigate('/mypage/:id')} />
+              <CgProfile onClick={() => navigate("/mypage/:id")} />
             ) : null}
             <Icon onClick={() => closeMenu()}>
               <CgMenuRightAlt />
