@@ -48,12 +48,30 @@ public class SecurityConfig {
                 .httpBasic().disable()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeRequests().anyRequest().permitAll();
-//                .authorizeRequests(auth ->
-//                        auth
-//                                .antMatchers(HttpMethod.GET, "/members").permitAll()
-//                                .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("USER", "ADMIN")
-//                );
+//                .authorizeRequests().anyRequest().permitAll();
+                .authorizeRequests(auth ->
+                        auth
+                                .antMatchers(HttpMethod.POST, "/members").permitAll()
+                                .antMatchers(HttpMethod.PATCH, "/members/*").hasRole("USER")
+                                .antMatchers(HttpMethod.GET, "/members/*").hasAnyRole("USER", "ADMIN")
+                                .antMatchers(HttpMethod.POST, "/member/wishlists").hasRole("USER")
+                                .antMatchers(HttpMethod.DELETE, "/member/wishlists").hasRole("USER")
+                                .antMatchers(HttpMethod.GET, "/member/wishlists/*").hasAnyRole("USER", "ADMIN")
+                                .antMatchers(HttpMethod.GET, "/member/**").hasAnyRole("USER", "ADMIN")
+                                .antMatchers(HttpMethod.DELETE, "/members/*").hasAnyRole("USER", "ADMIN")
+                                .antMatchers(HttpMethod.GET, "/hotel/**").permitAll()
+                                .antMatchers(HttpMethod.POST, "/reviews/**").hasRole("USER")
+//                                .antMatchers(HttpMethod.PATCH, "/reviews/*").hasRole("USER")
+//                                .antMatchers(HttpMethod.GET, "/reviews/*").hasAnyRole()
+                                .antMatchers(HttpMethod.DELETE, "/reviews/*").hasRole("USER")
+                                .antMatchers(HttpMethod.POST, "/reservation").hasRole("USER")
+                                .antMatchers(HttpMethod.GET, "/reservation/*").hasAnyRole("USER", "ADMIN")
+                                .antMatchers(HttpMethod.DELETE, "/reservation/*").hasRole("USER")
+                                .antMatchers(HttpMethod.GET, "/rooms/*").permitAll()
+                                .antMatchers(HttpMethod.POST, "/payment/**").hasRole("USER")
+                                .antMatchers(HttpMethod.GET, "/payment/**").hasRole("USER")
+
+                );
 
         return httpSecurity.build();
     }
