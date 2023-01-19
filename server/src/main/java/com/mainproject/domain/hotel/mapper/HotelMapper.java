@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class HotelMapper {
     public HotelDetailResponseDto hotelToDetailResponse(Hotel hotel, List<HotelImage> image, List<RoomResponseDto> rooms, List<ReviewResponseDto> reviews){
-        hotel.setHotelScore(hotelReviewScore(reviews));
+//        hotel.setHotelScore(hotelReviewScore(reviews));
         log.info("hotel score = {}", hotel);
         return HotelDetailResponseDto.builder()
             .hotelId(hotel.getHotelId())
@@ -62,9 +62,9 @@ public class HotelMapper {
         log.info("roomList = {} ", roomList.get(0).getPrice());
         return roomList.get(0).getPrice();
     }
-    public Double hotelReviewScore(List<ReviewResponseDto> reviewResponseDtoList){
-        Double ave = reviewResponseDtoList.stream()
-                .collect(Collectors.averagingInt(ReviewResponseDto::getScore));
+    public Double hotelReviewScore(List<Review> reviewList){
+        Double ave = reviewList.stream()
+                .collect(Collectors.averagingInt(Review::getScore));
         return ave;
     }
 

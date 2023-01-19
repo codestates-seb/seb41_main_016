@@ -30,5 +30,8 @@ public class ReviewImageService {
         List<ReviewImage> rr = mapper.reviewimageListToReview(reviewImages,review); // reviewImage 리뷰값 넣기 위해서 사용
         return  reviewImageRepository.saveAll(rr); // 리뷰 이미지 등록
     }
+    public List<ReviewImage> findReviewImageList(){
+        return reviewImageRepository.findAll();
+    }
 
 }

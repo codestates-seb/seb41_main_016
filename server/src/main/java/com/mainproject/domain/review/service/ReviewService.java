@@ -64,19 +64,16 @@ public class ReviewService {
         Review findReview = findReview(reviewId);
         reviewRepository.delete(findReview);
     }
+    public List<Review> findReviewList(){
+       return reviewRepository.findAll();
+    }
     @Transactional
-    public Review updateReview(Review review){ // TODO: 리뷰 수정 진행 중
+    public Review updateReview(ReviewEditDto review, List<ReviewImage> reviewImageList){ // TODO: 리뷰 수정 진행 중
+
         Review findReview = findReview(review.getReviewId());
-        log.info(" findReview = {}", findReview);
-//
-////        Optional.ofNullable(review.getModifiedAt())  //
-////                .isPresent(modified -> findReview.setModifiedAt(modified));
-//        Optional.ofNullable(review.getReviewImageList())
-//                .isPresent(n -> findReview.setReviewImageList(rr));
-//        Optional.ofNullable(review.getContent())
-//                .isPresent(content -> findReview.setContent(content));
-////        Optional.ofNullable(review.getScore())
-////                .isPresent(score -> findReview.setReviewId(score));
+        findReview.setContent(review.getContent());
+        findReview.setReviewImageList(reviewImageList);
+        findReview.setScore(review.getScore());
         return findReview;
     }
 }

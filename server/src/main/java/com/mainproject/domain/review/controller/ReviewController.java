@@ -42,12 +42,11 @@ public class ReviewController {
 
         Member member = memberService.findMember(memberId);
         Hotel hotel = hotelService.findHotel(hotelId);
-        List<ReviewImage> reviewImages = reviewPostDto.getReviewImage(); //  List<ReviewImage> reviewImage;
+        List<ReviewImage> reviewImages = reviewPostDto.getReviewImage();
         Review review = mapper.reviewPostDtoToReview(reviewPostDto,reviewImages,hotel,member);
-//        log.info("review = {}" ,review);
-        Review createReview = reviewService.postReview(review,reviewImages); // reviewImages 는 id값이 없다 리뷰 등록시 id값이 없는건 당연
-//        List<ReviewImage> reviewImageList = reviewImageService.postReviewImage(reviewImages,createReview);
-
+        Review createReview = reviewService.postReview(review,reviewImages);
+        List<Review> reviewList= reviewService.findReviewList();
+        hotelService.updateHotelScore(hotel,reviewList);
         return new ResponseEntity<>(mapper.reviewToreview(createReview), HttpStatus.CREATED);
     }
 
@@ -63,10 +62,11 @@ public class ReviewController {
                                       @PathVariable("hotel-id") Long hotelId,
                                       @RequestBody ReviewEditDto reviewEditDto){
         reviewEditDto.setReviewId(reviewId);
-        log.info(" reviewEditDto = {}",reviewEditDto);
         Hotel hotel = hotelService.findHotel(hotelId);
-        Review review = reviewService.updateReview(mapper.reviewPatchToReview(reviewEditDto, hotel));
-        log.info("review = {} ", review);
+        List<ReviewImage> reviewImageList = reviewEditDto.getReviewImageList();
+        Review review = reviewService.updateReview(reviewEditDto, reviewImageList);
+        List<Review> reviewList= reviewService.findReviewList();
+        hotelService.updateHotelScore(hotel,reviewList);
         return new ResponseEntity<>(mapper.reviewToreview(review),HttpStatus.OK);
     }
 

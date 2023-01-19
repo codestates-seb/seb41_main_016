@@ -8,6 +8,7 @@ import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
+//@ToString(exclude = {"hotel","hotelImage","reviewImage","room","review"})
 public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,7 @@ public class Hotel {
     private String title;
 
     @Column(name = "hotel_score")
+    @NotNull
     private Double hotelScore;
 
     @Column(name = "address")
