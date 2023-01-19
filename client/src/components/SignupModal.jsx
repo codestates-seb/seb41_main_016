@@ -208,7 +208,11 @@ export default function SignupModal({ setSignupOpen }) {
 
         try {
             await axios
-                .post("http://localhost:3001/signup", data)
+                .post("/members", {
+                    name: data.username,
+                    email: data.email,
+                    password: data.password,
+                })
                 .then((data) => {
                     Toast.fire({
                         title: "회원가입 성공!",
@@ -223,6 +227,14 @@ export default function SignupModal({ setSignupOpen }) {
                 });
         } catch (error) {
             console.error(error);
+            Toast.fire({
+                title: "이미 가입된 사용자입니다.",
+                icon: "error",
+                customClass: {
+                    icon: "icon-class",
+                    container: "my-swal",
+                },
+            });
         }
     };
 

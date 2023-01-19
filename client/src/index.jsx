@@ -34,8 +34,18 @@ const GlobalStyle = createGlobalStyle`
     .swal2-success-line-long{
       left:5px;
     }
+    .swal2-x-mark-line-left{
+      left:1.3px !important;
+      top: 6.1px !important;
+    }
 
+    .swal2-x-mark-line-right{
+      left:1.3px !important;
+      top: 6.2px !important;
+    }
   }
+
+  
   @font-face {
       font-family: 'Noto Sans KR', sans-serif;
       src: url('./src/fonts/NotoSansKR-Regular-Alphabetic.eot');

@@ -208,20 +208,18 @@ export default function LoginModal({ isModal }) {
         }
 
         try {
-            await axios
-                .post("http://localhost:3001/login", data)
-                .then((data) => {
-                    closeModal();
-                    dispatch(login());
-                    Toast.fire({
-                        title: "로그인 성공!",
-                        icon: "success",
-                        customClass: {
-                            icon: "icon-class",
-                            container: "my-swal",
-                        },
-                    });
+            await axios.post("/auth/login", data).then((data) => {
+                closeModal();
+                dispatch(login());
+                Toast.fire({
+                    title: "로그인 성공!",
+                    icon: "success",
+                    customClass: {
+                        icon: "icon-class",
+                        container: "my-swal",
+                    },
                 });
+            });
         } catch (error) {
             console.error(error);
         }
