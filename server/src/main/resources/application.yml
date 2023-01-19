@@ -36,13 +36,4 @@ mail:
 kakao:
   admin:
     key: 7d8b34bddd92b4d25454fe47608e39ab
-  host: http://kapi.kakao.com
-  uri:
-    pay-process: http://localhost:8080/payment/pay-process
-  pay:
-    ready: http://localhost:8080/payment/ready
-    approve: http://localhost:8080/payment/success
-    cid: http://localhost:8080/payment/cid
-    tax-free: http://localhost:8080/payment/tax-free
-    cancel: http://localhost:8080/payment/cancel
-    order: http://localhost:8080/payment/order
+  host: http://localhost:8080

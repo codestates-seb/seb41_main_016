@@ -26,7 +26,7 @@ public interface ReservationMapper {
                 reservation.getCheckout(),
                 reservation.getAdult(),
                 reservation.getChild(),
-                reservation.getPrice(),
+                reservation.getRoom().getPrice(),
                 reservation.isStatus()
         );
         return reservationResponseDto;

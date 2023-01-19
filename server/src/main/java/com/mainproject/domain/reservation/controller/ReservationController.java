@@ -49,10 +49,9 @@ public class ReservationController {
                         requestBody.getRoomId(), requestBody.getMemberId());
 
         return new ResponseEntity<>(
-                (reservationMapper.reservationToReservationResponseDto(reservation)),
+                (reservationMapper.reservationToReservationDto(reservation)),
                 HttpStatus.CREATED);
     }
-
 
     // Find reservation
     @GetMapping("/{reservation-id}")

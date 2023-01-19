@@ -9,6 +9,7 @@ import com.mainproject.global.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,25 +18,26 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/payment")
-// 세션에 저장된 없을 사용할 때 사용하는 어노테이션이다. session이 없으면 model까지 훑어서 찾아본다.
-@SessionAttributes({"tid", "reservation"})
+@RequestMapping(value = "/payment")
 public class KakaoPayController {
 
+    @Autowired
     private final KakaoPayService kakaoPayService;
 
     /**
      * 결제요청
      */
-    @PostMapping("/ready/{reservation-id}")
+    @GetMapping("/ready/{reservation-id}")
     public KakaoReadyResponse readyToKakaoPay(@PathVariable("reservation-id") Long reservationId) {
 
-        return kakaoPayService.kakaoPayReady(reservationId);
+        KakaoReadyResponse kakaoReadyResponse = kakaoPayService.kakaoPayReady(reservationId);
+
+        return kakaoReadyResponse;
     }
 
     /**
      * 결제 성공
-     */
+     **/
     @GetMapping("/success")
     public ResponseEntity afterPayRequest(String pgToken) {
 
@@ -72,5 +74,6 @@ public class KakaoPayController {
 
         return new ResponseEntity<>(kakaoCancelResponse, HttpStatus.OK);
     }
-
 }
+
+

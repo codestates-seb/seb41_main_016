@@ -26,8 +26,6 @@ public class ReservationDto {
         private int adult;
 
         private int child;
-
-        private int price;
     }
 
     @Getter

@@ -58,6 +58,11 @@ public class ReservationService {
         return findVerifiedReservation(reservationId);
     }
 
+    // 모든 Reservation 조회하기
+ /*   public List<Reservation> findAllReservation(Long reservationId){
+        return findAllVerifiedReservation()
+    }*/
+
 
     // Reservation 취소하기
     public void deleteReservation(Long reservationId) {
@@ -76,6 +81,18 @@ public class ReservationService {
 
         return findReservation;
     }
+
+/*    public List<Reservation> findAllVerifiedReservation() {
+        List<Reservation> optionalReservation =
+                reservationRepository.findAllByReservation(reservation);
+
+        Reservation findReservation =
+                optionalReservation.orElseThrow(() -> {
+                    return new BusinessLogicException(ExceptionCode.RESERVATION_NOT_FOUND);
+                });
+
+        return findReservation;
+    }*/
 
     // Reservation 중복 확인하기
     private List<Room> getRoomList() {
