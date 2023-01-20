@@ -15,7 +15,7 @@ import Paginations from "../components/Paginations";
 import axios from "axios";
 import { priceFormatter } from "../utils/priceFormatter";
 import KakaoMap from "../components/ForDetails.jsx/KakaoMap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOpen } from "../store/ModalSlice";
 
@@ -247,6 +247,8 @@ export default function DetailedProduct() {
         inputToFocus.current.scrollIntoView({ behavior: "smooth" }); //이동하기 효과 -> 부드럽게
     };
 
+    const navigate = useNavigate();
+
     const [ModalOpen, setModalOpen] = useState(false);
     const [Modal2Open, setModal2Open] = useState(false);
     const [roomType, setRoomType] = useState("1 King Bed");
@@ -296,7 +298,6 @@ export default function DetailedProduct() {
 
     //axios
     const [pageDetail, setpageDetail] = useState([]);
-    console.log(pageDetail);
 
     const { id } = useParams();
 
@@ -313,8 +314,6 @@ export default function DetailedProduct() {
     useEffect(() => {
         handleDetail();
     }, [handleDetail]);
-
-    const handleSubmit = useCallback(async () => {});
 
     //calender 일정 조정
     const [startDate, setStartDate] = useState(null);
@@ -339,6 +338,64 @@ export default function DetailedProduct() {
             sum = sum + pageDetail.reviews[i].score;
         }
         return (sum / pageDetail.reviews?.length).toFixed(2);
+    };
+
+    //checkin checkout date 변환
+    const DateFormat = (d1) => {
+        const date = new Date(d1);
+        const year = date.getFullYear();
+        const month = ("0" + (1 + date.getMonth())).slice(-2);
+        const day = ("0" + date.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
+    };
+
+    const handleSubmit = async () => {
+        try {
+            await axios
+                .post(
+                    "/reservation",
+                    {
+                        memberId: pageDetail.hotelId,
+                        roomId: roomType === "1 King Bed" ? 1 : 2,
+                        checkin: DateFormat(startDate),
+                        checkout: DateFormat(endDate),
+                        adult: adultCount,
+                        child: childrenCount,
+                        price:
+                            (roomType === "1 King Bed"
+                                ? pageDetail.rooms[0].price
+                                : pageDetail.rooms[1].price) *
+                            getDateDiff(startDate, endDate),
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization:
+                                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoiYmVhbkBnbWFpbC5jb20iLCJzdWIiOiJiZWFuQGdtYWlsLmNvbSIsImlhdCI6MTY3NDE5MzQ1MywiZXhwIjoxNjc0MjE1MDUzfQ.lCj9MoDYpE6TR2wMCUn8vBeoGLjUGEYijsT2Mf322TDuXswgI7pSvPT6t_bLUIPq",
+                        },
+                    }
+                )
+                .then((res) => {
+                    axios
+                        .get(`/payment/ready/${res.data.reservationId}`, {
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded;charset=utf-8",
+                                Authorization:
+                                    "KakaoAK 7d8b34bddd92b4d25454fe47608e39ab",
+                            },
+                        })
+                        .then((res) => {
+                            window.open(
+                                res.data.next_redirect_pc_url,
+                                "kakao 결제",
+                                "top=100px, left=100px height=800px, width=500px"
+                            );
+                        });
+                });
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
@@ -449,7 +506,15 @@ export default function DetailedProduct() {
                             예약하기
                         </ConfirmButton>
                         {ConfirmModalOpen ? (
-                            <ConfirmModal handleConfirm={handleConfirm} />
+                            <ConfirmModal
+                                handleConfirm={handleConfirm}
+                                handleSubmit={handleSubmit}
+                                startDate={startDate}
+                                endDate={endDate}
+                                adultCount={adultCount}
+                                childrenCount={childrenCount}
+                                roomType={roomType}
+                            />
                         ) : null}
                         <ConfirmAlert>
                             예약하기를 누르면 결제 창이 뜹니다.

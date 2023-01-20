@@ -38,12 +38,12 @@ const ConfirmButton = styled.button`
 
 const CancelButton = styled(ConfirmButton)``;
 
-export default function ConfirmModal({ handleConfirm }) {
+export default function ConfirmModal({ handleConfirm, handleSubmit }) {
     return (
         <ModalContainer>
             <ConfirmText>예약하시겠습니까?</ConfirmText>
             <ButtonBox>
-                <ConfirmButton>확인</ConfirmButton>
+                <ConfirmButton onClick={handleSubmit}>확인</ConfirmButton>
                 <CancelButton onClick={handleConfirm}>취소</CancelButton>
             </ButtonBox>
         </ModalContainer>

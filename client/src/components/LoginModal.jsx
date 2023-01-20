@@ -208,18 +208,23 @@ export default function LoginModal({ isModal }) {
         }
 
         try {
-            await axios.post("/auth/login", data).then((data) => {
-                closeModal();
-                dispatch(login());
-                Toast.fire({
-                    title: "로그인 성공!",
-                    icon: "success",
-                    customClass: {
-                        icon: "icon-class",
-                        container: "my-swal",
-                    },
+            await axios
+                .post("/auth/login", {
+                    username: data.email, //수정 필요 (그냥 data값 전체 넘겨도되게 백앤드 작업중)
+                    password: data.password,
+                })
+                .then((data) => {
+                    closeModal();
+                    dispatch(login());
+                    Toast.fire({
+                        title: "로그인 성공!",
+                        icon: "success",
+                        customClass: {
+                            icon: "icon-class",
+                            container: "my-swal",
+                        },
+                    });
                 });
-            });
         } catch (error) {
             console.error(error);
         }
