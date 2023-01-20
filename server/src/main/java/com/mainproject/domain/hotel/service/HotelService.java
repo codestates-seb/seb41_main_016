@@ -42,7 +42,7 @@ public class HotelService {
         return hotelRepository.save(hotel);
     }
     @Transactional
-    public List<HotelToHotelListResponseDto> searchHotel(String key){ // TODO: 포스트맨 에러? 값 넘겨 줄때 공백 넣기 ex) 화순+" " -> 공백 없이도 가능하게
+    public List<HotelToHotelListResponseDto> searchHotel(String key){
         String keyword = key.trim();
         log.info("keyword ={}",keyword);
         List<Hotel> hotelList = hotelRepository.findByTitleContaining(keyword);
@@ -64,8 +64,8 @@ public class HotelService {
                 .build();
     }
     public List<Hotel> findBusinessList(String category){
-        List<Hotel> re = hotelRepository.findHotelByCategory(category);
-        return re;
+        List<Hotel> businessHotel = hotelRepository.findHotelByCategory(category);
+        return businessHotel;
     }
     public List<Hotel> findResidenceList(String category){
         return hotelRepository.findHotelByCategory(category);
