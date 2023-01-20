@@ -25,6 +25,7 @@
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.7",
     "style-components": "^0.1.0",
+    "styled-components": "^5.3.6",
     "styled-reset": "^4.4.4",
     "sweetalert2": "^11.7.0",
     "swiper": "^8.4.5",
