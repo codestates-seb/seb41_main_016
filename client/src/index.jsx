@@ -9,6 +9,8 @@ import DetailedProduct from "./pages/DetailedProduct/DetailedProduct";
 import WishLists from "./pages/WishLists/WishLists";
 import MyPage from "./pages/MyPage/MyPage";
 import SearchProducts from "./pages/SearchProducts/SearchProducts";
+import { colorTheme } from "./assets/style/Theme";
+import { ThemeProvider } from "styled-components";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={colorTheme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );

@@ -8,8 +8,7 @@ import { useLocation } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector } from "react-redux";
 import SignupModal from "../UserModal/SignupModal";
-import { HeaderBox, IconBox, Title } from "./style";
-import { Icon } from "style-components";
+import { HeaderBox, Icon, IconBox, Title } from "./style";
 
 export default function Header() {
   const isLogin = useSelector((state) => state.Login.isLogin);
