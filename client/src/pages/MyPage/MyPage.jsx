@@ -1,11 +1,11 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
-import ReservationContainer from "../../components/MyPage/Container/ReservationContainer";
-import ReviewContainer from "../../components/MyPage/Container/ReviewContainer";
-import Profile from "../../components/MyPage/Profile/Profile";
-import ReviewModal from "../../components/MyPage/ReviewModal/ReviewModal";
-import { MyLayout, Title, Wrap } from "./style";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import LayoutContainer from '../../components/LayoutContainer/LayoutContainer';
+import ReservationContainer from '../../components/mypage/container/ReservationContainer';
+import ReviewContainer from '../../components/mypage/container/ReviewContainer';
+import Profile from '../../components/mypage/Profile/Profile';
+import ReviewModal from '../../components/mypage/ReviewModal/ReviewModal';
+import { MyLayout, Title, Wrap } from './style';
 
 export default function MyPage() {
   const [isModal, setIsModal] = useState(false);
@@ -13,12 +13,12 @@ export default function MyPage() {
   const [inText, setInText] = useState();
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [mypage, setMypage] = useState([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
 
   const handleMypage = async () => {
     try {
       const mypageList = await (
-        await axios.get("http://localhost:3001/mypage")
+        await axios.get('http://localhost:3001/mypage')
       ).data[0];
       setMypage(mypageList);
     } catch (error) {
@@ -32,7 +32,7 @@ export default function MyPage() {
 
   const handleBtnClick = (e) => {
     setInText(e.target.innerText);
-    if (e.target.innerText === "후기 작성하기") {
+    if (e.target.innerText === '후기 작성하기') {
       setIsModal((prev) => !prev);
     } else {
       setIsModal((prev) => !prev);
@@ -52,18 +52,18 @@ export default function MyPage() {
   };
 
   const handleReview = async () => {
-    if (inText === "후기 작성하기") {
+    if (inText === '후기 작성하기') {
       let score = clicked.filter(Boolean).length;
       try {
-        await axios.post("http://localhost:3001/review", {
+        await axios.post('http://localhost:3001/review', {
           reviewImage: [
             {
               image:
-                "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+                'https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link',
             },
             {
               image:
-                "https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link",
+                'https://drive.google.com/file/d/1qdiFkKGjaGwJvVmG0L3rEmDx--nVEL7Z/view?usp=share_link',
             },
           ],
           content: text,
