@@ -1,15 +1,15 @@
-import React from "react";
-import { IoMdClose } from "react-icons/io";
-import { FcGoogle } from "react-icons/fc";
-import { RiKakaoTalkFill } from "react-icons/ri";
-import { BiErrorCircle } from "react-icons/bi";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import Swal from "sweetalert2";
-import useScrollPrevent from "../../utils/useScrollPrevent";
-import { login } from "../../store/LoginSlice";
-import { useDispatch } from "react-redux";
-import { modalClose } from "../../store/ModalSlice";
+import React from 'react';
+import { IoMdClose } from 'react-icons/io';
+import { FcGoogle } from 'react-icons/fc';
+import { RiKakaoTalkFill } from 'react-icons/ri';
+import { BiErrorCircle } from 'react-icons/bi';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import useScrollPrevent from '../../utils/useScrollPrevent';
+import { login } from '../../store/LoginSlice';
+import { useDispatch } from 'react-redux';
+import { modalClose } from '../../store/ModalSlice';
 import {
   ErrorBox,
   LoginBox,
@@ -19,7 +19,7 @@ import {
   ModalInputBox,
   ModalTitleBox,
   SocialLoginBox,
-} from "./style";
+} from './style';
 
 export default function LoginModal({ isModal }) {
   const dispatch = useDispatch();
@@ -38,35 +38,37 @@ export default function LoginModal({ isModal }) {
 
   const Toast = Swal.mixin({
     toast: true,
-    position: "top-end",
+    position: 'top-end',
     showConfirmButton: false,
     timer: 1000,
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
   });
 
   const onValid = async (data) => {
     if (data.password !== data.passwordConfirm) {
       setError(
-        "passwordConfirm",
-        { message: "비밀번호가 다릅니다." },
+        'passwordConfirm',
+        { message: '비밀번호가 다릅니다.' },
         { shouldFocus: true }
       );
     }
 
     try {
-      await axios.post("/auth/login", data).then((data) => {
+      await axios.post('/auth/login', data).then((data) => {
         closeModal();
         dispatch(login());
+        localStorage.clear();
+        localStorage.setItem('accessToken', data.headers.Authorization);
         Toast.fire({
-          title: "로그인 성공!",
-          icon: "success",
+          title: '로그인 성공!',
+          icon: 'success',
           customClass: {
-            icon: "icon-class",
-            container: "my-swal",
+            icon: 'icon-class',
+            container: 'my-swal',
           },
         });
       });
@@ -92,19 +94,19 @@ export default function LoginModal({ isModal }) {
                 id="email"
                 type="text"
                 placeholder="address@email.com"
-                {...register("email", {
-                  required: "이메일을 입력해주세요.",
+                {...register('username', {
+                  required: '이메일을 입력해주세요.',
                   pattern: {
                     value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                    message: "올바른 이메일 형식이 아닙니다.",
+                    message: '올바른 이메일 형식이 아닙니다.',
                   },
                 })}
               />
               <ErrorBox>
-                {errors?.email?.message === undefined ? null : (
+                {errors?.username?.message === undefined ? null : (
                   <BiErrorCircle />
-                )}{" "}
-                {errors?.email?.message}
+                )}{' '}
+                {errors?.username?.message}
               </ErrorBox>
             </div>
             <div>
@@ -113,20 +115,20 @@ export default function LoginModal({ isModal }) {
                 id="password"
                 type="password"
                 placeholder="8자 이상의 숫자, 영대소문자, 특수문자 포함"
-                {...register("password", {
-                  required: "비밀번호를 입력해주세요.",
+                {...register('password', {
+                  required: '비밀번호를 입력해주세요.',
                   pattern: {
                     value:
                       /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/,
                     message:
-                      "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!",
+                      '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!',
                   },
                 })}
               />
               <ErrorBox>
                 {errors?.email?.message === undefined ? null : (
                   <BiErrorCircle />
-                )}{" "}
+                )}{' '}
                 {errors?.password?.message}
               </ErrorBox>
             </div>

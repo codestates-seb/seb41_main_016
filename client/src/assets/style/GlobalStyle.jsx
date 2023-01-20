@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -38,8 +38,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  
-  @font-face {
+  /* @font-face {
       font-family: 'Noto Sans KR', sans-serif;
       src: url('../fonts/NotoSansKR-Regular-Alphabetic.eot');
       src: url('../fonts/NotoSansKR-Regular-Alphabetic.eot?#iefix') format('embedded-opentype'),
@@ -74,7 +73,7 @@ const GlobalStyle = createGlobalStyle`
       font-weight: 500;
       font-style: normal;
       font-display: swap;
-  } 
+  }  */
 `;
 
 export default GlobalStyle;
