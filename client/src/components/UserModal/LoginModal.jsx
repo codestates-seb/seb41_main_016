@@ -62,7 +62,8 @@ export default function LoginModal({ isModal }) {
         closeModal();
         dispatch(login());
         localStorage.clear();
-        localStorage.setItem('accessToken', data.headers.Authorization);
+        localStorage.setItem('accessToken', data.headers.authorization);
+        localStorage.setItem('refreshToken', data.headers.refresh);
         Toast.fire({
           title: '로그인 성공!',
           icon: 'success',
@@ -126,7 +127,7 @@ export default function LoginModal({ isModal }) {
                 })}
               />
               <ErrorBox>
-                {errors?.email?.message === undefined ? null : (
+                {errors?.password?.message === undefined ? null : (
                   <BiErrorCircle />
                 )}{' '}
                 {errors?.password?.message}
