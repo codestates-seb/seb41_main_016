@@ -45,7 +45,7 @@ public class ReviewController {
         List<ReviewImage> reviewImages = reviewPostDto.getReviewImage();
         Review review = mapper.reviewPostDtoToReview(reviewPostDto,reviewImages,hotel,member);
         Review createReview = reviewService.postReview(review,reviewImages);
-        List<Review> reviewList= reviewService.findReviewList();
+        List<Review> reviewList= reviewService.findReviewList(); // 배치
         hotelService.updateHotelScore(hotel,reviewList);
         return new ResponseEntity<>(mapper.reviewToreview(createReview), HttpStatus.CREATED);
     }

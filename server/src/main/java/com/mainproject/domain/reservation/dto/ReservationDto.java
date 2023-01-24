@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
@@ -19,13 +20,15 @@ public class ReservationDto {
 
         private Long roomId;
 
-        private LocalDateTime checkin;
+        private LocalDate checkin;
 
-        private LocalDateTime checkout;
+        private LocalDate checkout;
 
         private int adult;
 
         private int child;
+
+        private int price;
     }
 
     @Getter
@@ -56,9 +59,9 @@ public class ReservationDto {
 
         private Long roomId;
 
-        private LocalDateTime checkin;
+        private LocalDate checkin;
 
-        private LocalDateTime checkout;
+        private LocalDate checkout;
 
         private int adult;
 

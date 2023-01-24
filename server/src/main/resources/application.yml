@@ -5,7 +5,7 @@ spring:
     password: 'whystay'
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: false
     properties:
       hibernate:
@@ -39,4 +39,3 @@ kakao:
   admin:
     key: 7d8b34bddd92b4d25454fe47608e39ab
   host: http://localhost:8080
-
