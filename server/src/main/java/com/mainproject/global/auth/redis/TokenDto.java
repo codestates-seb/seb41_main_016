@@ -19,6 +19,8 @@ public class TokenDto {
     }
 
     @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class ATNRequest {
         private String accessToken;
     }

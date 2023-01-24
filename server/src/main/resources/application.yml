@@ -5,7 +5,7 @@ spring:
     password: 'whystay'
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: false
     properties:
       hibernate:
@@ -20,14 +20,16 @@ spring:
       settings:
         web-allow-others: true
   datasource:
-    url: jdbc:h2:mem:test
+    url: jdbc:mysql://localhost:3306/main_project?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+    password: 1234qwerasdf
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
 jwt:
   key: ${JWT_SECRET_KEY}
-  refresh-token-expiration-minutes: 120
-  access-token-expiration-minutes: 10
+  refresh-token-expiration-minutes: 420
+  access-token-expiration-minutes: 360
 mail:
   address:
     admin: admin@gmail.com
@@ -37,3 +39,4 @@ kakao:
   admin:
     key: 7d8b34bddd92b4d25454fe47608e39ab
   host: http://localhost:8080
+
