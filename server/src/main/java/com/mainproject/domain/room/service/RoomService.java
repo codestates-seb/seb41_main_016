@@ -1,5 +1,6 @@
 package com.mainproject.domain.room.service;
 
+import com.mainproject.domain.reservation.entity.Reservation;
 import com.mainproject.domain.room.entity.Room;
 import com.mainproject.domain.room.repository.RoomRepository;
 import com.mainproject.global.exception.BusinessLogicException;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.PublicKey;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +34,14 @@ public class RoomService {
                 new BusinessLogicException(ExceptionCode.ROOM_NOT_FOUND));
     }
 
-    // 안되면 여기다가 1:1로 매핑하는걸 짜보기
+
+    public void addQuantity(Long roomId){
+        Room addRoom = findRoom(roomId);
+        addRoom.setQuantity(addRoom.getQuantity() + 1);
+    }
+
+    public void reduceQuantity(Long roomId){
+        Room reduceRoom = findRoom(roomId);
+        reduceRoom.setQuantity(reduceRoom.getQuantity() - 1);
+    }
 }

@@ -11,12 +11,15 @@ import com.mainproject.global.exception.BusinessLogicException;
 import com.mainproject.global.exception.ExceptionCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
 @Service
+@Transactional
 public class ReservationService {
     @Autowired
     private final ReservationRepository reservationRepository;
@@ -30,6 +33,10 @@ public class ReservationService {
     @Autowired
     private final MemberRepository memberRepository;
 
+    private Integer reservationCheckin;
+
+    private Integer reservationCheckout;
+
     public ReservationService(ReservationRepository reservationRepository,
                               RoomService roomService,
                               MemberService memberService,
@@ -42,9 +49,12 @@ public class ReservationService {
 
     // Reservation 생성하기
     public Reservation createReservation(Reservation reservation, Long roomId, Long memberId) {
-        //room 추가
+        // room 추가
         Room room = roomService.findRoom(roomId);
         reservation.setRoom(room);
+
+        // 예약하면 체크인 시간에 room 갯수 -1
+
 
         //member 추가
         Member member = memberService.findMember(memberId);
@@ -65,6 +75,7 @@ public class ReservationService {
 
 
     // Reservation 취소하기
+    // 체크아웃하면 체크아웃날짜에 reservationId 삭제 하고 room 갯수 + 1
     public void deleteReservation(Long reservationId) {
         Reservation findReservation = findVerifiedReservation(reservationId);
         reservationRepository.delete(findReservation);
@@ -94,9 +105,15 @@ public class ReservationService {
         return findReservation;
     }*/
 
-    // Reservation 중복 확인하기
-    private List<Room> getRoomList() {
-        List<Room> roomList = roomService.findRooms();
-        return roomList;
+    // 예약하면 체크인 시간에 room 갯수 -1
+    public void reduceRoomQuantity(Reservation reservation, Room room) {
+        reservationCheckin = Integer.parseInt(new SimpleDateFormat("yyyy-MM-dd").format(reservation.getCheckin()));
+        reservationCheckout = Integer.parseInt(new SimpleDateFormat("yyyy-MM-dd").format(reservation.getCheckout()));
+
+        for (int i = reservationCheckin; i < reservationCheckout; i++) {
+            if (reservationCheckin.equals(reservation.getCheckin())) {
+                room.setQuantity(room.getQuantity() - 1);
+            }
+        }
     }
 }

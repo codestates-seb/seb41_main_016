@@ -21,69 +21,54 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 @Transactional
 public class KakaoPayService {
+    static final String cid = "TC0ONETIME";
 
-    static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
     static final String admin_Key = "7d8b34bddd92b4d25454fe47608e39ab";
 
     @Autowired
     private final ReservationService reservationService;
 
-    private KakaoReadyResponse kakaoReady;
+    private KakaoReadyResponse readyResponse;
 
-    public KakaoReadyResponse kakaoPayReady(Long reservationId) {
+    public KakaoReadyResponse kakaoPayReady(Long reservationId){
 
-        // reservationId로 reservation 불러오기
         Reservation reservation = reservationService.findReservation(reservationId);
-        //System.out.println(reservation.getReservationId());
-        //System.out.println(reservation.getMember().getMemberId());
 
-        // 카카오페이 요청 양식(Body)
-        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
-        parameters.add("cid", cid);
-        parameters.add("partner_order_id", String.valueOf(reservation.getReservationId()));
-        parameters.add("partner_user_id", String.valueOf(reservation.getMember().getMemberId()));
-        parameters.add("item_name", reservation.getRoom().getRoomType());
-        parameters.add("quantity", String.valueOf(reservation.getRoom().getQuantity()));
-        parameters.add("total_amount", String.valueOf(reservation.getRoom().getPrice()));
-        parameters.add("tax_free_amount", "0");
-        parameters.add("approval_url", "http://localhost:8080/payment/success"); // 성공 시 redirect url
-        parameters.add("cancel_url", "http://localhost:8080/payment/cancel"); // 취소 시 redirect url
-        parameters.add("fail_url", "http://localhost:8080/payment/fail"); // 실패 시 redirect url
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("cid", cid);
+        params.add("partner_order_id", String.valueOf(reservation.getReservationId()));
+        params.add("partner_user_id", "partner_user_id");
+        params.add("item_name", reservation.getRoom().getRoomType());
+        params.add("quantity", String.valueOf(reservation.getRoom().getQuantity()));
+        params.add("total_amount", String.valueOf(reservation.getPrice()));
+        params.add("tax_free_amount", "0");
+        params.add("approval_url", "http://localhost:8080/payment/ready");
+        params.add("cancel_url", "http://localhost:8080/payment/cancel");
+        params.add("fail_url", "http://localhost:8080/payment/fail");
 
-        // 파라미터, 헤더
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
-        //System.out.println(requestEntity.getBody().get("partner_order_id"));
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, this.getHeaders());
 
-        // 외부에 보낼 url
-        // 파라미터에는 값이 들어가는데 kakaoReady 에만 값이 안들어간다.
-        // 이것만 해결하면 갈수있겠다..
         RestTemplate restTemplate = new RestTemplate();
 
-        kakaoReady = restTemplate.postForObject(
+        readyResponse = restTemplate.postForObject(
                 "https://kapi.kakao.com/v1/payment/ready",
                 requestEntity,
                 KakaoReadyResponse.class);
 
-        return kakaoReady;
+        return readyResponse;
     }
 
-    /**
-     * 결제 완료 승인
-     */
-    public KakaoApproveResponse approveResponse(String pg_token) {
+    public KakaoApproveResponse approveResponse(String tid, String pg_token){
 
-        // 카카오 요청(Body)
-        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
-        parameters.add("cid", cid);
-        parameters.add("tid", kakaoReady.getTid());
-        parameters.add("partner_order_id", kakaoReady.getPartner_order_id());
-        parameters.add("partner_user_id", "가맹점 회원 ID");
-        parameters.add("pg_token", pg_token);
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("cid", cid);
+        params.add("tid", readyResponse.getTid());
+        params.add("partner_order_id", readyResponse.getPartner_order_id());
+        params.add("partner_user_id", "partner_user_id");
+        params.add("pg_token", pg_token);
 
-        // 파라미터, 헤더
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
-        //System.out.println(requestEntity.getBody().get("partner_order_id"));
-        // 외부에 보낼 url
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, getHeaders());
+
         RestTemplate restTemplate = new RestTemplate();
 
         KakaoApproveResponse approveResponse = restTemplate.postForObject(
@@ -94,27 +79,17 @@ public class KakaoPayService {
         return approveResponse;
     }
 
-    /**
-     * 결제 완료 후 메세지 전송
-     **/
+    public KakaoCancelResponse kakaoCancelResponse(){
 
-    /**
-     * 결제 환불
-     **/
-    public KakaoCancelResponse kakaoCancel() {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("cid", cid);
+        params.add("tid", readyResponse.getTid());
+        params.add("cancel_amount", "환불금액");
+        params.add("cancel_tax_free_amount", "환불 비과세 금액");
+        params.add("cancel_vat_amount", "환불 부가세");
 
-        // 카카오페이 요청(Body)
-        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
-        parameters.add("cid", cid);
-        parameters.add("tid", "환불할 결제 고유 번호");
-        parameters.add("cancel_amount", "환불 금액");
-        parameters.add("cancel_tax_free_amount", "환불 비과세 금액");
-        parameters.add("cancel_vat_amount", "환불 부가세");
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, getHeaders());
 
-        // 파라미터, 헤더
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
-
-        // 외부에 보낼 url
         RestTemplate restTemplate = new RestTemplate();
 
         KakaoCancelResponse cancelResponse = restTemplate.postForObject(
@@ -125,16 +100,13 @@ public class KakaoPayService {
         return cancelResponse;
     }
 
-    /**
-     * 카카오 요구 헤더값
-     */
-    private HttpHeaders getHeaders() {
+    private HttpHeaders getHeaders(){
         HttpHeaders httpHeaders = new HttpHeaders();
 
         String auth = "KakaoAK " + admin_Key;
 
         httpHeaders.set("Authorization", auth);
-        httpHeaders.set("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+        httpHeaders.set("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
 
         return httpHeaders;
     }

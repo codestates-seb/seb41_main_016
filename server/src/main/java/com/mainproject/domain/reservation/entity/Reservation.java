@@ -2,13 +2,13 @@ package com.mainproject.domain.reservation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.member.entity.Member;
-import com.mainproject.domain.payment.dto.KakaoApproveResponse;
 import com.mainproject.domain.room.entity.Room;
 import com.mainproject.global.audit.Auditable;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Builder
@@ -23,10 +23,12 @@ public class Reservation extends Auditable {
     private Long reservationId;
 
     @Column
-    private LocalDateTime checkin;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkin;
 
     @Column
-    private LocalDateTime checkout;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkout;
 
     @Column
     private int adult;
