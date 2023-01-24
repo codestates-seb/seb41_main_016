@@ -6,6 +6,7 @@ import com.mainproject.domain.reservation.mapper.ReservationMapper;
 import com.mainproject.domain.reservation.repository.ReservationRepository;
 import com.mainproject.domain.reservation.service.ReservationService;
 
+import com.mainproject.domain.room.entity.Room;
 import com.mainproject.domain.room.service.RoomService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.text.SimpleDateFormat;
 
 @RestController
 @RequestMapping("/reservation")
@@ -42,7 +44,7 @@ public class ReservationController {
 
     // Post reservation
     @PostMapping
-    public ResponseEntity postReservation(@Valid @RequestBody ReservationDto.Post requestBody){
+    public ResponseEntity postReservation(@Valid @RequestBody ReservationDto.Post requestBody, Room room){
         Reservation reservation =
                 reservationService.createReservation(
                         reservationMapper.reservationPostDtoToReservation(requestBody),
