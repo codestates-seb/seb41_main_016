@@ -68,4 +68,12 @@ public class MemberDto {
         List<Reservation> reservations;
 //        List<WishList> buckets;
     }
+
+    @Getter
+    @AllArgsConstructor
+    static public class OauthPost {
+        private String email;
+        private String name;
+
+    }
 }

@@ -21,7 +21,7 @@ public class Member extends Auditable{
     private Long memberId;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
     @Column
     private String image;
@@ -29,6 +29,9 @@ public class Member extends Auditable{
     private String name;
 //    @Column(nullable = false)
 //    private String nickname;
+    @Column
+    private String provider;// kakao, google ...
+
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 

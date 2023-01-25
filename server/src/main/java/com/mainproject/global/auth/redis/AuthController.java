@@ -25,8 +25,9 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestBody TokenDto.ATNRequest request) {
-        authService.logout(request);
+    public ResponseEntity<?> logout(@RequestParam(required = false) String kakaoAccessToken,
+                                    @RequestBody TokenDto.ATNRequest request) {
+        authService.logout(request, kakaoAccessToken);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

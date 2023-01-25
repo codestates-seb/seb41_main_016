@@ -31,6 +31,16 @@ public class MemberService {
 
         List<String> roles = authorityUtils.createRoles(member.getEmail());
         member.setRoles(roles);
+        member.setProvider("default");
+
+        return memberRepository.save(member);
+    }
+
+    public Member createSocialMember(Member member) {
+        verifyExistsEmail(member.getEmail());
+        System.out.println(member.getEmail());
+        List<String> roles = authorityUtils.createRoles(member.getEmail());
+        member.setRoles(roles);
 
         return memberRepository.save(member);
     }

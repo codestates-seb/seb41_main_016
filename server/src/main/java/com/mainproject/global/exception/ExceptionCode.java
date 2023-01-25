@@ -9,7 +9,7 @@ public enum ExceptionCode {
 
     MEMBER_NOT_FOUND(404, "Member not found"),
     MEMBER_EXISTS(409, "Member exists"),
-
+    ACCESSTOKEN_NOT_FOUND(404, "AccessToken not found"),
     REFRESHTOKEN_NOT_FOUND(404, "RefreshToken not found"),
     DIFFERENT_REFRESHTOKEN(409, "RefreshTokens are different"),
 
