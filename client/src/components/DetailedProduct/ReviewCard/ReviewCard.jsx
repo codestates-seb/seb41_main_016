@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
+import useScrollPrevent from "../../../hooks/useScrollPrevent";
 import DetailReview from "../DetailReview/DetailReview";
-import useScrollPrevent from "../../../utils/useScrollPrevent";
+
 import {
   CardContainer,
   MoreContent,

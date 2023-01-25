@@ -8,12 +8,11 @@ import { AllProductsBox, CardBox, CategoryDescriptionBox } from "./style";
 
 export default function SearchProducts() {
   const { state } = useLocation();
-  console.log(state);
   const [searchList, setSearchList] = useState([]);
 
   const handleSearchList = useCallback(async () => {
     try {
-      await axios.get(`/main?search=${state}`).then((res) => {
+      await axios.get(`/main/search?keyword=${state}`).then((res) => {
         setSearchList(res.data);
       });
     } catch (error) {

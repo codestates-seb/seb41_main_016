@@ -19,7 +19,7 @@ export default function SearchBar() {
     if (e.key === "Enter") {
       e.preventDefault();
       handleNavigate();
-      setUserValue("");
+      // setUserValue("");
     }
   };
 

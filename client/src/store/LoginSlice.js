@@ -1,15 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
-const accessToken = localStorage.getItem('accessToken');
-const refreshToken = localStorage.getItem('refreshToken');
+import { createSlice } from "@reduxjs/toolkit";
+const accessToken = localStorage.getItem("accessToken");
+const refreshToken = localStorage.getItem("refreshToken");
+const memberId = localStorage.getItem("memberId");
 
 const initialState = {
   isLogin: !!accessToken,
   accessToken,
   refreshToken,
+  memberId,
 };
 
 const LoginState = createSlice({
-  name: 'loginstate',
+  name: "loginstate",
   initialState,
   reducers: {
     login: (state) => {

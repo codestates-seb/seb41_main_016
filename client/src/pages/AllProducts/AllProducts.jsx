@@ -29,7 +29,7 @@ export default function AllProducts() {
       description:
         "혼자, 친구와 혹은 연인과 함께 여행하기 좋은 호텔을 추천해드려요.",
       path: "/category/travel",
-      query: "travel",
+      query: "여행",
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ export default function AllProducts() {
       title: "워캉스",
       description: "일하면서 편안하게 휴식 취하기 좋은 호텔을 추천해드려요.",
       path: "/category/business",
-      query: "workance",
+      query: "비즈니스",
     },
     {
       id: 3,
@@ -46,7 +46,7 @@ export default function AllProducts() {
       description:
         "한달 이상 내 집 처럼 묵을 수 있는 좋은 호텔을 추천해드려요.",
       path: "/category/residence",
-      query: "onemonth",
+      query: "레지던스",
     },
     {
       id: 4,
@@ -75,7 +75,7 @@ export default function AllProducts() {
     isLoading,
     error,
     data: productsList,
-  } = useQuery(["productsList"], handleProductsList, {
+  } = useQuery(["productsList", pathname], handleProductsList, {
     staleTime: Infinity,
   });
 

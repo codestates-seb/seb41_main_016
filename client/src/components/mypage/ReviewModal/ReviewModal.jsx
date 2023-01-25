@@ -1,7 +1,8 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
-import useScrollPrevent from "../../../utils/useScrollPrevent";
+import useScrollPrevent from "../../../hooks/useScrollPrevent";
+
 import {
   Btn,
   Btn2,

@@ -5,8 +5,7 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { BiErrorCircle } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import Swal from "sweetalert2";
-import useScrollPrevent from "../../utils/useScrollPrevent";
+import useScrollPrevent from "../../hooks/useScrollPrevent";
 import { useDispatch } from "react-redux";
 import { modalOpen } from "../../store/ModalSlice";
 import {
@@ -18,7 +17,9 @@ import {
   ModalInputBox,
   ModalTitleBox,
   SocialLoginBox,
+  Toast,
 } from "./style";
+import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils/register";
 
 export default function SignupModal({ setSignupOpen }) {
   const dispatch = useDispatch();
@@ -35,16 +36,28 @@ export default function SignupModal({ setSignupOpen }) {
     setError,
   } = useForm();
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
+  const nameRegister = register("username", {
+    required: { value: true, message: "사용자 이름을 입력해주세요." },
+  });
+
+  const emailRegister = register("username", {
+    required: { value: true, message: "이메일을 입력해주세요." },
+    pattern: {
+      value: EMAIL_REGEX,
+      message: "올바른 이메일 형식이 아닙니다.",
     },
+  });
+
+  const passwordRegister = register("password", {
+    required: { value: true, message: "비밀번호를 입력해주세요." },
+    pattern: {
+      value: PASSWORD_REGEX,
+      message: "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!",
+    },
+  });
+
+  const password2Register = register("passwordConfirm", {
+    required: { value: true, message: "비밀번호 확인을 입력해주세요." },
   });
 
   const onValid = async (data) => {
@@ -105,9 +118,7 @@ export default function SignupModal({ setSignupOpen }) {
                 id="username"
                 type="text"
                 placeholder="홍길동"
-                {...register("username", {
-                  required: "사용자 이름을 입력해주세요.",
-                })}
+                {...nameRegister}
               />
               <ErrorBox>
                 {errors?.username?.message === undefined ? null : (
@@ -123,13 +134,7 @@ export default function SignupModal({ setSignupOpen }) {
                 id="email"
                 type="text"
                 placeholder="address@email.com"
-                {...register("email", {
-                  required: "이메일을 입력해주세요.",
-                  pattern: {
-                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                    message: "올바른 이메일 형식이 아닙니다.",
-                  },
-                })}
+                {...emailRegister}
               />
               <ErrorBox>
                 {errors?.email?.message === undefined ? null : (
@@ -144,15 +149,7 @@ export default function SignupModal({ setSignupOpen }) {
                 id="password"
                 type="password"
                 placeholder="8자 이상의 숫자, 영대소문자, 특수문자 포함"
-                {...register("password", {
-                  required: "비밀번호를 입력해주세요.",
-                  pattern: {
-                    value:
-                      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/,
-                    message:
-                      "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!",
-                  },
-                })}
+                {...passwordRegister}
               />
               <ErrorBox>
                 {errors?.email?.message === undefined ? null : (
@@ -168,9 +165,7 @@ export default function SignupModal({ setSignupOpen }) {
                 id="passwordConfirm"
                 type="password"
                 placeholder="8자 이상의 숫자, 영대소문자, 특수문자 포함"
-                {...register("passwordConfirm", {
-                  required: "비밀번호 확인을 입력해주세요.",
-                })}
+                {...password2Register}
               />
               <ErrorBox>
                 {errors?.email?.message === undefined ? null : (
