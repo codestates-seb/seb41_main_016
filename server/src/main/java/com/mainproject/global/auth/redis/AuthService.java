@@ -75,6 +75,7 @@ public class AuthService {
         BlackListAccessToken bat = new BlackListAccessToken(jws, expiration);
         blackListRepository.save(bat);
 
-        System.out.println(blackListRepository.findById(jws));
+        kakaoLoginService.kakaoUnlink(kakaoAccessToken);
+//        System.out.println(blackListRepository.findById(jws));
     }
 }
