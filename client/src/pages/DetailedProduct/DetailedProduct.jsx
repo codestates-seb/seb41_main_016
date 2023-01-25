@@ -148,6 +148,70 @@ export default function DetailedProduct() {
         return (sum / pageDetail.reviews?.length).toFixed(2);
     };
 
+    //checkin checkout date 변환
+    const DateFormat = (d1) => {
+        const date = new Date(d1);
+        const year = date.getFullYear();
+        const month = ("0" + (1 + date.getMonth())).slice(-2);
+        const day = ("0" + date.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
+    };
+
+    const handleSubmit = async () => {
+        try {
+            await axios
+                .post(
+                    "/reservation",
+                    {
+                        memberId: pageDetail.hotelId,
+                        roomId: roomType === "1 King Bed" ? 1 : 2,
+                        checkin: DateFormat(startDate),
+                        checkout: DateFormat(endDate),
+                        adult: adultCount,
+                        child: childrenCount,
+                        price:
+                            (roomType === "1 King Bed"
+                                ? pageDetail.rooms[0].price
+                                : pageDetail.rooms[1].price) *
+                            getDateDiff(startDate, endDate),
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: localStorage.getItem("accessToken"),
+                        },
+                    }
+                )
+                .then((res) => {
+                    axios
+                        .get(`/payment/ready/${res.data.reservationId}`, {
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded;charset=utf-8",
+                                Authorization:
+                                    "KakaoAK 7d8b34bddd92b4d25454fe47608e39ab",
+                            },
+                        })
+                        .then((res) => {
+                            window.open(
+                                res.data.data,
+                                "카카오톡 결제",
+                                "top=100px, left=100px height=800px, width=500px"
+                            );
+                            if (res.status === 200) {
+                                axios.get(
+                                    `/payment/success/${res.data.reservationId}`
+                                );
+                            } else {
+                                axios.get(`/payment/fail`);
+                            }
+                        });
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <LayoutContainer>
             <TitleBox>
@@ -256,7 +320,10 @@ export default function DetailedProduct() {
                             예약하기
                         </ConfirmButton>
                         {ConfirmModalOpen ? (
-                            <ConfirmModal handleConfirm={handleConfirm} />
+                            <ConfirmModal
+                                handleConfirm={handleConfirm}
+                                handleSubmit={handleSubmit}
+                            />
                         ) : null}
                         <ConfirmAlert>
                             예약하기를 누르면 결제 창이 뜹니다.

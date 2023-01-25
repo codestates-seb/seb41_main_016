@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
+import Loading from "../../components/Loading";
 import ReservationContainer from "../../components/mypage/container/ReservationContainer";
 import ReviewContainer from "../../components/mypage/container/ReviewContainer";
 import Profile from "../../components/mypage/Profile/Profile";
@@ -23,7 +24,7 @@ export default function MyPage() {
             const token = localStorage.getItem("accessToken");
             if (token) {
                 const mypageList = await axios
-                    .get(`/members/${id}`, {
+                    .get(`/members/3`, {
                         headers: {
                             Authorization: token,
                         },
@@ -38,7 +39,7 @@ export default function MyPage() {
             setLoading(false);
             console.log(error);
         }
-    }, [id]);
+    }, []);
 
     const openModal = () => {
         setIsModal((prev) => !prev);
@@ -83,7 +84,7 @@ export default function MyPage() {
         handleMypage();
     }, [handleMypage]);
 
-    if (loading) return <></>;
+    if (loading) return <Loading />;
     return (
         <LayoutContainer>
             <div>
