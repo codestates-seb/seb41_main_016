@@ -193,18 +193,12 @@ export default function DetailedProduct() {
                             },
                         })
                         .then((res) => {
+                            console.log(res);
                             window.open(
                                 res.data.data,
                                 "카카오톡 결제",
                                 "top=100px, left=100px height=800px, width=500px"
                             );
-                            if (res.status === 200) {
-                                axios.get(
-                                    `/payment/success/${res.data.reservationId}`
-                                );
-                            } else {
-                                axios.get(`/payment/fail`);
-                            }
                         });
                 });
         } catch (error) {

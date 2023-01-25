@@ -24,7 +24,7 @@ export default function MyPage() {
             const token = localStorage.getItem("accessToken");
             if (token) {
                 const mypageList = await axios
-                    .get(`/members/3`, {
+                    .get(`/members/${id}`, {
                         headers: {
                             Authorization: token,
                         },
@@ -39,7 +39,7 @@ export default function MyPage() {
             setLoading(false);
             console.log(error);
         }
-    }, []);
+    }, [id]);
 
     const openModal = () => {
         setIsModal((prev) => !prev);

@@ -126,6 +126,7 @@ export default function AllProducts() {
                                 price={el.price}
                                 score={el.hotelReviewScore}
                                 img={el.hotelImage}
+                                reviewNum={el.reviewQuantity}
                             />
                         ))}
                 </CardBox>
