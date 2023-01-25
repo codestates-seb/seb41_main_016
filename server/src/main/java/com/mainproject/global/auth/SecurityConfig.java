@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,7 +20,6 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     private final JwtProvider jwtProvider;
     private final CustomAuthorityUtils authorityUtils;
@@ -46,8 +44,6 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-//                .oauth2Login()
-//                .and()
                 .formLogin().disable()
                 .httpBasic().disable()
                 .apply(new CustomFilterConfigurer())
@@ -72,11 +68,10 @@ public class SecurityConfig {
                                 .antMatchers(HttpMethod.GET, "/reservation/*").hasAnyRole("USER", "ADMIN")
                                 .antMatchers(HttpMethod.DELETE, "/reservation/*").hasRole("USER")
                                 .antMatchers(HttpMethod.GET, "/rooms/*").permitAll()
-//                                .antMatchers(HttpMethod.POST, "/payment/**").hasRole("USER")
-//                                .antMatchers(HttpMethod.GET, "/payment/**").hasRole("USER")
+                                //.antMatchers(HttpMethod.POST, "/payment/**").hasRole("USER")
+                                //.antMatchers(HttpMethod.GET, "/payment/**").hasRole("USER")
 
-                )
-;
+                );
 
         return httpSecurity.build();
     }

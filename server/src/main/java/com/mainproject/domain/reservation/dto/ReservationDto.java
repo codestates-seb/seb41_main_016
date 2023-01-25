@@ -28,7 +28,7 @@ public class ReservationDto {
 
         private int child;
 
-        private int price;
+        private Long price;
     }
 
     @Getter
@@ -39,15 +39,15 @@ public class ReservationDto {
 
         private Long roomId;
 
-        private LocalDateTime checkin;
+        private LocalDate checkin;
 
-        private LocalDateTime checkout;
+        private LocalDate checkout;
 
         private int adult;
 
         private int child;
 
-        private int price;
+        private Long price;
     }
 
     @Getter
@@ -67,7 +67,7 @@ public class ReservationDto {
 
         private int child;
 
-        private int price;
+        private Long price;
 
         private boolean status;
 
