@@ -94,9 +94,9 @@ public class ReservationService {
         return findReservation;
     }*/
 
-    // Reservation 중복 확인하기
-    private List<Room> getRoomList() {
-        List<Room> roomList = roomService.findRooms();
-        return roomList;
+    // Reservation 정보 저장하기
+    public void saveReservation(Reservation reservation){
+        reservationRepository.save(reservation);
     }
+
 }

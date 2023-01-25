@@ -2,12 +2,14 @@ package com.mainproject.domain.reservation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.member.entity.Member;
-import com.mainproject.domain.payment.dto.KakaoApproveResponse;
+import com.mainproject.domain.payment.Info.ReadyToPayInfo;
 import com.mainproject.domain.room.entity.Room;
 import com.mainproject.global.audit.Auditable;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,10 +25,12 @@ public class Reservation extends Auditable {
     private Long reservationId;
 
     @Column
-    private LocalDateTime checkin;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkin;
 
     @Column
-    private LocalDateTime checkout;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checkout;
 
     @Column
     private int adult;
@@ -35,7 +39,7 @@ public class Reservation extends Auditable {
     private int child;
 
     @Column
-    private int price;
+    private Long price;
 
     @Column
     private boolean status;
@@ -52,6 +56,56 @@ public class Reservation extends Auditable {
 
     @Enumerated(value = EnumType.STRING)
     private ReservationStatus reservationStatus = ReservationStatus.PAY_IN_PROGRESS;
+
+    /************************************************** 주문 내역 정보 **************************************************/
+
+    private String cid;
+
+    private String tid;
+
+    private String partner_order_id;
+
+    private String partner_user_id;
+
+    private String itemName;
+
+    private String quantity;
+
+    private String totalAmount;
+
+    private String approvalUrl;
+
+    private String cancelUrl;
+
+    private String failUrl;
+
+    public void setPaymentInfo(ReadyToPayInfo params, String tid){
+        this.cid = params.getCid();
+        this.tid = tid;
+        this.partner_order_id = params.getPartner_order_id();
+        this.partner_user_id = params.getPartner_user_id();
+        this.itemName = params.getItem_name();
+        this.quantity = params.getQuantity();
+        this.totalAmount = params.getTotal_amount();
+        this.approvalUrl = params.getApproval_url();
+        this.cancelUrl = params.getCancel_url();
+        this.failUrl = params.getFail_url();
+    }
+
+    @Builder
+    public Reservation(Long reservationId,
+                       int adult,
+                       int child,
+                       LocalDate checkin,
+                       LocalDate checkout,
+                       Long price){
+        this.reservationId = reservationId;
+        this.adult = adult;
+        this.child = child;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.price = price;
+    }
 
 
     public void setStatus(ReservationStatus reservationStatus) {

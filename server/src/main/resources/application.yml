@@ -27,7 +27,7 @@ spring:
 jwt:
   key: ${JWT_SECRET_KEY}
   refresh-token-expiration-minutes: 120
-  access-token-expiration-minutes: 10
+  access-token-expiration-minutes: 360
 mail:
   address:
     admin: admin@gmail.com

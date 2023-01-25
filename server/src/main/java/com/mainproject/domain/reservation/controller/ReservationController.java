@@ -1,5 +1,6 @@
 package com.mainproject.domain.reservation.controller;
 
+import com.mainproject.domain.payment.service.PaymentService;
 import com.mainproject.domain.reservation.dto.ReservationDto;
 import com.mainproject.domain.reservation.entity.Reservation;
 import com.mainproject.domain.reservation.mapper.ReservationMapper;
@@ -7,14 +8,19 @@ import com.mainproject.domain.reservation.repository.ReservationRepository;
 import com.mainproject.domain.reservation.service.ReservationService;
 
 import com.mainproject.domain.room.service.RoomService;
+import com.mainproject.global.response.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+
+import static com.mainproject.domain.payment.Info.ReservationConstants.FAILED_INFO_MESSAGE;
+import static com.mainproject.domain.payment.Info.ReservationConstants.INVALID_PARAMS;
 
 @RestController
 @RequestMapping("/reservation")
@@ -70,5 +76,4 @@ public class ReservationController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

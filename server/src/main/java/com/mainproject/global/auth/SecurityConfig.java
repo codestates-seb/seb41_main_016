@@ -68,8 +68,8 @@ public class SecurityConfig {
                                 .antMatchers(HttpMethod.GET, "/reservation/*").hasAnyRole("USER", "ADMIN")
                                 .antMatchers(HttpMethod.DELETE, "/reservation/*").hasRole("USER")
                                 .antMatchers(HttpMethod.GET, "/rooms/*").permitAll()
-                                .antMatchers(HttpMethod.POST, "/payment/**").hasRole("USER")
-                                .antMatchers(HttpMethod.GET, "/payment/**").hasRole("USER")
+                                //.antMatchers(HttpMethod.POST, "/payment/**").hasRole("USER")
+                                //.antMatchers(HttpMethod.GET, "/payment/**").hasRole("USER")
 
                 );
 
