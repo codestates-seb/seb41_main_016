@@ -15,6 +15,7 @@ public class HotelDetailResponseDto {
     private Long hotelId;
     private String title;
     private Double hotelScore;
+    private int reviewQuantity;
     private List<HotelImage> image;
     private String service;
     private String location_x;
