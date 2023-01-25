@@ -1,60 +1,253 @@
 import React, { useCallback, useEffect, useRef } from "react";
+import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
-import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
-import Carousels from "../../components/DetailedProduct/Carousel/Carousels";
-import Calender from "../../components/DetailedProduct/Calender/Calender";
-import CountSelection from "../../components/DetailedProduct/CountSelection/CountSelection";
-import RoomSelection from "../../components/DetailedProduct/RoomSelection/RoomSelection";
-import ReviewCard from "../../components/DetailedProduct/ReviewCard/ReviewCard";
-import ConfirmModal from "../../components/DetailedProduct/ConfirmModal/ConfirmModal";
-import KakaoMap from "../../components/DetailedProduct/KakaoMap/KakaoMap";
-import Paginations from "../../components/Paginations/Paginations";
+import LayoutContainer from "../components/LayoutContainer";
+import PicCarousel from "../components/ForDetails.jsx/Carousel";
+import Calender from "../components/ForDetails.jsx/Calender";
+import CountSelection from "../components/ForDetails.jsx/CountSelection";
+import RoomSelection from "../components/ForDetails.jsx/RoomSelection";
+import ReviewCard from "../components/ForDetails.jsx/ReviewCard";
+import ConfirmModal from "../components/ForDetails.jsx/ConfirmModal";
+import Paginations from "../components/Paginations";
 import axios from "axios";
-import { priceFormatter } from "../../utils/priceFormatter";
-import { useParams } from "react-router-dom";
+import { priceFormatter } from "../utils/priceFormatter";
+import KakaoMap from "../components/ForDetails.jsx/KakaoMap";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { modalOpen } from "../../store/ModalSlice";
-import {
-    ConfirmAlert,
-    ConfirmButton,
-    ConfirmContainer,
-    DailyPrice,
-    DependentText,
-    DropdownMark,
-    FixedText,
-    HotelName,
-    InfoBox,
-    InfoText,
-    InfoTitle,
-    MainContainer,
-    PaginationBox,
-    PersonSelection,
-    PictureContainer,
-    ReservationContainer,
-    ReviewCardBox,
-    ReviewContainer,
-    ReviewNumber,
-    ReviewNumber2,
-    RoomActionContainer,
-    RoomChoice,
-    ShortInfo,
-    ShortInfo2,
-    ShortInfoBox,
-    ShortInfoBox2,
-    TitleBox,
-    TotalBox,
-    TotalPrice,
-    TotalText,
-} from "./style";
+import { modalOpen } from "../store/ModalSlice";
+
+const TitleBox = styled.div`
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+`;
+
+const HotelName = styled.span`
+    font-size: 32px;
+    line-height: 30px;
+    font-weight: 700;
+`;
+
+const ShortInfoBox = styled.div`
+    margin-top: 20px;
+    display: flex;
+`;
+
+const ShortInfo = styled.span`
+    font-size: 20px;
+    font-weight: 700;
+    align-items: center;
+    display: inline-flex;
+    margin-right: 15px;
+    svg {
+        color: #fbbc05;
+        margin-right: 3px;
+    }
+`;
+
+const ReviewNumber = styled(ShortInfo)`
+    text-decoration: underline !important;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+`;
+
+const PictureContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+const MainContainer = styled.div`
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+    border-bottom: 1px solid ${(props) => props.theme.lightGrey};
+    padding-bottom: 48px;
+    margin-bottom: 15px;
+`;
+
+const InfoBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+`;
+
+const InfoTitle = styled.div`
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-bottom: 15px;
+`;
+
+const InfoText = styled.div`
+    line-height: 23px;
+    margin: 0 0 24px 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(113, 113, 113);
+`;
+
+const RoomActionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    width: 40%;
+`;
+
+const DailyPrice = styled.div`
+    margin: 14px 0 24px 0;
+    font-weight: 700;
+    font-size: 20px;
+`;
+
+const ReservationContainer = styled.div`
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    margin-bottom: 24px;
+`;
+
+const PersonSelection = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border-bottom: 1px solid #b0b0b0;
+    height: 65px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        border-radius: 8px;
+        border: 2px solid ${(props) => props.theme.darkBlack};
+    }
+`;
+
+const RoomChoice = styled.div`
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    height: 65px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        border-radius: 8px;
+        border: 2px solid ${(props) => props.theme.darkBlack};
+    }
+`;
+
+const FixedText = styled.div`
+    position: relative;
+    z-index: 1;
+    left: 5%;
+    top: 25%;
+    font-size: 14px;
+    font-weight: bold;
+`;
+
+const DependentText = styled.div`
+    position: relative;
+    top: 35%;
+    font-size: 12px;
+    font-weight: lighter;
+    color: rgb(113, 113, 113);
+`;
+
+const DropdownMark = styled.div`
+    position: absolute;
+    right: 10%;
+    top: 27%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        font-size: 20px;
+    }
+`;
+
+const ConfirmContainer = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+`;
+
+const ConfirmButton = styled.button`
+    background-color: ${(props) => props.theme.pointColor};
+    color: ${(props) => props.theme.white};
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 24px;
+    &:hover {
+        background-color: #008080;
+    }
+`;
+
+const ConfirmAlert = styled.div`
+    color: ${(props) => props.theme.mediumGrey};
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #b0b0b0;
+`;
+
+const TotalBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const TotalText = styled.div`
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 20px;
+`;
+
+const TotalPrice = styled(TotalText)``;
+
+const ReviewContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const ShortInfoBox2 = styled(ShortInfoBox)`
+    margin-bottom: 30px;
+`;
+
+const ShortInfo2 = styled(ShortInfo)`
+    font-size: 24px;
+`;
+
+const ReviewNumber2 = styled(ReviewNumber)`
+    text-decoration: none !important;
+`;
+
+const PaginationBox = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+`;
+
+const ReviewCardBox = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 20px;
+`;
 
 export default function DetailedProduct() {
     const inputToFocus = useRef(); //한 page내에서 다른 component로 이동하기
     const moveTo = () => {
         inputToFocus.current.scrollIntoView({ behavior: "smooth" }); //이동하기 효과 -> 부드럽게
     };
+
+    const navigate = useNavigate();
 
     const [ModalOpen, setModalOpen] = useState(false);
     const [Modal2Open, setModal2Open] = useState(false);
@@ -105,7 +298,6 @@ export default function DetailedProduct() {
 
     //axios
     const [pageDetail, setpageDetail] = useState([]);
-    console.log(pageDetail);
 
     const { id } = useParams();
 
@@ -148,6 +340,64 @@ export default function DetailedProduct() {
         return (sum / pageDetail.reviews?.length).toFixed(2);
     };
 
+    //checkin checkout date 변환
+    const DateFormat = (d1) => {
+        const date = new Date(d1);
+        const year = date.getFullYear();
+        const month = ("0" + (1 + date.getMonth())).slice(-2);
+        const day = ("0" + date.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
+    };
+
+    const handleSubmit = async () => {
+        try {
+            await axios
+                .post(
+                    "/reservation",
+                    {
+                        memberId: pageDetail.hotelId,
+                        roomId: roomType === "1 King Bed" ? 1 : 2,
+                        checkin: DateFormat(startDate),
+                        checkout: DateFormat(endDate),
+                        adult: adultCount,
+                        child: childrenCount,
+                        price:
+                            (roomType === "1 King Bed"
+                                ? pageDetail.rooms[0].price
+                                : pageDetail.rooms[1].price) *
+                            getDateDiff(startDate, endDate),
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization:
+                                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoiYmVhbkBnbWFpbC5jb20iLCJzdWIiOiJiZWFuQGdtYWlsLmNvbSIsImlhdCI6MTY3NDE5MzQ1MywiZXhwIjoxNjc0MjE1MDUzfQ.lCj9MoDYpE6TR2wMCUn8vBeoGLjUGEYijsT2Mf322TDuXswgI7pSvPT6t_bLUIPq",
+                        },
+                    }
+                )
+                .then((res) => {
+                    axios
+                        .get(`/payment/ready/${res.data.reservationId}`, {
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded;charset=utf-8",
+                                Authorization:
+                                    "KakaoAK 7d8b34bddd92b4d25454fe47608e39ab",
+                            },
+                        })
+                        .then((res) => {
+                            window.open(
+                                res.data.next_redirect_pc_url,
+                                "kakao 결제",
+                                "top=100px, left=100px height=800px, width=500px"
+                            );
+                        });
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <LayoutContainer>
             <TitleBox>
@@ -164,7 +414,7 @@ export default function DetailedProduct() {
                 </ShortInfoBox>
             </TitleBox>
             <PictureContainer>
-                <Carousels img={pageDetail.image} />
+                <PicCarousel img={pageDetail.image} />
             </PictureContainer>
             <MainContainer>
                 <InfoBox>
@@ -256,7 +506,15 @@ export default function DetailedProduct() {
                             예약하기
                         </ConfirmButton>
                         {ConfirmModalOpen ? (
-                            <ConfirmModal handleConfirm={handleConfirm} />
+                            <ConfirmModal
+                                handleConfirm={handleConfirm}
+                                handleSubmit={handleSubmit}
+                                startDate={startDate}
+                                endDate={endDate}
+                                adultCount={adultCount}
+                                childrenCount={childrenCount}
+                                roomType={roomType}
+                            />
                         ) : null}
                         <ConfirmAlert>
                             예약하기를 누르면 결제 창이 뜹니다.
