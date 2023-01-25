@@ -34,10 +34,10 @@ public class MemberDto {
 //        @NotBlank(message = "닉네임은 공백일 수 없습니다.")
 //        private String nickname;
 
-        @NotBlank(message = "비밀번호는 공백일 수 없습니다.")
-//        @Pattern(regexp = "^(?=.*[a-zA-z])(?=.*[0-9])(?!.*[^a-zA-z0-9]).{4,20}$", message = "영문자/숫자 포함 4~20")
-        private String password;
-
+//        @NotBlank(message = "비밀번호는 공백일 수 없습니다.")
+////        @Pattern(regexp = "^(?=.*[a-zA-z])(?=.*[0-9])(?!.*[^a-zA-z0-9]).{4,20}$", message = "영문자/숫자 포함 4~20")
+//        private String password;
+        private String name;
         private String image;
     }
 

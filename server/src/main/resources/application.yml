@@ -13,20 +13,23 @@ spring:
         jdbc:
           time_zone: Asia/Seoul
     defer-datasource-initialization: true
-  h2:
-    console:
-      enabled: true
-      path: /h2
-      settings:
-        web-allow-others: true
+  #  h2:
+  #    console:
+  #      enabled: true
+  #      path: /h2
+  #      settings:
+  #        web-allow-others: true
   datasource:
-    url: jdbc:h2:mem:test
+    url: jdbc:mysql://localhost:3306/main_project?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    username: whystay
+    password: 1234
   sql:
     init:
+      mode: always
       data-locations: classpath*:db/h2/data.sql
 jwt:
   key: ${JWT_SECRET_KEY}
-  refresh-token-expiration-minutes: 120
+  refresh-token-expiration-minutes: 420
   access-token-expiration-minutes: 360
 mail:
   address:
