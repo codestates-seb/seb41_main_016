@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Paginations from "../../Paginations";
-import ReservationCard from "../ReservationCard";
+import Paginations from "../../Paginations/Paginations";
+import ReservationCard from "../ReservationCard/ReservationCard";
 import { Line, ReservationBox, ReservationWrap } from "./style";
 
 export default function ReservationContainer({ handleBtnClick }) {
