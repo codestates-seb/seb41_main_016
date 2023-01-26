@@ -138,6 +138,8 @@ public class KakaoLoginService {
             String s = "";
             while((s = br.readLine()) != null) result += s;
             log.info("logout 메소드에서 나온 결과값: {}", result);
+
+            br.close();
         } catch (IOException e) {
             throw new RuntimeException();
         }
@@ -152,10 +154,26 @@ public class KakaoLoginService {
                 .provider("kakao")
                 .build();
         System.out.println("signup으로 넘겨줬을 때 뜨는 email값: " + member.getEmail());
+
         memberService.createSocialMember(member);
     }
 
     public void kakaoUnlink(String accessToken) {
-//        String url =
+        String postURL = "https://kapi.kakao.com/v1/user/unlink";
+
+        try {
+            URL url = new URL(postURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+
+            int resCode = connection.getResponseCode();
+            log.info("response Code: {}", resCode);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

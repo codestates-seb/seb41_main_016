@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setHeader("Authorization", "Bearer " + accessToken);
         response.setHeader("Refresh", refreshToken);
         response.setHeader("Access-Expiration-Time", String.valueOf(jwtProvider.getAccessTokenExpirationMinutes()));
-        response.setHeader("Member-Id", String.valueOf(member.getMemberId()));
+        response.setHeader("Member_Id", String.valueOf(member.getMemberId()));
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authentication);
     }
 }

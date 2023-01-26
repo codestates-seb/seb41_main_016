@@ -36,13 +36,13 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public Member createSocialMember(Member member) {
+    public void createSocialMember(Member member) {
         verifyExistsEmail(member.getEmail());
-        System.out.println(member.getEmail());
+
         List<String> roles = authorityUtils.createRoles(member.getEmail());
         member.setRoles(roles);
 
-        return memberRepository.save(member);
+        memberRepository.save(member);
     }
 
     public Member updateMember(Member member) {
