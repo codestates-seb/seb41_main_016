@@ -10,7 +10,7 @@ export default function Carousels({ img }) {
       <Carousel infiniteLoop showThumbs={false}>
         {img?.map((el, idx) => (
           <div key={idx}>
-            <img src={"/img/img1.webp"} alt="이미지" />
+            <img src={el.image} alt="이미지" />
             <p className="legend">{el.title}</p>
           </div>
         ))}
