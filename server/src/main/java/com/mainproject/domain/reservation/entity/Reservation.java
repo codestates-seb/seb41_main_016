@@ -53,30 +53,30 @@ public class Reservation extends Auditable {
     @JoinColumn(name = "ROOM_ID")
     private Room room;
 
-
+    @JsonIgnore
     @Enumerated(value = EnumType.STRING)
     private ReservationStatus reservationStatus = ReservationStatus.PAY_IN_PROGRESS;
 
     /************************************************** 주문 내역 정보 **************************************************/
-
+    @JsonIgnore
     private String cid;
-
+    @JsonIgnore
     private String tid;
-
+    @JsonIgnore
     private String partner_order_id;
-
+    @JsonIgnore
     private String partner_user_id;
-
+    @JsonIgnore
     private String itemName;
-
+    @JsonIgnore
     private String quantity;
-
+    @JsonIgnore
     private String totalAmount;
-
+    @JsonIgnore
     private String approvalUrl;
-
+    @JsonIgnore
     private String cancelUrl;
-
+    @JsonIgnore
     private String failUrl;
 
     public void setPaymentInfo(ReadyToPayInfo params, String tid){
