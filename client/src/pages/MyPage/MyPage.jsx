@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
 import Loading from "../../components/Loading";
 import ReservationContainer from "../../components/Mypage/container/ReservationContainer";
