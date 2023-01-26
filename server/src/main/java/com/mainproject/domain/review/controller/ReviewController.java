@@ -53,18 +53,18 @@ public class ReviewController {
     @GetMapping("/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id") Long reviewId){
         Review review = reviewService.findReview(reviewId);
-
         return new ResponseEntity<>(mapper.reviewToreview(review), HttpStatus.OK);
     }
 
-    @PatchMapping("/edit/{hotel-id}/{review-id}") // TODO: 리뷰 수정 진행 중
+    @PatchMapping("/edit/{review-id}") // TODO: 리뷰 수정 진행 중
     public ResponseEntity patchReview(@PathVariable("review-id") Long reviewId,
-                                      @PathVariable("hotel-id") Long hotelId,
+//                                      @PathVariable("hotel-id") Long hotelId,
                                       @RequestBody ReviewEditDto reviewEditDto){
         reviewEditDto.setReviewId(reviewId);
-        Hotel hotel = hotelService.findHotel(hotelId);
-        List<ReviewImage> reviewImageList = reviewEditDto.getReviewImageList();
-        Review review = reviewService.updateReview(reviewEditDto, reviewImageList);
+        log.info("reviewEditDto = {}",reviewEditDto);
+        Review review = reviewService.updateReview(reviewEditDto);
+        Hotel hotel = hotelService.findHotel(review.getHotel().getHotelId());
+
         List<Review> reviewList= reviewService.findReviewList();
         hotelService.updateHotelScore(hotel,reviewList);
         return new ResponseEntity<>(mapper.reviewToreview(review),HttpStatus.OK);

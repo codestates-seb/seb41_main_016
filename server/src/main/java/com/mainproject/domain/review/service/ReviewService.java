@@ -1,6 +1,7 @@
 package com.mainproject.domain.review.service;
 
 import com.mainproject.domain.hotel.entity.Hotel;
+import com.mainproject.domain.hotel.service.HotelService;
 import com.mainproject.domain.image.entity.ReviewImage;
 import com.mainproject.domain.image.repositroy.ReviewImageRepository;
 import com.mainproject.domain.image.service.ReviewImageService;
@@ -32,15 +33,13 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final ReviewMapper reviewMapper;
     private final ReviewImageService reviewImageService;
-    private final ReviewImageRepository reviewImageRepository;
+    private final HotelService hotelService;
 
     public Review postReview(Review review, List<ReviewImage> reviewImageList){
 
         List<ReviewImage> postReviewImage = reviewImageService.postReviewImage(reviewImageList, review);
         Review review1 = reviewMapper.reviewListGetToReview(postReviewImage, review);
-        log.info(" createdAt review1 = {}", review1.getCreatedAt());
         Review review2 = reviewRepository.save(review1);
-        log.info(" createdAt review2 = {}", review2.getCreatedAt());
         return review2;
     }
 
@@ -56,7 +55,6 @@ public class ReviewService {
         List<Review> reviewList = reviewRepository.findByHotel(hotel);
 
         List<ReviewResponseDto> responseDtoList = reviewMapper.reviewListToReviewResponseDto(reviewList);
-//        responseDtoList.stream().forEach(review -> log.info(" createdAt = {}", review.getCreatedAt() ));
         return responseDtoList;
     }
 
@@ -68,12 +66,14 @@ public class ReviewService {
        return reviewRepository.findAll();
     }
     @Transactional
-    public Review updateReview(ReviewEditDto review, List<ReviewImage> reviewImageList){ // TODO: 리뷰 수정 진행 중
+    public Review updateReview(ReviewEditDto review){ // TODO: 리뷰 수정 진행 중
+        Hotel hotel = hotelService.findHotel(review.getHotelId());
+        List<ReviewImage> reviewImageList = review.getReviewImageList();
 
         Review findReview = findReview(review.getReviewId());
+        log.info("find = {}", findReview);
         findReview.setContent(review.getContent());
-        findReview.setReviewImageList(reviewImageList);
         findReview.setScore(review.getScore());
-        return findReview;
+        return reviewRepository.save(findReview);
     }
 }
