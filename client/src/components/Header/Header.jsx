@@ -13,7 +13,7 @@ import { HeaderBox, Icon, IconBox, Title } from "./style";
 export default function Header() {
   const isLogin = useSelector((state) => state.Login.isLogin);
   const isModal = useSelector((state) => state.Modal.isModal);
-
+  const memberId = localStorage.getItem("memberId");
   const [signupOpen, setSignupOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -48,7 +48,9 @@ export default function Header() {
             selected={pathname === "/" ? true : false}
           >
             {isLogin ? (
-              <CgProfile onClick={() => navigate("/mypage/:id")} />
+              <CgProfile
+                onClick={() => navigate(`/member/${memberId}/mypage`)}
+              />
             ) : null}
             <Icon onClick={() => closeMenu()}>
               <CgMenuRightAlt />
