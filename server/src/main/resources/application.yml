@@ -13,14 +13,14 @@ spring:
         jdbc:
           time_zone: Asia/Seoul
     defer-datasource-initialization: true
-  #  h2:
-  #    console:
-  #      enabled: true
-  #      path: /h2
-  #      settings:
-  #        web-allow-others: true
+#    h2:
+#      console:
+#        enabled: true
+#        path: /h2
+#        settings:
+#          web-allow-others: true
   datasource:
-    url: jdbc:mysql://localhost:3306/main_project?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/whystay?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
     username: whystay
     password: 1234
   sql:

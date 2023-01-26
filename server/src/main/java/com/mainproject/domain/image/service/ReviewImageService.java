@@ -33,5 +33,5 @@ public class ReviewImageService {
     public List<ReviewImage> findReviewImageList(){
         return reviewImageRepository.findAll();
     }
-
+    
 }
