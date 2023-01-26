@@ -3,28 +3,31 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
 import Loading from "../../components/Loading";
-import ReservationContainer from "../../components/mypage/container/ReservationContainer";
-import ReviewContainer from "../../components/mypage/container/ReviewContainer";
-import Profile from "../../components/mypage/Profile/Profile";
-import ReviewModal from "../../components/mypage/ReviewModal/ReviewModal";
+import ReservationContainer from "../../components/Mypage/container/ReservationContainer";
+import ReviewContainer from "../../components/Mypage/container/ReviewContainer";
+import Profile from "../../components/Mypage/Profile/Profile";
+import ReviewModal from "../../components/Mypage/ReviewModal/ReviewModal";
 import { MyLayout, Title, Wrap } from "./style";
+import EditModal from "../../components/Mypage/ReviewModal/EditModal";
 
 export default function MyPage() {
-  const [isModal, setIsModal] = useState(false);
+  const [reviewModal, setReviewModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const starLength = [0, 1, 2, 3, 4];
-  const [inText, setInText] = useState();
+  // const [inText, setInText] = useState();
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [mypage, setMypage] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
   const memberId = localStorage.getItem("memberId");
   const token = localStorage.getItem("accessToken");
+  const [newReview, setNewReview] = useState([]);
 
   const handleMypage = useCallback(async () => {
     try {
       if (token) {
         const mypageList = await axios
-          .get(`/members/${memberId}`, {
+          .get(`/members`, {
             headers: {
               Authorization: token,
             },
@@ -41,18 +44,24 @@ export default function MyPage() {
     }
   }, [token, memberId]);
 
-  const openModal = () => {
-    setIsModal((prev) => !prev);
+  // console.log(mypage.reservation.room.hotelId);
+
+  const reviewOpenModal = () => {
+    setReviewModal((prev) => !prev);
   };
 
-  const handleBtnClick = (e) => {
-    setInText(e.target.innerText);
-    if (e.target.innerText === "후기 작성하기") {
-      setIsModal((prev) => !prev);
-    } else {
-      setIsModal((prev) => !prev);
-    }
+  const editOpenModal = () => {
+    setEditModal((prev) => !prev);
   };
+
+  // const handleBtnClick = (e) => {
+  //   setInText(e.target.innerText);
+  //   if (e.target.innerText === "후기 작성하기") {
+  //     setIsModal((prev) => !prev);
+  //   } else {
+  //     setIsModal((prev) => !prev);
+  //   }
+  // };
 
   const handleText = (e) => {
     setText(e.target.value);
@@ -66,17 +75,31 @@ export default function MyPage() {
     setClicked(clickStates);
   };
 
-  const handleReview = async () => {
-    if (inText === "후기 작성하기") {
-      let score = clicked.filter(Boolean).length;
-      try {
-        await axios.post("http://localhost:3001/review", {
-          content: text,
-          score,
-        });
-      } catch (error) {
-        console.error(error);
-      }
+  let score = clicked.filter(Boolean).length;
+
+  const addReview = async () => {
+    try {
+      await axios
+        .post(
+          "/reviews/1",
+          { content: text, score },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        )
+        .then((res) => setNewReview(res.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const editReview = async () => {
+    try {
+      await axios.patch("/reviews/edit/1");
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -96,24 +119,34 @@ export default function MyPage() {
             name={mypage.name}
           />
           <Wrap>
-            <ReservationContainer handleBtnClick={handleBtnClick} />
+            <ReservationContainer reviewOpenModal={reviewOpenModal} />
             <ReviewContainer
-              handleBtnClick={handleBtnClick}
+              editOpenModal={editOpenModal}
               starLength={starLength}
             />
           </Wrap>
         </MyLayout>
       </div>
-      {isModal && (
+      {reviewModal && (
         <ReviewModal
           text={text}
           handleText={handleText}
-          inText={inText}
-          openModal={openModal}
+          reviewOpenModal={reviewOpenModal}
           clicked={clicked}
           handleStarClick={handleStarClick}
           starLength={starLength}
-          handleReview={handleReview}
+          addReview={addReview}
+        />
+      )}
+      {editModal && (
+        <EditModal
+          text={text}
+          handleText={handleText}
+          editOpenModal={editOpenModal}
+          clicked={clicked}
+          handleStarClick={handleStarClick}
+          starLength={starLength}
+          editReview={editReview}
         />
       )}
     </LayoutContainer>

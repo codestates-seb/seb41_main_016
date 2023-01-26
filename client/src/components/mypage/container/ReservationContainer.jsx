@@ -3,7 +3,7 @@ import Paginations from "../../Paginations/Paginations";
 import ReservationCard from "../ReservationCard/ReservationCard";
 import { Line, ReservationBox, ReservationWrap } from "./style";
 
-export default function ReservationContainer({ handleBtnClick }) {
+export default function ReservationContainer({ reviewOpenModal }) {
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
@@ -17,7 +17,7 @@ export default function ReservationContainer({ handleBtnClick }) {
         <span className="reservation">예약내역 조회</span>
         <Line />
         <ReservationWrap>
-          <ReservationCard handleBtnClick={handleBtnClick} />
+          <ReservationCard reviewOpenModal={reviewOpenModal} />
           <ReservationCard />
           <ReservationCard />
           <ReservationCard />

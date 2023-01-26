@@ -30,6 +30,7 @@ export default function HeaderDropdown({ closeMenu, isLogin, setSignupOpen }) {
     dispatch(logout());
     localStorage.clear();
     closeMenu();
+    navigate("/");
   };
 
   return (
@@ -37,9 +38,7 @@ export default function HeaderDropdown({ closeMenu, isLogin, setSignupOpen }) {
       {isLogin ? (
         <MenuBox onMouseDown={handleMouseDown}>
           <ul>
-            <li onClick={() => navigateHandler(`/member/${memberId}/mypage`)}>
-              마이페이지
-            </li>
+            <li onClick={() => navigateHandler(`/members`)}>마이페이지</li>
             <li onClick={() => navigateHandler("/wishlists")}>위시리스트</li>
           </ul>
           <ul className="logout">

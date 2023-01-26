@@ -14,7 +14,7 @@ import {
 
 const starLength = [0, 1, 2, 3, 4];
 
-export default function ReviewCard({ handleBtnClick }) {
+export default function ReviewCard({ editOpenModal }) {
   return (
     <Wrap>
       <ReviewlImg></ReviewlImg>
@@ -28,7 +28,7 @@ export default function ReviewCard({ handleBtnClick }) {
         </StarBox>
         <Described>더 리버사이드 호텔의 주인은 박현석 회장님 입니다.</Described>
         <BtnBox>
-          <Btn onClick={handleBtnClick}>리뷰수정</Btn>
+          <Btn onClick={editOpenModal}>리뷰수정</Btn>
           <Btn>리뷰삭제</Btn>
         </BtnBox>
       </HotelTextBox>

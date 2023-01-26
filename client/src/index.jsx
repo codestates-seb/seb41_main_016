@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       { path: "/category/:id", element: <AllProducts /> },
       { path: "/rooms/:id", element: <DetailedProduct /> },
       { path: "/wishlists", element: <WishLists /> },
-      { path: `/member/:id/mypage`, element: <MyPage /> },
+      { path: `/members`, element: <MyPage /> },
       { path: "/:searchParams", element: <SearchProducts /> },
       { path: "/auth/kakao/callback", element: <KakaoLogin /> },
       { path: "/payment/success", element: <Kakao /> },

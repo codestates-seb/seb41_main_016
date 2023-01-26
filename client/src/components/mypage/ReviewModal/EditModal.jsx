@@ -23,13 +23,13 @@ import {
 } from "./style";
 
 export default function ReviewModal({
-  reviewOpenModal,
+  editOpenModal,
   clicked,
   handleStarClick,
   starLength,
   text,
   handleText,
-  addReview,
+  editReview,
 }) {
   useScrollPrevent();
   return (
@@ -38,8 +38,8 @@ export default function ReviewModal({
         <ModalView>
           {/* onClick={(e) => e.stopPropagation()} 
               이벤트 버블링을 방지*/}
-          <Title>후기작성</Title>
-          <CloseModal onClick={reviewOpenModal}>
+          <Title>후기수정</Title>
+          <CloseModal onClick={editOpenModal}>
             <RxCross1 />
           </CloseModal>
           <HotelBox>
@@ -69,13 +69,12 @@ export default function ReviewModal({
               rows="8"
               id="detail"
               minLength={20}
-              placeholder="호텔에 대한 평가를 20자 이상 작성해주세요."
               onChange={handleText}
             />
           </TextBox>
           <BtnBox>
-            <Btn2 onClick={reviewOpenModal}>취소</Btn2>
-            <Btn onClick={addReview}>작성</Btn>
+            <Btn2 onClick={editOpenModal}>취소</Btn2>
+            <Btn onClick={editReview}>수정</Btn>
           </BtnBox>
         </ModalView>
       </ModalBackdrop>

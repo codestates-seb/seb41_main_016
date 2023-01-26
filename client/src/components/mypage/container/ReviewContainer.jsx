@@ -3,7 +3,7 @@ import Paginations from "../../Paginations/Paginations";
 import ReviewCard from "../ReviewCard/ReviewCard";
 import { Line, ReservationWrap, ReviewBox } from "./style";
 
-export default function ReviewContainer({ handleBtnClick, starLength }) {
+export default function ReviewContainer({ editOpenModal, starLength }) {
   const [limit, setLimit] = useState(2);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
@@ -17,7 +17,7 @@ export default function ReviewContainer({ handleBtnClick, starLength }) {
         <span className="reservation">내가 작성한 후기</span>
         <Line />
         <ReservationWrap>
-          <ReviewCard handleBtnClick={handleBtnClick} starLength={starLength} />
+          <ReviewCard editOpenModal={editOpenModal} starLength={starLength} />
           <ReviewCard />
         </ReservationWrap>
       </ReviewBox>

@@ -16,15 +16,15 @@ const KakaoState = createSlice({
   name: "loginstate",
   initialState,
   reducers: {
-    login: (state) => {
+    kakaoLogin: (state) => {
       state.isLogin = true;
     },
-    logout: (state) => {
+    kakaoLogout: (state) => {
       state.isLogin = false;
     },
   },
 });
 
-export const { login, logout } = KakaoState.actions;
+export const { kakaoLogin, kakaoLogout } = KakaoState.actions;
 
 export default KakaoState;

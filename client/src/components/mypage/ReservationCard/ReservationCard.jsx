@@ -11,7 +11,7 @@ import {
   Wrap,
 } from "./style";
 
-export default function ReservationCard({ handleBtnClick }) {
+export default function ReservationCard({ reviewOpenModal }) {
   return (
     <Wrap>
       <TextBox>
@@ -27,7 +27,7 @@ export default function ReservationCard({ handleBtnClick }) {
             <span>1.23 (화) 1박</span>
           </HotelText2>
           <HotelText>₩ 76,643</HotelText>
-          <Review onClick={handleBtnClick}>후기 작성하기</Review>
+          <Review onClick={reviewOpenModal}>후기 작성하기</Review>
         </HotelTextBox>
       </HotelBox>
     </Wrap>

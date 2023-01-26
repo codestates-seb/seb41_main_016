@@ -50,9 +50,7 @@ export default function Header() {
             selected={pathname === "/" ? true : false}
           >
             {isLogin ? (
-              <CgProfile
-                onClick={() => navigate(`/member/${memberId}/mypage`)}
-              />
+              <CgProfile onClick={() => navigate(`/members`)} />
             ) : null}
             <Icon onClick={() => closeMenu()}>
               <CgMenuRightAlt />
