@@ -11,6 +11,8 @@ import MyPage from "./pages/MyPage/MyPage";
 import SearchProducts from "./pages/SearchProducts/SearchProducts";
 import { colorTheme } from "./assets/style/Theme";
 import { ThemeProvider } from "styled-components";
+import KakaoLogin from "./pages/KakaoLogin";
+import Kakao from "./pages/Kakao";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +24,10 @@ const router = createBrowserRouter([
       { path: "/category/:id", element: <AllProducts /> },
       { path: "/rooms/:id", element: <DetailedProduct /> },
       { path: "/wishlists", element: <WishLists /> },
-      { path: "/mypage/:id", element: <MyPage /> },
+      { path: `/member/:id/mypage`, element: <MyPage /> },
       { path: "/:searchParams", element: <SearchProducts /> },
+      { path: "/auth/kakao/callback", element: <KakaoLogin /> },
+      { path: "/payment/success", element: <Kakao /> },
     ],
   },
 ]);

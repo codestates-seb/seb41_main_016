@@ -4,6 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import { SlideContainer } from "./style";
 
 export default function Carousels({ img }) {
+  console.log(img);
   return (
     <SlideContainer>
       <Carousel infiniteLoop showThumbs={false}>
