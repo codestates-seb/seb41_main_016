@@ -2,12 +2,12 @@ import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
 import Loading from "../../components/Loading";
-import ReservationContainer from "../../components/Mypage/container/ReservationContainer";
-import ReviewContainer from "../../components/Mypage/container/ReviewContainer";
-import Profile from "../../components/Mypage/Profile/Profile";
-import ReviewModal from "../../components/Mypage/ReviewModal/ReviewModal";
+import ReservationContainer from "../../components/mypage/container/ReservationContainer";
+import ReviewContainer from "../../components/mypage/container/ReviewContainer";
+import Profile from "../../components/mypage/Profile/Profile";
+import ReviewModal from "../../components/mypage/ReviewModal/ReviewModal";
 import { MyLayout, Title, Wrap } from "./style";
-import EditModal from "../../components/Mypage/ReviewModal/EditModal";
+import EditModal from "../../components/mypage/ReviewModal/EditModal";
 
 export default function MyPage() {
   const [reviewModal, setReviewModal] = useState(false);
