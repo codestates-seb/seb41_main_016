@@ -24,7 +24,7 @@ export default function MyPage() {
     try {
       if (token) {
         const mypageList = await axios
-          .get(`/member/${memberId}/mypage`, {
+          .get(`/members/${memberId}`, {
             headers: {
               Authorization: token,
             },
@@ -72,7 +72,7 @@ export default function MyPage() {
       try {
         await axios.post("http://localhost:3001/review", {
           content: text,
-          score: score,
+          score,
         });
       } catch (error) {
         console.error(error);

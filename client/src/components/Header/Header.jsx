@@ -32,7 +32,9 @@ export default function Header() {
 
   return (
     <>
-      {isModal ? <LoginModal isModal={isModal} /> : null}
+      {isModal ? (
+        <LoginModal isModal={isModal} setSignupOpen={setSignupOpen} />
+      ) : null}
       {signupOpen ? <SignupModal setSignupOpen={setSignupOpen} /> : null}
       <HeaderBox selected={pathname === "/" ? true : false}>
         <div>
