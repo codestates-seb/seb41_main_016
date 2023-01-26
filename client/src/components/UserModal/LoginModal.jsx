@@ -8,7 +8,7 @@ import axios from "axios";
 import useScrollPrevent from "../../hooks/useScrollPrevent";
 import { login } from "../../store/LoginSlice";
 import { useDispatch } from "react-redux";
-import { modalClose } from "../../store/ModalSlice";
+import { modalClose, modalOpen } from "../../store/ModalSlice";
 import {
   ErrorBox,
   LoginBox,
@@ -23,7 +23,7 @@ import {
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils/register";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function LoginModal({ isModal }) {
+export default function LoginModal({ isModal, setSignupOpen }) {
   const dispatch = useDispatch();
 
   useScrollPrevent();
@@ -91,6 +91,11 @@ export default function LoginModal({ isModal }) {
     window.open(KAKAO_AUTH_URL);
   };
 
+  const handleSignUp = () => {
+    dispatch(modalClose());
+    setSignupOpen(true);
+  };
+
   return (
     <ModalContainer>
       <ModalBackground>
@@ -134,7 +139,7 @@ export default function LoginModal({ isModal }) {
             </div>
             <LoginBox>
               <button type="submit">로그인하기</button>
-              <span>아이디/비밀번호 찾기</span>
+              <span onClick={handleSignUp}>회원가입 하러하기</span>
             </LoginBox>
           </ModalInputBox>
           <SocialLoginBox>
