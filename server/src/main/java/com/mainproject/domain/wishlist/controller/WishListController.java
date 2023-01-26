@@ -58,7 +58,7 @@ public class WishListController {
 
         Hotel hotel = hotelService.findHotel(hotelId);
         Member member = memberService.findMember(memberId);
-        WishList wishList = new WishList(member, hotel);
+        WishList wishList = wishListService.checkExistedWishList(new WishList(member, hotel));
         wishListService.deleteWishList(wishList);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
