@@ -57,8 +57,8 @@ public class ReviewController {
                                       @RequestBody ReviewEditDto reviewEditDto,
                                       @RequestHeader("Authorization") String accessToken){
         Long memberId = jwtProvider.extractMemberId(accessToken);
-        reviewEditDto.setReviewId(reviewId);
-        Review review = reviewService.updateReview(reviewEditDto);
+
+        Review review = reviewService.updateReview(reviewEditDto, reviewId);
         Hotel hotel = hotelService.findHotel(review.getHotel().getHotelId());
 
         List<Review> reviewList= reviewService.findReviewList();
