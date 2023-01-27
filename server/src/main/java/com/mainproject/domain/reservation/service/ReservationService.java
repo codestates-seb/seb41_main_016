@@ -12,7 +12,6 @@ import com.mainproject.global.exception.ExceptionCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.*;
 
 
@@ -30,6 +29,12 @@ public class ReservationService {
     @Autowired
     private final MemberRepository memberRepository;
 
+
+    private Integer reservationStartHH;
+
+    private Integer reservationEndHH;
+
+
     public ReservationService(ReservationRepository reservationRepository,
                               RoomService roomService,
                               MemberService memberService,
@@ -42,9 +47,16 @@ public class ReservationService {
 
     // Reservation 생성하기
     public Reservation createReservation(Reservation reservation, Long roomId, Long memberId) {
+
         //room 추가
         Room room = roomService.findRoom(roomId);
         reservation.setRoom(room);
+        reservation.getRoom().reduceQuantity();
+
+        // 예약되면 그 방은 갯수 -1, room에 예약이 존재하는 error발생
+        if (reservation.getRoom().getQuantity() < 0){
+            throw new BusinessLogicException(ExceptionCode.ROOM_RESERVATION_EXIST);
+        }
 
         //member 추가
         Member member = memberService.findMember(memberId);
@@ -52,6 +64,7 @@ public class ReservationService {
 
         return reservationRepository.save(reservation);
     }
+
 
     // Reservation 조회하기
     public Reservation findReservation(Long reservationId) {
@@ -81,6 +94,21 @@ public class ReservationService {
 
         return findReservation;
     }
+
+    /**
+     * roomCount, checkStatus
+     * 룸 갯수, 체크인 상태확인
+     */
+
+    /*public void addQuantity(Reservation reservation, Room room){
+
+        reservationStart = Integer.parseInt(new SimpleDateFormat("dd").format(reservation.getCheckin()));
+        reservationEnd = Integer.parseInt(new SimpleDateFormat("dd").format(reservation.getCheckout()));
+
+        for (int i = reservationStart; i < reservationEnd; i++){
+            room.reduceQuantity();
+        }
+    }*/
 
 /*    public List<Reservation> findAllVerifiedReservation() {
         List<Reservation> optionalReservation =

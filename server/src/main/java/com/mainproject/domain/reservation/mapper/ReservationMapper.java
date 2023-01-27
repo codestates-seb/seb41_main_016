@@ -8,13 +8,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ReservationMapper {
 
-    Reservation getReservationId(Long reservationId);
-
     Reservation reservationPostDtoToReservation(ReservationDto.Post requestBody);
-
-    Reservation reservationPatchDtoToReservation(ReservationDto.Patch requestBody);
-
-    ReservationDto.Response reservationToReservationResponseDto(Reservation reservation);
 
     default ReservationDto.Response reservationToReservationDto(Reservation reservation){
 
