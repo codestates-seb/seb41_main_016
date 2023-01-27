@@ -49,6 +49,7 @@ import {
     TotalPrice,
     TotalText,
 } from "./style";
+import { getDateDiff } from "../../utils/calcDateDiff";
 
 export default function DetailedProduct() {
     const inputToFocus = useRef(); //한 page내에서 다른 component로 이동하기
@@ -127,18 +128,6 @@ export default function DetailedProduct() {
     //calender 일정 조정
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-
-    //두 날짜 사이 계산
-    const getDateDiff = (d1, d2) => {
-        if (d1 !== null && d2 !== null) {
-            const date1 = new Date(d1);
-            const date2 = new Date(d2);
-
-            const DateDiff = date1.getTime() - date2.getTime();
-
-            return Math.abs(DateDiff / (1000 * 60 * 60 * 24));
-        }
-    };
 
     //평균 별점 구하기
     const scoreAvg = () => {
