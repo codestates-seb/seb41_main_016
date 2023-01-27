@@ -14,6 +14,7 @@ import {
   Star,
   TextBox,
 } from "./style";
+import axios from "axios";
 
 export default function HotelCard({
   title,
@@ -25,12 +26,41 @@ export default function HotelCard({
   reviewNum,
 }) {
   const [icon, setIcon] = useState(false);
+  const token = localStorage.getItem("accessToken");
+  const memberId = localStorage.getItem("memberId");
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(`/rooms/${id}`, { state: id });
+  };
+
+  const addWishList = async () => {
+    try {
+      await axios.post(`/member/wishlists?memberId=${memberId}&hotelId=${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteWishList = async () => {
+    try {
+      await axios.delete(
+        `/member/wishlists?memberId=${memberId}&hotelId=${id}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleClick = (e) => {
@@ -40,8 +70,13 @@ export default function HotelCard({
     } else {
       dispatch(modalOpen());
     }
-  };
 
+    if (icon) {
+      addWishList();
+    } else {
+      deleteWishList();
+    }
+  };
   return (
     <CardBox onClick={handleNavigate}>
       <ImgBox img={img}>

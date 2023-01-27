@@ -41,7 +41,7 @@ export default function MyPage() {
       setLoading(false);
       console.log(error);
     }
-  }, [token, memberId]);
+  }, [token]);
 
   // console.log(mypage.reservation.room.hotelId);
 
