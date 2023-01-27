@@ -24,6 +24,7 @@ public class HotelMapper {
             .hotelId(hotel.getHotelId())
             .image(image)
             .title(hotel.getTitle())
+            .like(hotel.getLikes()) //
             .hotelScore(hotel.getHotelScore())
             .reviewQuantity(hotel.getReviewList().size())
             .address(hotel.getAddress())
@@ -44,6 +45,7 @@ public class HotelMapper {
                             .hotelImage(hotelImageListTohotelImage(hotel.getImages()))
                             .hotelTitle(hotel.getTitle())
                             .hotelReviewScore(hotel.getHotelScore())
+                            .like(hotel.getLikes())
                             .reviewQuantity(hotel.getReviewList().size())
                             .price(roomToRoomPrice(hotel.getRoomList()))
                             .build();

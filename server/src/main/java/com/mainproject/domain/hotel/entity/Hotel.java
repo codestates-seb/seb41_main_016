@@ -31,6 +31,8 @@ public class Hotel {
     @NotNull
     private Double hotelScore;
 
+    @Column(name = "likes")
+    private Boolean likes;
     @Column(name = "address")
     private String address;
     @Column(name = "location_x")
