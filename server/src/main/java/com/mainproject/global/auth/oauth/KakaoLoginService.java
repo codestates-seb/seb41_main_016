@@ -47,7 +47,9 @@ public class KakaoLoginService {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
             String sb = "grant_type=authorization_code" +
                     "&client_id=fb6a694dd7c7ede22f3102f1b8b17f4f" + // REST_API_KEY
-                    "&redirect_uri=http://localhost:8080/auth/kakao/calllback" + // REDIRECT_URI
+//                    "&redirect_uri=http://localhost:8080/auth/kakao/callback" + // REDIRECT_URI
+                    "&redirect_uri=http://ec2-52-79-60-71.ap-northeast-2.compute.amazonaws.com:8080/auth/kakao/callback" + // REDIRECT_URI
+
                     "&code=" + code;
             bw.write(sb);
             bw.flush();
@@ -99,8 +101,8 @@ public class KakaoLoginService {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Authorization", "Bearer " + accessToken);
 
-//            int responseCode = connection.getResponseCode();
-//            log.info("Response Code IN getUserInfo: {}", responseCode);
+            int responseCode = connection.getResponseCode();
+            log.info("Response Code IN getUserInfo: {}", responseCode);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String s = "";
@@ -138,6 +140,8 @@ public class KakaoLoginService {
             String s = "";
             while((s = br.readLine()) != null) result += s;
             log.info("logout 메소드에서 나온 결과값: {}", result);
+
+            br.close();
         } catch (IOException e) {
             throw new RuntimeException();
         }
@@ -152,10 +156,26 @@ public class KakaoLoginService {
                 .provider("kakao")
                 .build();
         System.out.println("signup으로 넘겨줬을 때 뜨는 email값: " + member.getEmail());
+
         memberService.createSocialMember(member);
     }
 
     public void kakaoUnlink(String accessToken) {
-//        String url =
+        String postURL = "https://kapi.kakao.com/v1/user/unlink";
+
+        try {
+            URL url = new URL(postURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+
+            int resCode = connection.getResponseCode();
+            log.info("response Code: {}", resCode);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

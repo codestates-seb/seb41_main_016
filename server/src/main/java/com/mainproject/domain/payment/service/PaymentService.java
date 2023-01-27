@@ -11,8 +11,9 @@ import com.mainproject.global.response.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import static com.mainproject.domain.payment.Info.ReservationConstants.*;
+import static com.mainproject.domain.payment.Info.PayConstants.ORDER_APPROVED;
+import static com.mainproject.domain.payment.Info.ReservationConstants.INFO_URI_MSG;
+import static com.mainproject.domain.payment.Info.ReservationConstants.PAY_URI_MSG;
 
 @Slf4j
 @Service
@@ -85,7 +86,6 @@ public class PaymentService {
         // 예약 정보 반환을 위한 headers, params 세팅
         KakaoHeaders headers = feignService.setHeaders();
         RequestForReservationInfo params = feignService.setRequestParams(pg_token, findReservation);
-
 
         // feign client 요청(예약 정보)
         PayApproveInfo payApproveInfo = feignService.getSuccessResponse(headers, params);

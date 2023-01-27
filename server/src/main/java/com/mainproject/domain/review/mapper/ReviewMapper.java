@@ -53,6 +53,7 @@ public class ReviewMapper {
                 .memberId(review.getMember().getMemberId())
                 .memberName(review.getMember().getName())
                 .createdAt(review.getCreatedAt())
+                .modifiedAt(review.getModifiedAt())
                 .reviewImage(review.getReviewImageList())
                 .content(review.getContent())
                 .score(review.getScore())

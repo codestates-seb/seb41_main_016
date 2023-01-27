@@ -17,6 +17,7 @@ public class ReviewResponseDto {
     private Long memberId;
     private String memberName;
     private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
     private String content;
     private List<ReviewImage> reviewImage;
 

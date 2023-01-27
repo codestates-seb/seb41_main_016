@@ -33,15 +33,16 @@ public class KakaoLoginController {
     @GetMapping("auth/kakao/login")
     public ResponseEntity<?> kakaoLogin(@RequestParam(required = false)String code) {
         KakaoOauth kakaoOauth = kakaoLoginService.getKakaoAccessToken(code);
+        log.info("Kakao's accessToken In auth/kakao/login: {}", kakaoOauth.getAccessToken());
+
         HashMap<String ,String> user = kakaoLoginService.getUserInfo(kakaoOauth.getAccessToken());
-        user.put("message", "기존 계정이 없는 관계로 회원가입 진행. 로그인 재시도");
+
         MemberDto.OauthPost post = new MemberDto.OauthPost(user.get("email"), user.get("nickname"));
         log.info("kakao login에서 post할 때 뜨는 email: {}", post.getEmail());
         Optional<Member> findMember = memberRepository.findByEmail(post.getEmail());
         if(findMember.isPresent()) {
             // 가입없이 로그인 진행
-            log.info("존재하는 계정. 바로 로그인 진행");
-            String accessToken = jwtProvider.createAccessToken(findMember.get());
+            String accessToken = "Bearer " + jwtProvider.createAccessToken(findMember.get());
             String refreshToken = jwtProvider.createRefreshToken(findMember.get());
 
             KakaoAuthDto response = new KakaoAuthDto(findMember.get().getMemberId(), accessToken, refreshToken, kakaoOauth.getAccessToken());
@@ -51,6 +52,7 @@ public class KakaoLoginController {
         else {
             // 비밀번호 없이 email과 name으로 회원가입 하기
             // 기존 이메일과 새로 가입하려는 카카오 이메일이 일치하면 ...
+            user.put("message", "기존 계정이 없는 관계로 회원가입 진행. 로그인 재시도");
             kakaoLoginService.socialSignup(post);
         }
 
@@ -60,6 +62,13 @@ public class KakaoLoginController {
 //        log.info("UserInfo IN Login Controller: {}", user);
 
             return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/auth/kakao/withdrawal")
+    public ResponseEntity<?> unlink(@RequestParam String kakaoAccessToken) {
+        kakaoLoginService.kakaoUnlink(kakaoAccessToken);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

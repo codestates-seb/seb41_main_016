@@ -10,6 +10,7 @@ public class HotelToHotelListResponseDto {
     private String hotelImage;
     private String hotelTitle;
     private Double hotelReviewScore;
+    private int reviewQuantity;
     private int price;
     
 }

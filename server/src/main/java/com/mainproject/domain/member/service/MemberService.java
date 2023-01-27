@@ -36,26 +36,25 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public Member createSocialMember(Member member) {
+    public void createSocialMember(Member member) {
         verifyExistsEmail(member.getEmail());
-        System.out.println(member.getEmail());
+
         List<String> roles = authorityUtils.createRoles(member.getEmail());
         member.setRoles(roles);
 
-        return memberRepository.save(member);
+        memberRepository.save(member);
     }
 
     public Member updateMember(Member member) {
         Member findMember = findExistedMember(member.getMemberId());
 //        Optional.ofNullable(member.getNickname())
 //                .ifPresent(findMember::setNickname);
+//
+//        Optional.ofNullable(member.getPassword())
+//                .ifPresent(findMember::setPassword);
 
-        Optional.ofNullable(member.getPassword())
-                .ifPresent(findMember::setPassword);
-
-        Optional.ofNullable(member.getImage())
-                .ifPresent(findMember::setImage);
-
+        Optional.ofNullable(member.getName()).ifPresent(findMember::setName);
+        Optional.ofNullable(member.getImage()).ifPresent(findMember::setImage);
 
         return memberRepository.save(findMember);
     }

@@ -34,7 +34,7 @@ public class WishListService {
         wishListRepository.delete(wishList);
     }
 
-    private WishList checkExistedWishList(WishList wishList) {
+    public WishList checkExistedWishList(WishList wishList) {
         Optional<WishList> optionalWishList =
                 wishListRepository.findByMemberAndHotel(wishList.getMember(), wishList.getHotel());
 

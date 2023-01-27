@@ -34,7 +34,6 @@ public class ReservationDto {
         private Long price;
     }
 
-
     @Getter
     @AllArgsConstructor
     public static class Response{

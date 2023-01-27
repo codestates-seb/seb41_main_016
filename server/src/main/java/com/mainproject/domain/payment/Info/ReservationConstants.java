@@ -10,6 +10,5 @@ public class ReservationConstants {
     public static final String MEMBER_ORDER_LIST = "회원 주문 조회 리스트입니다.";
     public static final String ORDER_INFO = "주문 상세 조회입니다.";
     public static final String CANCELED_PAY_MESSAGE = "결제를 취소하셨습니다.";
-
     public static final String PAY_COMPLETION = "결제를 완료했습니다.";
 }

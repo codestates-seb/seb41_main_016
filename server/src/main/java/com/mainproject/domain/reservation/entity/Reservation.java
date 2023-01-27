@@ -60,6 +60,56 @@ public class Reservation extends Auditable {
     @Enumerated(value = EnumType.STRING)
     private ReservationPayStatus reservationPayStatus = ReservationPayStatus.PAY_IN_PROGRESS;
 
+    /************************************************** 주문 내역 정보 **************************************************/
+
+    private String cid;
+
+    private String tid;
+
+    private String partner_order_id;
+
+    private String partner_user_id;
+
+    private String itemName;
+
+    private String quantity;
+
+    private String totalAmount;
+
+    private String approvalUrl;
+
+    private String cancelUrl;
+
+    private String failUrl;
+
+    public void setPaymentInfo(ReadyToPayInfo params, String tid){
+        this.cid = params.getCid();
+        this.tid = tid;
+        this.partner_order_id = params.getPartner_order_id();
+        this.partner_user_id = params.getPartner_user_id();
+        this.itemName = params.getItem_name();
+        this.quantity = params.getQuantity();
+        this.totalAmount = params.getTotal_amount();
+        this.approvalUrl = params.getApproval_url();
+        this.cancelUrl = params.getCancel_url();
+        this.failUrl = params.getFail_url();
+    }
+
+    @Builder
+    public Reservation(Long reservationId,
+                       int adult,
+                       int child,
+                       LocalDate checkin,
+                       LocalDate checkout,
+                       Long price){
+        this.reservationId = reservationId;
+        this.adult = adult;
+        this.child = child;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.price = price;
+    }
+
 
     /************************************************** 주문 내역 정보 **************************************************/
     @JsonIgnore

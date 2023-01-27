@@ -20,13 +20,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class HotelMapper {
     public HotelDetailResponseDto hotelToDetailResponse(Hotel hotel, List<HotelImage> image, List<RoomResponseDto> rooms, List<ReviewResponseDto> reviews){
-//        hotel.setHotelScore(hotelReviewScore(reviews));
-        log.info("hotel score = {}", hotel);
         return HotelDetailResponseDto.builder()
             .hotelId(hotel.getHotelId())
             .image(image)
             .title(hotel.getTitle())
             .hotelScore(hotel.getHotelScore())
+            .reviewQuantity(hotel.getReviewList().size())
             .address(hotel.getAddress())
             .rooms(rooms)
             .location_x(hotel.getLocation_x())
@@ -45,6 +44,7 @@ public class HotelMapper {
                             .hotelImage(hotelImageListTohotelImage(hotel.getImages()))
                             .hotelTitle(hotel.getTitle())
                             .hotelReviewScore(hotel.getHotelScore())
+                            .reviewQuantity(hotel.getReviewList().size())
                             .price(roomToRoomPrice(hotel.getRoomList()))
                             .build();
                 }).collect(Collectors.toList());
@@ -59,7 +59,6 @@ public class HotelMapper {
         if (roomList.size() == 0 ){
             return 0;
         }
-        log.info("roomList = {} ", roomList.get(0).getPrice());
         return roomList.get(0).getPrice();
     }
     public Double hotelReviewScore(List<Review> reviewList){

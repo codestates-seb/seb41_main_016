@@ -29,9 +29,11 @@ public class ReservationService {
     @Autowired
     private final MemberRepository memberRepository;
 
+
     private Integer reservationStartHH;
 
     private Integer reservationEndHH;
+
 
     public ReservationService(ReservationRepository reservationRepository,
                               RoomService roomService,
@@ -46,6 +48,7 @@ public class ReservationService {
     // Reservation 생성하기
     public Reservation createReservation(Reservation reservation, Long roomId, Long memberId) {
 
+        //room 추가
         Room room = roomService.findRoom(roomId);
         reservation.setRoom(room);
         reservation.getRoom().reduceQuantity();

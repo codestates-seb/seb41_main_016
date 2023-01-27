@@ -4,6 +4,9 @@ import com.mainproject.domain.payment.service.PaymentService;
 import com.mainproject.global.response.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import com.mainproject.domain.reservation.service.ReservationService;
+import com.mainproject.global.response.Message;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,8 @@ public class PaymentController {
 
         String requestUrl = req.getRequestURL()
                 .toString().replace(req.getRequestURI(), "");
+                .toString()
+                .replace(req.getRequestURI(), "");
 
         Message message = paymentService.getKakaoPayUrl(reservationId, requestUrl);
 
@@ -51,6 +56,7 @@ public class PaymentController {
         if (message.getData() == null) getFailedPayMessage();
 
         return "결제가 완료되었습니다.";
+
     }
 
 

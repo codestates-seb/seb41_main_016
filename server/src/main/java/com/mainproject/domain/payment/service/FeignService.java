@@ -128,7 +128,6 @@ public class FeignService {
      * @return
      */
     public RequestForReservationInfo setRequestParams(String pg_token, Reservation findReservation) {
-
         return RequestForReservationInfo.builder()
                 .cid(findReservation.getCid())
                 .tid(findReservation.getTid())

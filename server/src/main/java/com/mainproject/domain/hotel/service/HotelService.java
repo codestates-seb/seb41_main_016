@@ -44,7 +44,6 @@ public class HotelService {
     @Transactional
     public List<HotelToHotelListResponseDto> searchHotel(String key){
         String keyword = key.trim();
-        log.info("keyword ={}",keyword);
         List<Hotel> hotelList = hotelRepository.findByTitleContaining(keyword);
         List<HotelToHotelListResponseDto> hotelDtoList = new ArrayList<>();
         if(hotelList.isEmpty()) return hotelDtoList;
