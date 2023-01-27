@@ -18,6 +18,9 @@ export default function MyPage() {
     const [text, setText] = useState("");
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem("accessToken");
+    const [selectedHotelId, setSelectedHotelId] = useState(null);
+
+    //선택된 예약의 호텔아이디를 useState로 상태관리 하고 초기값 null
 
     const handleMypage = useCallback(async () => {
         try {
@@ -42,7 +45,8 @@ export default function MyPage() {
 
     // console.log(mypage?.reservations.map((el) => el.room.hotelId));
 
-    const reviewOpenModal = () => {
+    const reviewOpenModal = (id) => {
+        setSelectedHotelId(id);
         setReviewModal((prev) => !prev);
     };
 
@@ -76,7 +80,7 @@ export default function MyPage() {
     const addReview = async () => {
         try {
             await axios.post(
-                `/reviews/1`,
+                `/reviews/${selectedHotelId}`,
                 { content: text, score },
                 {
                     headers: {
@@ -84,6 +88,7 @@ export default function MyPage() {
                     },
                 }
             );
+            setReviewModal(false);
         } catch (error) {
             console.error(error);
         }

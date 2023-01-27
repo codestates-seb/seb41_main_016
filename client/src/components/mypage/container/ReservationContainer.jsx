@@ -30,6 +30,7 @@ export default function ReservationContainer({
                                 checkin={el.checkin}
                                 checkout={el.checkout}
                                 price={el.price}
+                                resInfo={el}
                             />
                         ))}
                 </ReservationWrap>

@@ -19,6 +19,7 @@ export default function ReservationCard({
     checkin,
     checkout,
     price,
+    resInfo,
 }) {
     return (
         <Wrap>
@@ -37,7 +38,11 @@ export default function ReservationCard({
                         </span>
                     </HotelText2>
                     <HotelText>{priceFormatter.format(price)}</HotelText>
-                    <Review onClick={reviewOpenModal}>후기 작성하기</Review>
+                    <Review
+                        onClick={() => reviewOpenModal(resInfo.room.hotelId)}
+                    >
+                        후기 작성하기
+                    </Review>
                 </HotelTextBox>
             </HotelBox>
         </Wrap>

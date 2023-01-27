@@ -64,6 +64,7 @@ export default function DetailedProduct() {
     const isLogin = useSelector((state) => state.Login.isLogin);
     const isKakaoLogin = useSelector((state) => state.KakaoLogin.isLogin);
     const dispatch = useDispatch();
+    const memberId = localStorage.getItem("memberId");
 
     const onSelectModal = () => {
         setModalOpen(!ModalOpen);
@@ -153,7 +154,7 @@ export default function DetailedProduct() {
                 .post(
                     "/reservation",
                     {
-                        memberId: pageDetail.hotelId,
+                        memberId: memberId,
                         roomId: roomType === "1 King Bed" ? 1 : 2,
                         checkin: DateFormat(startDate),
                         checkout: DateFormat(endDate),
