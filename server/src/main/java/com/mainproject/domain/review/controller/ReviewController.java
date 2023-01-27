@@ -10,6 +10,7 @@ import com.mainproject.domain.review.dto.ReviewPostDto;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.review.mapper.ReviewMapper;
 import com.mainproject.domain.review.service.ReviewService;
+import com.mainproject.global.auth.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,12 +28,13 @@ public class ReviewController {
     private final MemberService memberService;
     private final HotelService hotelService;
     private final ReviewMapper mapper;
+    private final JwtProvider jwtProvider;
 
-    @PostMapping("/{hotel-id}/{member-id}")
-    public ResponseEntity createReview(@PathVariable("member-id") Long memberId,
+    @PostMapping("/{hotel-id}")
+    public ResponseEntity createReview(@RequestHeader("Authorization") String accessToken,
                                        @PathVariable("hotel-id") Long hotelId,
                                        @RequestBody ReviewPostDto reviewPostDto){
-
+        Long memberId = jwtProvider.extractMemberId(accessToken);
         Member member = memberService.findMember(memberId);
         Hotel hotel = hotelService.findHotel(hotelId);
 //        List<ReviewImage> reviewImages = reviewPostDto.getReviewImage();
@@ -50,10 +52,13 @@ public class ReviewController {
         return new ResponseEntity<>(mapper.reviewToreview(review), HttpStatus.OK);
     }
 
-    @PatchMapping("/edit/{member-id}/{review-id}")
+    @PatchMapping("/edit/{review-id}")
     public ResponseEntity patchReview(@PathVariable("review-id") Long reviewId,
-                                      @RequestBody ReviewEditDto reviewEditDto){
-        Review review = reviewService.updateReview(reviewEditDto,reviewId);
+                                      @RequestBody ReviewEditDto reviewEditDto,
+                                      @RequestHeader("Authorization") String accessToken){
+        Long memberId = jwtProvider.extractMemberId(accessToken);
+        reviewEditDto.setReviewId(reviewId);
+        Review review = reviewService.updateReview(reviewEditDto);
         Hotel hotel = hotelService.findHotel(review.getHotel().getHotelId());
 
         List<Review> reviewList= reviewService.findReviewList();

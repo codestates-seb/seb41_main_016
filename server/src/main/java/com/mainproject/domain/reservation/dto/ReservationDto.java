@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,27 +21,10 @@ public class ReservationDto {
 
         private Long roomId;
 
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate checkin;
 
-        private LocalDate checkout;
-
-        private int adult;
-
-        private int child;
-
-        private Long price;
-    }
-
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public static class Patch{
-        private Long memberId;
-
-        private Long roomId;
-
-        private LocalDate checkin;
-
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate checkout;
 
         private int adult;
@@ -59,8 +43,10 @@ public class ReservationDto {
 
         private Long roomId;
 
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate checkin;
 
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate checkout;
 
         private int adult;

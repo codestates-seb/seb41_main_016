@@ -49,13 +49,12 @@ public class MemberService {
         Member findMember = findExistedMember(member.getMemberId());
 //        Optional.ofNullable(member.getNickname())
 //                .ifPresent(findMember::setNickname);
+//
+//        Optional.ofNullable(member.getPassword())
+//                .ifPresent(findMember::setPassword);
 
-        Optional.ofNullable(member.getPassword())
-                .ifPresent(findMember::setPassword);
-
-        Optional.ofNullable(member.getImage())
-                .ifPresent(findMember::setImage);
-
+        Optional.ofNullable(member.getName()).ifPresent(findMember::setName);
+        Optional.ofNullable(member.getImage()).ifPresent(findMember::setImage);
 
         return memberRepository.save(findMember);
     }

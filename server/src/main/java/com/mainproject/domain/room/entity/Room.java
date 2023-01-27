@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "ROOM")
@@ -34,4 +35,12 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "HOTEL_ID")
     private Hotel hotel;
+
+    public void addQuantity(){
+        quantity++;
+    }
+
+    public void reduceQuantity(){
+        quantity--;
+    }
 }

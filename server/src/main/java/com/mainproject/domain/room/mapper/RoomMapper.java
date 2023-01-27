@@ -25,6 +25,7 @@ public interface RoomMapper {
                             .quantity(room.getQuantity())
                             .head_count(room.getHeadCount())
                             .price(room.getPrice())
+                            .hotelId(room.getHotel().getHotelId())
                             .build();
                 })
                 .collect(Collectors.toList());

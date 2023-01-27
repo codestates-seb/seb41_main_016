@@ -47,7 +47,9 @@ public class KakaoLoginService {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
             String sb = "grant_type=authorization_code" +
                     "&client_id=fb6a694dd7c7ede22f3102f1b8b17f4f" + // REST_API_KEY
-                    "&redirect_uri=http://localhost:8080/auth/kakao/calllback" + // REDIRECT_URI
+//                    "&redirect_uri=http://localhost:8080/auth/kakao/callback" + // REDIRECT_URI
+                    "&redirect_uri=http://ec2-52-79-60-71.ap-northeast-2.compute.amazonaws.com:8080/auth/kakao/callback" + // REDIRECT_URI
+
                     "&code=" + code;
             bw.write(sb);
             bw.flush();
@@ -99,8 +101,8 @@ public class KakaoLoginService {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Authorization", "Bearer " + accessToken);
 
-//            int responseCode = connection.getResponseCode();
-//            log.info("Response Code IN getUserInfo: {}", responseCode);
+            int responseCode = connection.getResponseCode();
+            log.info("Response Code IN getUserInfo: {}", responseCode);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String s = "";

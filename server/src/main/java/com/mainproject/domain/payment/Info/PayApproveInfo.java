@@ -28,6 +28,7 @@ public class PayApproveInfo {
     private Integer vatAmount;
     private Date createdAt;
     private Date approvedAt;
+    private String pg_token;
     private String orderStatus;
 
     public void setOrderStatus(String orderStatus) {
