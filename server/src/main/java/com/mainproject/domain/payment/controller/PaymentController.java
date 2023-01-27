@@ -31,8 +31,6 @@ public class PaymentController {
 
         String requestUrl = req.getRequestURL()
                 .toString().replace(req.getRequestURI(), "");
-                .toString()
-                .replace(req.getRequestURI(), "");
 
         Message message = paymentService.getKakaoPayUrl(reservationId, requestUrl);
 
