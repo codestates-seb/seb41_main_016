@@ -22,6 +22,7 @@ import {
 } from "./style";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils/register";
 import { useLocation, useNavigate } from "react-router-dom";
+import { kakaoLogin } from "../../store/KakaoSlice";
 
 export default function LoginModal({ isModal, setSignupOpen }) {
   const dispatch = useDispatch();
@@ -89,6 +90,16 @@ export default function LoginModal({ isModal, setSignupOpen }) {
 
   const handleKakao = () => {
     window.open(KAKAO_AUTH_URL);
+    closeModal();
+    dispatch(kakaoLogin());
+    Toast.fire({
+      title: "로그인 성공!",
+      icon: "success",
+      customClass: {
+        icon: "icon-class",
+        container: "my-swal",
+      },
+    });
   };
 
   const handleSignUp = () => {
