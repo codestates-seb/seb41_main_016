@@ -185,7 +185,7 @@ INSERT INTO hotel_image(image,title,hotel_id) VALUES
                                                   ('http://drive.google.com/uc?export=view&id=1j61axOz9wJxI-cBzAzVvAQrleyLcYYoI','외관',16),
                                                   ('http://drive.google.com/uc?export=view&id=1KTnKGL_2M9TWE3ZBw4IJp0AlQKNhUTd7','침실',16),
                                                   ('http://drive.google.com/uc?export=view&id=18pcr7RYH6-EdVIZnqM2Dtb6KxGvVSDvL','화장실',16),
-                                                  ('http://drive.google.com/uc?export=view&id=1-bXyzbNRbGcdDgusG0gdAe33IJPP400','외관',17),
+                                                  ('http://drive.google.com/uc?export=view&id=1-bXyzbNRbGcdDgusG0gdAe33IJPP400_','외관',17),
                                                   ('http://drive.google.com/uc?export=view&id=16oKbXu95GLkN1_IUX1IAWguqtrwDbC6I','침실',17),
                                                   ('http://drive.google.com/uc?export=view&id=17tfm8EseMHeBQgBS1AidhgBB0feTicJg','화장실',17),
                                                   ('http://drive.google.com/uc?export=view&id=1pVr4VuExqnCMnzhakw9uLSQT_53X6f4L','외관',18),

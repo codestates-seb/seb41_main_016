@@ -27,17 +27,18 @@ public class ReviewMapper {
                             .memberId(review.getMember().getMemberId())
                             .memberName(review.getMember().getName())
                             .createdAt(review.getCreatedAt())
+                            .hotelImage(review.getHotelImage().getImage())
                             .content(review.getContent())
-                            .reviewImage(review.getReviewImageList())
                             .score(review.getScore())
                             .build();
                 })
                 .collect(Collectors.toList());
     }
-    public Review reviewPostDtoToReview(ReviewPostDto reviewPostDto,List<ReviewImage> reviewImageList,Hotel hotel, Member member){
+    public Review reviewPostDtoToReview(ReviewPostDto reviewPostDto,Hotel hotel, Member member){
         return Review.builder()
                 .reviewId(reviewPostDto.getReviewId())
-                .reviewImageList(reviewImageList)
+//                .reviewImageList(reviewImageList)
+                .hotelImage(hotel.getImages().get(0))
                 .content(reviewPostDto.getContent())
                 .score(reviewPostDto.getScore())
                 .hotel(hotel)
@@ -54,44 +55,43 @@ public class ReviewMapper {
                 .memberName(review.getMember().getName())
                 .createdAt(review.getCreatedAt())
                 .modifiedAt(review.getModifiedAt())
-                .reviewImage(review.getReviewImageList())
+                .hotelImage(review.getHotelImage().getImage())
+//                .reviewImage(review.getReviewImageList())
+//                .reviewImage(review.getReviewImage())
                 .content(review.getContent())
                 .score(review.getScore())
                 .build();
     }
 
-    public List<ReviewImage> reviewimageListToReview(List<ReviewImage> reviewImages, Review review){
-        return reviewImages.stream().map(
-                reviewImage -> {
-                    return ReviewImage.builder()
-                            .imageId(reviewImage.getImageId())
-                            .image(reviewImage.getImage())
-                            .hotel(review.getHotel())
-                            .review(review)
-                            .build();
-                }).collect(Collectors.toList());
+    public ReviewImage reviewimageListToReview( Review review){
+//        return reviewImages.stream().map(
+//                reviewImage -> {
+//                    return ReviewImage.builder()
+//                            .imageId(reviewImage.getImageId())
+//                            .image(reviewImage.getImage())
+//                            .hotel(review.getHotel())
+//                            .review(review)
+//                            .build();
+//                }).collect(Collectors.toList());
+
+            return ReviewImage.builder()
+                    .hotel(review.getHotel())
+                    .review(review)
+                    .build();
+
     }
-    public Review reviewListGetToReview(List<ReviewImage> reviewImageList,Review review){
+    public Review reviewListGetToReview(Review review){
         return Review.builder()
                             .reviewId(review.getReviewId())
+                            .hotelImage(review.getHotelImage())
                             .content(review.getContent())
                             .score(review.getScore())
                             .hotel(review.getHotel())
                             .member(review.getMember())
-                            .reviewImageList(reviewImageList)
+
+//                            .reviewImageList(reviewImageList)
+//                            .reviewImage(reviewImageList)
                             .build();
 
-    }
-
-    public Review reviewPatchToReview(ReviewEditDto reviewEditDto, Hotel hotel){
-        return Review.builder()
-                .reviewId(reviewEditDto.getReviewId())
-                .hotel(hotel)
-//                .createdAt(reviewEditDto.getCreatedAt())
-//                .modifiedAt(reviewEditDto.getModifiedAt())
-                .reviewImageList(reviewEditDto.getReviewImageList())
-                .content(reviewEditDto.getContent())
-                .score(reviewEditDto.getScore())
-                .build();
     }
 }

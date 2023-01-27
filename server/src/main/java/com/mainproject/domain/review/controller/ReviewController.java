@@ -2,15 +2,11 @@ package com.mainproject.domain.review.controller;
 
 import com.mainproject.domain.hotel.entity.Hotel;
 import com.mainproject.domain.hotel.service.HotelService;
-import com.mainproject.domain.image.dto.ReviewImagePostDto;
 import com.mainproject.domain.image.entity.ReviewImage;
-import com.mainproject.domain.image.mapper.ImageMapper;
-import com.mainproject.domain.image.service.ReviewImageService;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.service.MemberService;
 import com.mainproject.domain.review.dto.ReviewEditDto;
 import com.mainproject.domain.review.dto.ReviewPostDto;
-import com.mainproject.domain.review.dto.ReviewResponseDto;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.review.mapper.ReviewMapper;
 import com.mainproject.domain.review.service.ReviewService;
@@ -31,9 +27,6 @@ public class ReviewController {
     private final MemberService memberService;
     private final HotelService hotelService;
     private final ReviewMapper mapper;
-    private final ImageMapper imageMapper;
-    private final ReviewImageService reviewImageService;
-
 
     @PostMapping("/{hotel-id}/{member-id}")
     public ResponseEntity createReview(@PathVariable("member-id") Long memberId,
@@ -42,10 +35,11 @@ public class ReviewController {
 
         Member member = memberService.findMember(memberId);
         Hotel hotel = hotelService.findHotel(hotelId);
-        List<ReviewImage> reviewImages = reviewPostDto.getReviewImage();
-        Review review = mapper.reviewPostDtoToReview(reviewPostDto,reviewImages,hotel,member);
-        Review createReview = reviewService.postReview(review,reviewImages);
-        List<Review> reviewList= reviewService.findReviewList(); // 배치
+//        List<ReviewImage> reviewImages = reviewPostDto.getReviewImage();
+//        ReviewImage reviewImages = reviewPostDto.getReviewImage();
+        Review review = mapper.reviewPostDtoToReview(reviewPostDto,hotel,member);
+        Review createReview = reviewService.postReview(review);
+        List<Review> reviewList= reviewService.findReviewList();
         hotelService.updateHotelScore(hotel,reviewList);
         return new ResponseEntity<>(mapper.reviewToreview(createReview), HttpStatus.CREATED);
     }
@@ -56,13 +50,10 @@ public class ReviewController {
         return new ResponseEntity<>(mapper.reviewToreview(review), HttpStatus.OK);
     }
 
-    @PatchMapping("/edit/{review-id}") // TODO: 리뷰 수정 진행 중
+    @PatchMapping("/edit/{member-id}/{review-id}")
     public ResponseEntity patchReview(@PathVariable("review-id") Long reviewId,
-//                                      @PathVariable("hotel-id") Long hotelId,
                                       @RequestBody ReviewEditDto reviewEditDto){
-        reviewEditDto.setReviewId(reviewId);
-        log.info("reviewEditDto = {}",reviewEditDto);
-        Review review = reviewService.updateReview(reviewEditDto);
+        Review review = reviewService.updateReview(reviewEditDto,reviewId);
         Hotel hotel = hotelService.findHotel(review.getHotel().getHotelId());
 
         List<Review> reviewList= reviewService.findReviewList();
