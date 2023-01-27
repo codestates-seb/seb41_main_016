@@ -17,7 +17,7 @@ export default function App() {
         <Header />
         <Outlet />
         <Footer />
-        <ReactQueryDevtools initialIsOpen={true} />
+        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       </QueryClientProvider>
     </Provider>
   );
