@@ -2,6 +2,7 @@ package com.mainproject.domain.review.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.domain.hotel.entity.Hotel;
+import com.mainproject.domain.image.entity.HotelImage;
 import com.mainproject.domain.image.entity.ReviewImage;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.global.audit.Auditable;
@@ -24,10 +25,6 @@ public class Review extends Auditable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long reviewId;
-//    @Column
-//    private LocalDateTime createdAt;
-//    @Column
-//    private LocalDateTime modifiedAt;
     @Column(nullable = false)
     private String content;
 
@@ -42,6 +39,10 @@ public class Review extends Auditable{
     @JoinColumn(name = "member_id")
     private Member member;
     @JsonIgnore
-    @OneToMany(mappedBy = "review",cascade = CascadeType.REMOVE)
-    private List<ReviewImage> reviewImageList = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private HotelImage hotelImage;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "review",cascade = CascadeType.REMOVE)
+//    private List<ReviewImage> reviewImageList = new ArrayList<>();
 }

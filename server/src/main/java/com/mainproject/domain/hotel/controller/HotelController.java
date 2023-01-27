@@ -1,16 +1,10 @@
 package com.mainproject.domain.hotel.controller;
 
-import com.mainproject.domain.hotel.dto.HotelToHotelListResponseDto;
 import com.mainproject.domain.hotel.entity.Hotel;
 import com.mainproject.domain.image.entity.HotelImage;
-import com.mainproject.domain.image.mapper.ImageMapper;
 import com.mainproject.domain.hotel.mapper.HotelMapper;
 import com.mainproject.domain.hotel.service.HotelService;
-import com.mainproject.domain.member.entity.Member;
-import com.mainproject.domain.member.service.MemberService;
 import com.mainproject.domain.review.dto.ReviewResponseDto;
-import com.mainproject.domain.review.entity.Review;
-import com.mainproject.domain.review.mapper.ReviewMapper;
 import com.mainproject.domain.review.service.ReviewService;
 import com.mainproject.domain.room.dto.RoomResponseDto;
 import com.mainproject.domain.room.entity.Room;
@@ -31,7 +25,6 @@ public class HotelController {
     private final HotelService hotelService;
     private final RoomMapper roomMapper;
     private final HotelMapper mapper;
-    private final MemberService memberService;
     private final ReviewService reviewService;
 
     @GetMapping("/detail/{hotel-id}") // 호텔 상세 페이지 ->

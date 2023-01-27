@@ -25,13 +25,8 @@ public class ReviewImageService {
     private final ReviewImageRepository reviewImageRepository;
     private final ReviewMapper mapper;
 
-//    public List<ReviewImage> postReviewImage(List<ReviewImage> reviewImage){
-    public List<ReviewImage> postReviewImage(List<ReviewImage> reviewImages, Review review){
-        List<ReviewImage> rr = mapper.reviewimageListToReview(reviewImages,review); // reviewImage 리뷰값 넣기 위해서 사용
-        return  reviewImageRepository.saveAll(rr); // 리뷰 이미지 등록
+    public ReviewImage postReviewImage( Review review){
+        ReviewImage rr = mapper.reviewimageListToReview(review);
+        return  reviewImageRepository.save(rr);
     }
-    public List<ReviewImage> findReviewImageList(){
-        return reviewImageRepository.findAll();
-    }
-    
 }

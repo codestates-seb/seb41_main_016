@@ -5,7 +5,6 @@ import com.mainproject.domain.hotel.entity.Hotel;
 import com.mainproject.domain.hotel.mapper.HotelMapper;
 import com.mainproject.domain.hotel.repository.HotelRepository;
 import com.mainproject.domain.review.entity.Review;
-import com.mainproject.domain.review.mapper.ReviewMapper;
 import com.mainproject.global.exception.BusinessLogicException;
 import com.mainproject.global.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,6 @@ import java.util.Optional;
 public class HotelService {
     private final HotelRepository hotelRepository;
     private final HotelMapper mapper;
-    private final ReviewMapper reviewMapper;
     @Transactional(readOnly = true)
     public Hotel findHotel(Long hotelId){
         Optional<Hotel> optionalHotel = hotelRepository.findById(hotelId);
@@ -56,7 +54,7 @@ public class HotelService {
     public HotelToHotelListResponseDto entityToDto(Hotel hotel){
         return HotelToHotelListResponseDto.builder()
                 .hotelId(hotel.getHotelId())
-                .hotelImage(hotel.getImages().stream().findAny().toString())
+                .hotelImage(hotel.getImages().get(0).getImage()) // 옵션x
                 .hotelTitle(hotel.getTitle())
                 .hotelReviewScore(hotel.getHotelScore())
                 .price(hotel.getRoomList().get(0).getPrice())

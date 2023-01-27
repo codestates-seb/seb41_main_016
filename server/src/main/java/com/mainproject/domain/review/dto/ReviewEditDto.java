@@ -10,11 +10,6 @@ import java.util.List;
 @Data
 @Builder
 public class ReviewEditDto {
-    private Long reviewId;
-    private Long hotelId;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
-    private List<ReviewImage> reviewImageList;
     private String content;
     private int score;
 }

@@ -1,5 +1,6 @@
 package com.mainproject.domain.review.dto;
 
+import com.mainproject.domain.image.entity.HotelImage;
 import com.mainproject.domain.image.entity.ReviewImage;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,8 @@ public class ReviewResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private String content;
-    private List<ReviewImage> reviewImage;
-
+//    private List<ReviewImage> reviewImage;
+//    private ReviewImage reviewImage;
+    private String hotelImage;
     private int score;
 }
