@@ -54,8 +54,12 @@ public class Reservation extends Auditable {
     private Room room;
 
     @JsonIgnore
+    private String reservationDate;
+
+    @JsonIgnore
     @Enumerated(value = EnumType.STRING)
-    private ReservationStatus reservationStatus = ReservationStatus.PAY_IN_PROGRESS;
+    private ReservationPayStatus reservationPayStatus = ReservationPayStatus.PAY_IN_PROGRESS;
+
 
     /************************************************** 주문 내역 정보 **************************************************/
     @JsonIgnore
@@ -108,11 +112,11 @@ public class Reservation extends Auditable {
     }
 
 
-    public void setStatus(ReservationStatus reservationStatus) {
-        this.reservationStatus = reservationStatus;
+    public void setStatus(ReservationPayStatus reservationPayStatus) {
+        this.reservationPayStatus = reservationPayStatus;
     }
 
-    public enum ReservationStatus {
+    public enum ReservationPayStatus {
         PAY_IN_PROGRESS(1, "결제 대기중"),
         PAY_SUCCESS(2, "결제 완료"),
         PAY_FAILED(3, "결제 실패"),
@@ -126,9 +130,17 @@ public class Reservation extends Auditable {
         @Getter
         private String status;
 
-        ReservationStatus(int stepNumber, String status) {
+        ReservationPayStatus(int stepNumber, String status) {
             this.stepNumber = stepNumber;
             this.status = status;
         }
+    }
+
+    public void setStatusIn(){
+        status = true;
+    }
+
+    public void setStatusOut(){
+        status = false;
     }
 }

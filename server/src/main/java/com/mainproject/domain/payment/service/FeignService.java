@@ -18,7 +18,8 @@ import org.springframework.web.client.RestClientException;
 @Transactional
 public class FeignService {
 
-    private String adminKey = "7d8b34bddd92b4d25454fe47608e39ab";
+    @Value("${kakao.admin.key}")
+    private String adminKey;
 
     private String paymentProcessUri;
 
@@ -35,6 +36,12 @@ public class FeignService {
         this.memberService = memberService;
     }
 
+    /**
+     * 카카오페이 URL 생성 결과 리턴
+     * @param headers
+     * @param params
+     * @return
+     */
     public PayReadyInfo getPayUrlResponse(KakaoHeaders headers,
                                           ReadyToPayInfo params){
         try {
@@ -50,6 +57,12 @@ public class FeignService {
         return null;
     }
 
+    /**
+     * 카카오페이 결제 완료 후 예약 정보 요청
+     * @param headers
+     * @param params
+     * @return
+     */
     public PayApproveInfo getSuccessResponse(KakaoHeaders headers,
                                              RequestForReservationInfo params){
         try {
@@ -65,6 +78,10 @@ public class FeignService {
         return null;
     }
 
+    /**
+     * 결제를 위한 헤더 세팅
+     * @return
+     */
     public KakaoHeaders setHeaders() {
         return KakaoHeaders.builder()
                 .adminKey(PayConstants.KAKAO_AK + adminKey)
@@ -73,6 +90,13 @@ public class FeignService {
                 .build();
     }
 
+    /**
+     * 결과별 리다이렉트 URL 입력
+     * @param requestUrl
+     * @param findReservation
+     * @param findRoom
+     * @return
+     */
     public ReadyToPayInfo setReadyParams(String requestUrl,
                                              Reservation findReservation,
                                              Room findRoom) {
@@ -84,9 +108,9 @@ public class FeignService {
 
         return ReadyToPayInfo.builder()
                 .cid(cid)
-                .approval_url(requestUrl + "/ready" + "/" + reservationId)
-                .cancel_url(requestUrl + "/cancel" + "/" + reservationId)
-                .fail_url(requestUrl + "/fail" + "/" +  reservationId)
+                .approval_url(requestUrl + "/payment/success" + "/" + reservationId)
+                .cancel_url(requestUrl + "/" + reservationId + "/cancel")
+                .fail_url(requestUrl + "/" +  reservationId + "/fail")
                 .partner_order_id(orderId)
                 .partner_user_id("userId")
                 .item_name(itemName)
@@ -97,13 +121,20 @@ public class FeignService {
                 .build();
     }
 
-    public RequestForReservationInfo setRequestParams(String pg_Token, Reservation findReservation) {
+    /**
+     * 결제 완료 후 예약 정보 조회
+     * @param pg_token
+     * @param findReservation
+     * @return
+     */
+    public RequestForReservationInfo setRequestParams(String pg_token, Reservation findReservation) {
+
         return RequestForReservationInfo.builder()
                 .cid(findReservation.getCid())
                 .tid(findReservation.getTid())
                 .partner_order_id(findReservation.getPartner_order_id())
                 .partner_user_id("userId")
-                .pg_token(pg_Token)
+                .pg_token(pg_token)
                 .total_amount(findReservation.getTotalAmount())
                 .build();
     }

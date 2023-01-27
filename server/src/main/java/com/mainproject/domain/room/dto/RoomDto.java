@@ -16,18 +16,4 @@ public class RoomDto {
 
         private int price;
     }
-
-    @Data
-    @Builder
-    public static class RoomHomeDto{
-        private Long roomId;
-
-        private int headCount;
-
-        private String roomType;
-
-        private int quantity;
-
-        private int price;
-    }
 }
