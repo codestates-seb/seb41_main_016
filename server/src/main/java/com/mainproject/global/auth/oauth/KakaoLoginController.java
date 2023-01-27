@@ -33,6 +33,8 @@ public class KakaoLoginController {
     @GetMapping("auth/kakao/login")
     public ResponseEntity<?> kakaoLogin(@RequestParam(required = false)String code) {
         KakaoOauth kakaoOauth = kakaoLoginService.getKakaoAccessToken(code);
+        log.info("Kakao's accessToken In auth/kakao/login: {}", kakaoOauth.getAccessToken());
+
         HashMap<String ,String> user = kakaoLoginService.getUserInfo(kakaoOauth.getAccessToken());
 
         MemberDto.OauthPost post = new MemberDto.OauthPost(user.get("email"), user.get("nickname"));
@@ -40,7 +42,7 @@ public class KakaoLoginController {
         Optional<Member> findMember = memberRepository.findByEmail(post.getEmail());
         if(findMember.isPresent()) {
             // 가입없이 로그인 진행
-            String accessToken = jwtProvider.createAccessToken(findMember.get());
+            String accessToken = "Bearer " + jwtProvider.createAccessToken(findMember.get());
             String refreshToken = jwtProvider.createRefreshToken(findMember.get());
 
             KakaoAuthDto response = new KakaoAuthDto(findMember.get().getMemberId(), accessToken, refreshToken, kakaoOauth.getAccessToken());

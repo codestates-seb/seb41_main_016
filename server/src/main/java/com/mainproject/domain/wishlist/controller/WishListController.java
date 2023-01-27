@@ -9,6 +9,7 @@ import com.mainproject.domain.wishlist.dto.WishListMultiResponseDto;
 import com.mainproject.domain.wishlist.entity.WishList;
 import com.mainproject.domain.wishlist.mapper.WishListMapper;
 import com.mainproject.domain.wishlist.service.WishListService;
+import com.mainproject.global.auth.JwtProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,18 +24,20 @@ public class WishListController {
     private final MemberService memberService;
     private final HotelService hotelService;
     private final WishListMapper mapper;
+    private final JwtProvider jwtProvider;
 
-    public WishListController(WishListService wishListService, MemberService memberService, HotelService hotelService, WishListMapper mapper) {
+    public WishListController(WishListService wishListService, MemberService memberService, HotelService hotelService, WishListMapper mapper, JwtProvider jwtProvider) {
         this.wishListService = wishListService;
         this.memberService = memberService;
         this.hotelService = hotelService;
         this.mapper = mapper;
+        this.jwtProvider = jwtProvider;
     }
 
     @PostMapping
-    public ResponseEntity<?> postWishList(@RequestParam @Positive Long memberId,
+    public ResponseEntity<?> postWishList(@RequestHeader("Authorization") String accessToken,
                                           @RequestParam @Positive Long hotelId) {
-
+        Long memberId = jwtProvider.extractMemberId(accessToken);
         Hotel hotel = hotelService.findHotel(hotelId);
         Member member = memberService.findMember(memberId);
         WishList wishList = new WishList(member, hotel);
@@ -43,8 +46,9 @@ public class WishListController {
         return new ResponseEntity<>(wishListService.createWishList(wishList), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{member-id}")
-    public ResponseEntity<?> getWishLists(@PathVariable("member-id") Long memberId) {
+    @GetMapping
+    public ResponseEntity<?> getWishLists(@RequestHeader("Authorization") String accessToken) {
+        Long memberId = jwtProvider.extractMemberId(accessToken);
         Member member = memberService.findMember(memberId);
         List<WishList> wishLists =  wishListService.findWishLists(member);
         List<WishListDto.Response> responses= mapper.wishListsToWishListResponses(wishLists);
@@ -53,9 +57,9 @@ public class WishListController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteWishList(@RequestParam @Positive Long memberId,
+    public ResponseEntity<?> deleteWishList(@RequestHeader("Authorization") String accessToken,
                                             @RequestParam @Positive Long hotelId) {
-
+        Long memberId = jwtProvider.extractMemberId(accessToken);
         Hotel hotel = hotelService.findHotel(hotelId);
         Member member = memberService.findMember(memberId);
         WishList wishList = wishListService.checkExistedWishList(new WishList(member, hotel));
