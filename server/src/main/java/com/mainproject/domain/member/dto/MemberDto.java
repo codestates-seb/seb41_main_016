@@ -65,7 +65,7 @@ public class MemberDto {
         private String image;
 //        private String nickname;
         List<Review> reviews;
-        List<Reservation> reservations;
+        List<ReservationV2> reservations;
 //        List<WishList> buckets;
     }
 

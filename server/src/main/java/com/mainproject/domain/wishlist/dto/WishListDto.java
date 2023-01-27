@@ -14,8 +14,10 @@ public class WishListDto {
     @Builder
     public static class Response {
         private Long hotelId;
-        private String image;
-        private String title;
-        private Double hotelScore;
+        private String hotelImage;
+        private String hotelTitle;
+        private Double hotelReviewScore;
+        private int reviewQuantity;
+        private int price;
     }
 }

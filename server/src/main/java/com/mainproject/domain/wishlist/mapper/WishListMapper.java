@@ -16,9 +16,10 @@ public interface WishListMapper {
                 lists.stream().map(
                         wishList -> {
                             builder.hotelId(wishList.getHotel().getHotelId())
-                                    .image(wishList.getHotel().getImages().get(0).getImage())
-                                    .title(wishList.getHotel().getTitle())
-                                    .hotelScore(wishList.getHotel().getHotelScore());
+                                    .hotelImage(wishList.getHotel().getImages().get(0).getImage())
+                                    .hotelTitle(wishList.getHotel().getTitle())
+                                    .reviewQuantity(wishList.getHotel().getReviewList().size())
+                                    .hotelReviewScore(wishList.getHotel().getHotelScore());
 
                             return builder.build();
                         }
