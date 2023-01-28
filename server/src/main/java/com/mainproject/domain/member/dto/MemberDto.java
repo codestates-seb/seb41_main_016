@@ -74,6 +74,7 @@ public class MemberDto {
     static public class OauthPost {
         private String email;
         private String name;
+        private String image;
 
     }
 }
