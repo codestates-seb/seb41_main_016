@@ -5,7 +5,7 @@ import com.mainproject.domain.image.entity.HotelImage;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.room.entity.Room;
 import lombok.*;
-import org.jetbrains.annotations.Nullable;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,8 +31,6 @@ public class Hotel {
     @NotNull
     private Double hotelScore;
 
-    @Column(name = "likes")
-    private Boolean likes;
     @Column(name = "address")
     private String address;
     @Column(name = "location_x")

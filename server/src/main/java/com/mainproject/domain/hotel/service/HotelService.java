@@ -56,7 +56,6 @@ public class HotelService {
                 .hotelId(hotel.getHotelId())
                 .hotelImage(hotel.getImages().get(0).getImage()) // 옵션x
                 .hotelTitle(hotel.getTitle())
-                .like(hotel.getLikes())
                 .hotelReviewScore(hotel.getHotelScore())
                 .price(hotel.getRoomList().get(0).getPrice())
                 .build();
