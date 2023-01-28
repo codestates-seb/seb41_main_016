@@ -12,9 +12,7 @@ import { HeaderBox, Icon, IconBox, Title } from "./style";
 
 export default function Header() {
   const isLogin = useSelector((state) => state.Login.isLogin);
-  const kakaoLogin = useSelector((state) => state.KakaoLogin.isLogin);
   const isModal = useSelector((state) => state.Modal.isModal);
-  const memberId = localStorage.getItem("memberId");
   const [signupOpen, setSignupOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -50,7 +48,7 @@ export default function Header() {
             onBlur={(e) => handleDismiss(e)}
             selected={pathname === "/" ? true : false}
           >
-            {isLogin || kakaoLogin ? (
+            {isLogin ? (
               <CgProfile onClick={() => navigate(`/members`)} />
             ) : null}
             <Icon onClick={() => closeMenu()}>
@@ -61,7 +59,6 @@ export default function Header() {
             <HeaderDropdown
               closeMenu={() => closeMenu()}
               isLogin={isLogin}
-              kakaoLogin={kakaoLogin}
               setSignupOpen={setSignupOpen}
             />
           )}
