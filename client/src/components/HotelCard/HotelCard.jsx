@@ -25,6 +25,7 @@ export default function HotelCard({
   id,
   isLogin,
   reviewNum,
+  handleClickId,
 }) {
   const isLike = useSelector((state) => state.Wishlist.isLike);
   const token = localStorage.getItem("accessToken");
@@ -61,24 +62,24 @@ export default function HotelCard({
     }
   };
 
-  const handleClick = (e) => {
-    e.stopPropagation();
-    if (isLogin) {
-      addWishList();
-    } else {
-      dispatch(modalOpen());
-    }
+  // const handleClick = (e) => {
+  //   e.stopPropagation();
+  //   if (isLogin) {
+  //     addWishList();
+  //   } else {
+  //     dispatch(modalOpen());
+  //   }
 
-    // if (isLike) {
-    //   addWishList();
-    // } else {
-    //   deleteWishList();
-    // }
-  };
+  //   // if (isLike) {
+  //   //   addWishList();
+  //   // } else {
+  //   //   deleteWishList();
+  //   // }
+  // };
   return (
     <CardBox onClick={handleNavigate}>
       <ImgBox img={img}>
-        <Icon onClick={handleClick}>
+        <Icon onClick={(e) => handleClickId(id, e)}>
           {isLike ? <AiFillHeart className="heart" /> : <AiOutlineHeart />}
         </Icon>
       </ImgBox>

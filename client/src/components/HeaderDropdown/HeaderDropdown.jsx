@@ -1,19 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { kakaoLogout } from "../../store/KakaoSlice";
 import { logout } from "../../store/LoginSlice";
 import { modalOpen } from "../../store/ModalSlice";
 import { MenuBox } from "./style";
 
-export default function HeaderDropdown({
-  closeMenu,
-  isLogin,
-  setSignupOpen,
-  kakaoLogin,
-}) {
+export default function HeaderDropdown({ closeMenu, isLogin, setSignupOpen }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const memberId = localStorage.getItem("memberId");
 
   const handleMouseDown = (e) => e.preventDefault();
 
@@ -34,7 +27,6 @@ export default function HeaderDropdown({
 
   const handleLogout = () => {
     dispatch(logout());
-    dispatch(kakaoLogout());
     localStorage.clear();
     closeMenu();
     navigate("/");
@@ -42,7 +34,7 @@ export default function HeaderDropdown({
 
   return (
     <>
-      {isLogin || kakaoLogin ? (
+      {isLogin ? (
         <MenuBox onMouseDown={handleMouseDown}>
           <ul>
             <li onClick={() => navigateHandler(`/members`)}>마이페이지</li>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProfileBox = styled.div`
   width: 280px;
-  height: 880px;
+  height: 100;
   border: 1px solid ${(props) => props.theme.lightGrey};
   border-radius: 8px;
   display: flex;
@@ -92,7 +92,7 @@ export const UserInfo = styled.div`
 `;
 
 export const UserInfo2 = styled(UserInfo)`
-  margin-bottom: ${(props) => (props.modify ? "240px" : "250px")};
+  margin-bottom: ${(props) => (props.modify ? "100px" : "120px")};
 `;
 
 export const NameInput = styled.input`
