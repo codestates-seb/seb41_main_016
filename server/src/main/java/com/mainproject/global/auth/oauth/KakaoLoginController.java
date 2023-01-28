@@ -33,11 +33,24 @@ public class KakaoLoginController {
     @GetMapping("auth/kakao/login")
     public ResponseEntity<?> kakaoLogin(@RequestParam(required = false)String code) {
         KakaoOauth kakaoOauth = kakaoLoginService.getKakaoAccessToken(code);
-        log.info("Kakao's accessToken In auth/kakao/login: {}", kakaoOauth.getAccessToken());
 
         HashMap<String ,String> user = kakaoLoginService.getUserInfo(kakaoOauth.getAccessToken());
+        log.info("카카오 로그인 시 넘어오는 이미지 url: {}", user.get("image"));
 
-        MemberDto.OauthPost post = new MemberDto.OauthPost(user.get("email"), user.get("nickname"));
+        if(user.get("image") == null) {
+            log.info("이미지가 없어서 \"no image\"로 대체합니다");
+            user.put("image", "https://postfiles.pstatic.net/MjAyMDExMDFfODMg/MDAxNjA0MjI4ODc1MDgz.gQ3xcHrLXaZyxcFAoEcdB7tJWuRs7fKgOxQwPvsTsrUg.0OBtKHq2r3smX5guFQtnT7EDwjzksz5Js0wCV4zjfpcg.JPEG.gambasg/유튜브_기본프로필_보라.jpg");
+        }
+        if(user.get("email") == null) {
+            log.info("이메일이 없으면 안되는데 일단 없으면 qwerasdf@gmail.com으로 대체");
+            user.put("email", "qwerasdf@gmail.com");
+        }
+        if(user.get("nickname") == null) {
+            log.info("이름 없으면 \"이름없음\" 으로 대체");
+            user.put("nickname", "이름없음");
+        }
+
+        MemberDto.OauthPost post = new MemberDto.OauthPost(user.get("email"), user.get("nickname"), user.get("image"));
         log.info("kakao login에서 post할 때 뜨는 email: {}", post.getEmail());
         Optional<Member> findMember = memberRepository.findByEmail(post.getEmail());
         if(findMember.isPresent()) {
@@ -60,7 +73,7 @@ public class KakaoLoginController {
 //        log.info("Access Token Expires IN Login Controller : {}", kakaoOauth.getATKExpiresIn());
 //        log.info("Access Token Expires IN Login Controller : {}", kakaoOauth.getRTKExpiresIn());
 //        log.info("UserInfo IN Login Controller: {}", user);
-
+            user.remove("image");
             return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

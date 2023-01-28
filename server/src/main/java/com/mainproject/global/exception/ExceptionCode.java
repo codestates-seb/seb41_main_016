@@ -12,7 +12,7 @@ public enum ExceptionCode {
     ACCESSTOKEN_NOT_FOUND(404, "AccessToken not found"),
     REFRESHTOKEN_NOT_FOUND(404, "RefreshToken not found"),
     DIFFERENT_REFRESHTOKEN(409, "RefreshTokens are different"),
-
+    INVALID_KAKAO_CODE(409, "Kakao Code Invalid"),
     ROOM_RESERVATION_EXIST(409, "Room reservation exist"),
 
     WISHLIST_NOT_FOUND(404, "WishList not found"),
