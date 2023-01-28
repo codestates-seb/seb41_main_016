@@ -44,7 +44,7 @@ export default function MyPage() {
   }, [token]);
 
   // console.log(mypage.reservation.room.hotelId);
-
+  console.log(mypage);
   const reviewOpenModal = () => {
     setReviewModal((prev) => !prev);
   };
@@ -78,17 +78,15 @@ export default function MyPage() {
 
   const addReview = async () => {
     try {
-      await axios
-        .post(
-          "/reviews/1",
-          { content: text, score },
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        )
-        .then((res) => setNewReview(res.data));
+      await axios.post(
+        "/reviews/1",
+        { content: text, score },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
     } catch (error) {
       console.error(error);
     }

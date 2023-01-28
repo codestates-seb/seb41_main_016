@@ -19,7 +19,7 @@ export default function Profile({ email, name, image }) {
   return (
     <ProfileBox>
       <Wrap>
-        <ProfileImgBox />
+        <ProfileImgBox image={image} />
         <ProfileText onClick={() => setModify((prev) => !prev)} modify={modify}>
           프로필 수정하기
         </ProfileText>

@@ -13,6 +13,7 @@ export default function KakaoLogin() {
   const getKakaoToken = async () => {
     try {
       axios.get(`/auth/kakao/login?code=${KAKAO_CODE}`).then((res) => {
+        console.log(res);
         localStorage.clear();
         localStorage.setItem("accessToken", res.data.accessToken);
         localStorage.setItem("refreshToken", res.data.refreshToken);
@@ -21,7 +22,7 @@ export default function KakaoLogin() {
       });
       setTimeout(() => {
         window.close();
-      }, 500);
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
@@ -30,9 +31,5 @@ export default function KakaoLogin() {
   useEffect(() => {
     getKakaoToken();
   }, []);
-  return (
-    <>
-      <Loading />
-    </>
-  );
+  return <div>{/* <Loading /> */}</div>;
 }

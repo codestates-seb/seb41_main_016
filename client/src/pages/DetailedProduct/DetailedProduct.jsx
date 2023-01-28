@@ -61,6 +61,7 @@ export default function DetailedProduct() {
   const [roomType, setRoomType] = useState("1 King Bed");
   const [ConfirmModalOpen, setConfirmModal] = useState(false);
   const isLogin = useSelector((state) => state.Login.isLogin);
+  const kakaoLogin = useSelector((state) => state.KakaoLogin.isLogin);
   const dispatch = useDispatch();
 
   const onSelectModal = () => {
@@ -193,10 +194,13 @@ export default function DetailedProduct() {
             .then((res) => {
               console.log(res);
               window.open(
-                res.data.data,
+                res.data.url,
                 "카카오톡 결제",
                 "top=100px, left=100px height=800px, width=500px"
               );
+            })
+            .then(() => {
+              window.close();
             });
         });
     } catch (error) {
@@ -303,7 +307,11 @@ export default function DetailedProduct() {
           </ReservationContainer>
           <ConfirmContainer>
             <ConfirmButton
-              onClick={isLogin ? handleConfirm : () => dispatch(modalOpen())}
+              onClick={
+                isLogin || kakaoLogin
+                  ? handleConfirm
+                  : () => dispatch(modalOpen())
+              }
             >
               예약하기
             </ConfirmButton>
