@@ -55,16 +55,16 @@ export default function Header() {
             ) : null}
             <Icon onClick={() => closeMenu()}>
               <CgMenuRightAlt />
-              {menu && (
-                <HeaderDropdown
-                  closeMenu={() => closeMenu()}
-                  isLogin={isLogin}
-                  kakaoLogin={kakaoLogin}
-                  setSignupOpen={setSignupOpen}
-                />
-              )}
             </Icon>
           </IconBox>
+          {menu && (
+            <HeaderDropdown
+              closeMenu={() => closeMenu()}
+              isLogin={isLogin}
+              kakaoLogin={kakaoLogin}
+              setSignupOpen={setSignupOpen}
+            />
+          )}
         </div>
       </HeaderBox>
     </>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useCallback } from "react";
 import { AllProductsBox, CardBox, CategoryDescriptionBox } from "./style";
+import { AllCategoryButton } from "../Main/style";
 
 export default function SearchProducts() {
   const { state } = useLocation();
@@ -28,9 +29,18 @@ export default function SearchProducts() {
     <LayoutContainer>
       <AllProductsBox>
         <CategoryDescriptionBox>
-          <h4>검색하신 키워드와 일치하는 숙소를 찾았어요!</h4>
+          <h4>
+            {searchList.length === 0
+              ? "검색 결과가 존재하지 않아요."
+              : `검색하신 '${state}' 키워드와 일치하는 숙소를 찾았어요!`}
+          </h4>
           <span>검색결과: {searchList.length}개</span>
         </CategoryDescriptionBox>
+        {searchList.length === 0 ? (
+          <AllCategoryButton to={"/category/all"}>
+            숙소 리스트 전체 보기
+          </AllCategoryButton>
+        ) : null}
         <CardBox>
           {searchList &&
             searchList.map((el) => (

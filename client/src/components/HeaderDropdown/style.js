@@ -8,8 +8,8 @@ export const MenuBox = styled.div`
   height: 254px;
   padding-top: 32px;
   position: absolute;
-  top: 36px;
-  right: 0;
+  top: 50px;
+  right: 50px;
   box-shadow: 0 2px 10px 0;
   background-color: ${(props) => props.theme.white};
   border-radius: 10px;
@@ -25,6 +25,9 @@ export const MenuBox = styled.div`
     li {
       text-align: start;
       margin-bottom: 20px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   @keyframes showMenu {
