@@ -57,6 +57,7 @@ export default function DetailedProduct() {
         inputToFocus.current.scrollIntoView({ behavior: "smooth" }); //이동하기 효과 -> 부드럽게
     };
 
+
     const [ModalOpen, setModalOpen] = useState(false);
     const [Modal2Open, setModal2Open] = useState(false);
     const [roomType, setRoomType] = useState("1 King Bed");
@@ -65,6 +66,7 @@ export default function DetailedProduct() {
     const isKakaoLogin = useSelector((state) => state.KakaoLogin.isLogin);
     const dispatch = useDispatch();
     const memberId = localStorage.getItem("memberId");
+
 
     const onSelectModal = () => {
         setModalOpen(!ModalOpen);
@@ -190,7 +192,10 @@ export default function DetailedProduct() {
                                 "카카오톡 결제",
                                 "top=100px, left=100px height=800px, width=500px"
                             );
-                        });
+                        })
+                            .then(() => {
+                          window.close();
+            });
                 });
         } catch (error) {
             console.error(error);
@@ -365,7 +370,75 @@ export default function DetailedProduct() {
                     page={page}
                     handlePageChange={handlePageChange}
                 />
-            </PaginationBox>
-        </LayoutContainer>
-    );
+              ) : null}
+            </RoomChoice>
+          </ReservationContainer>
+          <ConfirmContainer>
+            <ConfirmButton
+              onClick={
+                isLogin || kakaoLogin
+                  ? handleConfirm
+                  : () => dispatch(modalOpen())
+              }
+            >
+              예약하기
+            </ConfirmButton>
+            {ConfirmModalOpen ? (
+              <ConfirmModal
+                handleConfirm={handleConfirm}
+                handleSubmit={handleSubmit}
+              />
+            ) : null}
+            <ConfirmAlert>예약하기를 누르면 결제 창이 뜹니다.</ConfirmAlert>
+          </ConfirmContainer>
+          <TotalBox>
+            <TotalText>총 합계</TotalText>
+            <TotalPrice>
+              {startDate === null || endDate === null
+                ? priceFormatter.format(
+                    roomType === "1 King Bed"
+                      ? pageDetail.rooms
+                        ? pageDetail.rooms[0].price
+                        : 0
+                      : pageDetail.rooms
+                      ? pageDetail.rooms[1].price
+                      : 0
+                  )
+                : priceFormatter.format(
+                    (roomType === "1 King Bed"
+                      ? pageDetail.rooms
+                        ? pageDetail.rooms[0].price
+                        : 0
+                      : pageDetail.rooms
+                      ? pageDetail.rooms[1].price
+                      : 0) * getDateDiff(startDate, endDate)
+                  )}
+            </TotalPrice>
+          </TotalBox>
+        </RoomActionContainer>
+      </MainContainer>
+      <ReviewContainer ref={inputToFocus}>
+        <ShortInfoBox2>
+          <ShortInfo2>
+            <AiFillStar />
+            {pageDetail.reviews?.length === 0 ? 0 : scoreAvg()}
+          </ShortInfo2>
+          <ReviewNumber2>후기 {pageDetail.reviews?.length}개</ReviewNumber2>
+        </ShortInfoBox2>
+        <ReviewCardBox>
+          {pageDetail.reviews?.slice(offset, offset + limit).map((el, idx) => (
+            <ReviewCard key={el.reviewId} review={el} />
+          ))}
+        </ReviewCardBox>
+      </ReviewContainer>
+      <PaginationBox>
+        <Paginations
+          total={pageDetail.reviews ? pageDetail.reviews.length : 0}
+          limit={limit}
+          page={page}
+          handlePageChange={handlePageChange}
+        />
+      </PaginationBox>
+    </LayoutContainer>
+  );
 }

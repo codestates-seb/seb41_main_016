@@ -43,8 +43,6 @@ export default function MyPage() {
         }
     }, [token]);
 
-    // console.log(mypage?.reservations.map((el) => el.room.hotelId));
-
     const reviewOpenModal = (id) => {
         setSelectedHotelId(id);
         setReviewModal((prev) => !prev);
@@ -53,15 +51,6 @@ export default function MyPage() {
     const editOpenModal = () => {
         setEditModal((prev) => !prev);
     };
-
-    // const handleBtnClick = (e) => {
-    //   setInText(e.target.innerText);
-    //   if (e.target.innerText === "후기 작성하기") {
-    //     setIsModal((prev) => !prev);
-    //   } else {
-    //     setIsModal((prev) => !prev);
-    //   }
-    // };
 
     const handleText = (e) => {
         setText(e.target.value);
@@ -76,7 +65,6 @@ export default function MyPage() {
     };
 
     let score = clicked.filter(Boolean).length;
-
     const addReview = async () => {
         try {
             await axios.post(

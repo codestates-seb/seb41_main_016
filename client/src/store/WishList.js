@@ -1,18 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    isLike: false,
-};
-const LikeState = createSlice({
-    name: "likestate",
-    initialState,
-    reducers: {
-        heartClick: (state) => {
-            state.isLike = !state.isLike;
-        },
-    },
+const memberId = localStorage.getItem("memberId");
+const token = localStorage.getItem("accessToken");
+
+export const getWishList = createAsyncThunk("GET_WISH", async () => {
+  const wishList = await (
+    await axios.get(`/member/wishlists`, {
+      headers: {
+        Authorization: token,
+      },
+    })
+  ).data;
+  return wishList.data;
 });
 
-export const { heartClick, heartUnclick } = LikeState.actions;
+const initialState = [];
 
-export default LikeState;
+export const LikeState = createSlice({
+  name: "likestate",
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [getWishList.fulfilled]: (state, { payload }) => [...payload],
+  },
+});

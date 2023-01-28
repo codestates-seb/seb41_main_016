@@ -12,7 +12,8 @@ import SearchProducts from "./pages/SearchProducts/SearchProducts";
 import { colorTheme } from "./assets/style/Theme";
 import { ThemeProvider } from "styled-components";
 import KakaoLogin from "./pages/KakaoLogin";
-import Kakao from "./pages/Kakao";
+import store from "./store/Store";
+import { Provider } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -25,9 +26,8 @@ const router = createBrowserRouter([
       { path: "/rooms/:id", element: <DetailedProduct /> },
       { path: "/wishlists", element: <WishLists /> },
       { path: `/members`, element: <MyPage /> },
-      { path: "/:searchParams", element: <SearchProducts /> },
       { path: "/auth/kakao/callback", element: <KakaoLogin /> },
-      { path: "/payment/success", element: <Kakao /> },
+      { path: "/:searchParams", element: <SearchProducts /> },
     ],
   },
 ]);
@@ -36,8 +36,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={colorTheme}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={colorTheme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
