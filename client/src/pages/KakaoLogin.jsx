@@ -1,14 +1,12 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
+import React, { useCallback, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function KakaoLogin() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const KAKAO_CODE = location.search.split("=")[1];
+    const location = useLocation();
+    const KAKAO_CODE = location.search.split("=")[1];
+    console.log(KAKAO_CODE);
+
 
   const getKakaoToken = async () => {
     try {
@@ -32,4 +30,3 @@ export default function KakaoLogin() {
     getKakaoToken();
   }, []);
   return <div>{/* <Loading /> */}</div>;
-}
