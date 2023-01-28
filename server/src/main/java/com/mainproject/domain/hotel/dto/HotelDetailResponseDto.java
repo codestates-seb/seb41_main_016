@@ -15,7 +15,6 @@ public class HotelDetailResponseDto {
     private Long hotelId;
     private String title;
     private Double hotelScore;
-    private Boolean like;
     private int reviewQuantity;
     private List<HotelImage> image;
     private String service;

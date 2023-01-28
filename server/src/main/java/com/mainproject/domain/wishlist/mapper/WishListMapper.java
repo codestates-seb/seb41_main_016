@@ -18,7 +18,6 @@ public interface WishListMapper {
                             builder.hotelId(wishList.getHotel().getHotelId())
                                     .hotelImage(wishList.getHotel().getImages().get(0).getImage())
                                     .hotelTitle(wishList.getHotel().getTitle())
-                                    .like(wishList.getHotel().getLikes())
                                     .reviewQuantity(wishList.getHotel().getReviewList().size())
                                     .hotelReviewScore(wishList.getHotel().getHotelScore())
                                     .price(wishList.getHotel().getRoomList().get(0).getPrice());
