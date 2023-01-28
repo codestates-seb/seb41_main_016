@@ -8,7 +8,7 @@ import axios from "axios";
 import useScrollPrevent from "../../hooks/useScrollPrevent";
 import { login } from "../../store/LoginSlice";
 import { useDispatch } from "react-redux";
-import { modalClose, modalOpen } from "../../store/ModalSlice";
+import { modalClose } from "../../store/ModalSlice";
 import {
     ErrorBox,
     LoginBox,
@@ -21,7 +21,6 @@ import {
     Toast,
 } from "./style";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils/register";
-import { useLocation, useNavigate } from "react-router-dom";
 import { kakaoLogin } from "../../store/KakaoSlice";
 
 export default function LoginModal({ isModal, setSignupOpen }) {

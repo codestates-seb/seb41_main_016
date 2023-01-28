@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import useScrollPrevent from "../../../hooks/useScrollPrevent";
 import DetailReview from "../DetailReview/DetailReview";
 
 import {
@@ -16,7 +15,6 @@ import {
 } from "./style";
 
 export default function ReviewCard({ review }) {
-    useScrollPrevent();
     const getToday = () => {
         const date = new Date(review.createdAt);
         const year = date.getFullYear();
