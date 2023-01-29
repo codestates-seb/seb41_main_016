@@ -4,16 +4,14 @@ import styled from "styled-components";
 
 export default function Loading() {
   return (
-    <Wrap>
-      <PacmanLoader
-        color="#36d7b7"
-        cssOverride={null}
-        loading
-        margin={0}
-        size={50}
-        speedMultiplier={1}
-      />
-    </Wrap>
+    <PacmanLoader
+      color="#36d7b7"
+      cssOverride={null}
+      loading
+      margin={0}
+      size={50}
+      speedMultiplier={1}
+    />
   );
 }
 

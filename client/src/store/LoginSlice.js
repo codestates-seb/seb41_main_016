@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-const accessToken = localStorage.getItem("accessToken");
-const refreshToken = localStorage.getItem("refreshToken");
-const memberId = localStorage.getItem("memberId");
-const kakaoAccessToken = localStorage.getItem("kakaoAccessToken");
+import {
+  accessToken,
+  refreshToken,
+  memberId,
+  kakaoAccessToken,
+} from "../utils/localStorage";
 
 const initialState = {
   isLogin: !!accessToken,
@@ -17,7 +19,9 @@ const LoginState = createSlice({
   initialState,
   reducers: {
     login: (state) => {
-      state.isLogin = true;
+      accessToken === undefined
+        ? (state.isLogin = false)
+        : (state.isLogin = true);
     },
     logout: (state) => {
       state.isLogin = false;

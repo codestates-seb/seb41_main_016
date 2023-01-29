@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
@@ -50,6 +50,10 @@ import {
   TotalText,
 } from "./style";
 import { getDateDiff } from "../../utils/calcDateDiff";
+import { useDetaildProduct } from "../../hooks/useDetaildProduct";
+import { memberId } from "../../utils/localStorage";
+import Loading from "../../components/Loading";
+import { DateFormat } from "../../utils/checkDateDiff";
 
 export default function DetailedProduct() {
   const inputToFocus = useRef(); //한 page내에서 다른 component로 이동하기
@@ -61,9 +65,20 @@ export default function DetailedProduct() {
   const [Modal2Open, setModal2Open] = useState(false);
   const [roomType, setRoomType] = useState("1 King Bed");
   const [ConfirmModalOpen, setConfirmModal] = useState(false);
+  const [adultCount, setAdultCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
   const isLogin = useSelector((state) => state.Login.isLogin);
   const dispatch = useDispatch();
-  const memberId = localStorage.getItem("memberId");
+  const { id } = useParams();
+
+  //pagination
+  const [limit, setLimit] = useState(4);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
+  //calender 일정 조정
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const onSelectModal = () => {
     setModalOpen(!ModalOpen);
@@ -76,9 +91,6 @@ export default function DetailedProduct() {
   const handleConfirm = () => {
     setConfirmModal(!ConfirmModalOpen);
   };
-
-  const [adultCount, setAdultCount] = useState(0);
-  const [childrenCount, setChildrenCount] = useState(0);
 
   const addAdultCount = () => {
     adultCount >= 0 && setAdultCount(adultCount + 1);
@@ -96,38 +108,14 @@ export default function DetailedProduct() {
     childrenCount && setChildrenCount(childrenCount - 1);
   };
 
-  //pagination
-  const [limit, setLimit] = useState(4);
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
-
   const handlePageChange = (page) => {
     setPage(page);
   };
 
-  //axios
-  const [pageDetail, setpageDetail] = useState([]);
-  console.log(pageDetail);
-
-  const { id } = useParams();
-
-  const handleDetail = useCallback(async () => {
-    try {
-      await axios.get(`/hotel/detail/${id}`).then((res) => {
-        setpageDetail(res.data);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    handleDetail();
-  }, [handleDetail]);
-
-  //calender 일정 조정
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const { isLoading, error, pageDetail } = useDetaildProduct(
+    `/hotel/detail/${id}`,
+    id
+  );
 
   //평균 별점 구하기
   const scoreAvg = () => {
@@ -136,15 +124,6 @@ export default function DetailedProduct() {
       sum = sum + pageDetail.reviews[i].score;
     }
     return (sum / pageDetail.reviews?.length).toFixed(2);
-  };
-
-  //checkin checkout date 변환
-  const DateFormat = (d1) => {
-    const date = new Date(d1);
-    const year = date.getFullYear();
-    const month = ("0" + (1 + date.getMonth())).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
   };
 
   const handleSubmit = async () => {
@@ -196,6 +175,8 @@ export default function DetailedProduct() {
       console.error(error);
     }
   };
+
+  if (isLoading) return <></>;
 
   return (
     <LayoutContainer>

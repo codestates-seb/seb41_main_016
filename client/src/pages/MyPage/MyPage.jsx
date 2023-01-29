@@ -96,7 +96,7 @@ export default function MyPage() {
     handleMypage();
   }, [handleMypage]);
   console.log(mypage);
-  //   if (loading) return <Loading />;
+  if (loading) return <></>;
   return (
     <LayoutContainer>
       <div>
@@ -119,17 +119,18 @@ export default function MyPage() {
           </Wrap>
         </MyLayout>
       </div>
-      {reviewModal && (
-        <ReviewModal
-          text={text}
-          handleText={handleText}
-          reviewOpenModal={reviewOpenModal}
-          clicked={clicked}
-          handleStarClick={handleStarClick}
-          starLength={starLength}
-          addReview={addReview}
-        />
-      )}
+      {reviewModal &&
+        mypage.reservations.map((el, idx) => (
+          <ReviewModal
+            text={text}
+            handleText={handleText}
+            reviewOpenModal={reviewOpenModal}
+            clicked={clicked}
+            handleStarClick={handleStarClick}
+            starLength={starLength}
+            addReview={addReview}
+          />
+        ))}
       {editModal && (
         <EditModal
           text={text}

@@ -27,7 +27,7 @@ export default function ReservationCard({
   return (
     <Wrap>
       <TextBox>
-        <Text date>{createdAt.slice(0, 10)}</Text>
+        <Text date>{createdAt?.slice(0, 10)}</Text>
         <Text>예약완료</Text>
       </TextBox>
       <HotelBox>
