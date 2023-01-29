@@ -6,10 +6,15 @@ import { useLocation } from "react-router-dom";
 import { useCallback } from "react";
 import { AllProductsBox, CardBox, CategoryDescriptionBox } from "./style";
 import { AllCategoryButton } from "../Main/style";
+import { useDispatch, useSelector } from "react-redux";
+import { modalOpen } from "../../store/ModalSlice";
 
 export default function SearchProducts() {
   const { state } = useLocation();
   const [searchList, setSearchList] = useState([]);
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.Login.isLogin);
+  const token = localStorage.getItem("accessToken");
 
   const handleSearchList = useCallback(async () => {
     try {
@@ -20,6 +25,23 @@ export default function SearchProducts() {
       console.error(error);
     }
   }, [state]);
+
+  const handleClickId = async (id, e) => {
+    e.stopPropagation();
+    if (isLogin) {
+      try {
+        await axios.post(`/member/wishlists?hotelId=${id}`, {
+          headers: {
+            Authorization: token,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      dispatch(modalOpen());
+    }
+  };
 
   useEffect(() => {
     handleSearchList();
@@ -52,6 +74,7 @@ export default function SearchProducts() {
                 score={el.hotelReviewScore}
                 img={el.hotelImage}
                 reviewNum={el.reviewQuantity}
+                handleClickId={handleClickId}
               />
             ))}
         </CardBox>

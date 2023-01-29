@@ -104,6 +104,7 @@ export default function AllProducts() {
 
   // if (isLoading) return <></>;
   // if (error) return <NotFound />;
+
   return (
     <LayoutContainer>
       <AllProductsBox>

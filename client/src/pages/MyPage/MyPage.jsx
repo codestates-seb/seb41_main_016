@@ -115,13 +115,15 @@ export default function MyPage() {
             <ReviewContainer
               editOpenModal={editOpenModal}
               starLength={starLength}
+              reviews={mypage.reviews}
             />
           </Wrap>
         </MyLayout>
       </div>
       {reviewModal &&
-        mypage.reservations.map((el, idx) => (
+        mypage.reservations.map((el) => (
           <ReviewModal
+            key={el.reservationId}
             text={text}
             handleText={handleText}
             reviewOpenModal={reviewOpenModal}
@@ -129,6 +131,7 @@ export default function MyPage() {
             handleStarClick={handleStarClick}
             starLength={starLength}
             addReview={addReview}
+            reslist={el}
           />
         ))}
       {editModal && (

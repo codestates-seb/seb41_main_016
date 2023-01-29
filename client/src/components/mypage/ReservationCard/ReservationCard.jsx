@@ -1,28 +1,27 @@
 import React from "react";
 import { getDateDiff } from "../../../utils/calcDateDiff";
 import { priceFormatter } from "../../../utils/priceFormatter";
-import ReviewModal from "../ReviewModal/ReviewModal";
 import {
-  HotelBox,
-  HotelImg,
-  HotelText,
-  HotelText2,
-  HotelTextBox,
-  Review,
-  Text,
-  TextBox,
-  Wrap,
+    HotelBox,
+    HotelImg,
+    HotelText,
+    HotelText2,
+    HotelTextBox,
+    Review,
+    Text,
+    TextBox,
+    Wrap,
 } from "./style";
 
 export default function ReservationCard({
-  reviewOpenModal,
-  checkin,
-  checkout,
-  price,
-  resInfo,
-  hotelName,
-  hotelImage,
-  createdAt,
+    reviewOpenModal,
+    checkin,
+    checkout,
+    price,
+    resInfo,
+    hotelName,
+    hotelImage,
+    createdAt,
 }) {
   return (
     <Wrap>

@@ -1,7 +1,10 @@
+import { removeListener } from "@reduxjs/toolkit";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import useScrollPrevent from "../../../hooks/useScrollPrevent";
+import { getDateDiff } from "../../../utils/calcDateDiff";
+import { priceFormatter } from "../../../utils/priceFormatter";
 
 import {
     Btn,
@@ -30,6 +33,7 @@ export default function ReviewModal({
     text,
     handleText,
     addReview,
+    reslist,
 }) {
     useScrollPrevent();
 
@@ -44,11 +48,17 @@ export default function ReviewModal({
                         <RxCross1 />
                     </CloseModal>
                     <HotelBox>
-                        <HotelImg />
+                        <HotelImg img={reslist.hotelImage} />
                         <HotelTextBox>
-                            <HotelText weight>더 리버사이드 호텔</HotelText>
-                            <HotelText2>1.23 (화) 1박</HotelText2>
-                            <HotelText>₩ 76,643</HotelText>
+                            <HotelText weight>{reslist.hotelName}</HotelText>
+                            <HotelText2>
+                                {reslist.checkin}{" "}
+                                {getDateDiff(reslist.checkin, reslist.checkout)}
+                                박
+                            </HotelText2>
+                            <HotelText>
+                                {priceFormatter.format(reslist.price)}
+                            </HotelText>
                         </HotelTextBox>
                     </HotelBox>
                     <StarBox>
