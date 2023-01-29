@@ -17,8 +17,9 @@ import {
   CategoryTabBox,
 } from "./style";
 import Loading from "../../components/Loading";
-import { useState } from "react";
 import { modalOpen } from "../../store/ModalSlice";
+import { useState } from "react";
+import { tr } from "date-fns/locale";
 
 export default function AllProducts() {
   const isLogin = useSelector((state) => state.Login.isLogin);
@@ -40,7 +41,6 @@ export default function AllProducts() {
     } else {
       dispatch(modalOpen());
     }
-    console.log(id);
   };
 
   const { pathname } = useLocation();
@@ -112,6 +112,7 @@ export default function AllProducts() {
   }, [handleProductsList]);
   // if (isLoading) return <Loading />;
   // if (error) return <NotFound />;
+
   return (
     <LayoutContainer>
       <AllProductsBox>
