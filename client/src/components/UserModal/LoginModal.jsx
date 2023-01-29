@@ -6,7 +6,7 @@ import { BiErrorCircle } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import useScrollPrevent from "../../hooks/useScrollPrevent";
-import { login } from "../../store/LoginSlice";
+import { login, logout } from "../../store/LoginSlice";
 import { useDispatch } from "react-redux";
 import { modalClose } from "../../store/ModalSlice";
 import {
@@ -21,6 +21,7 @@ import {
   Toast,
 } from "./style";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils/register";
+import { accessToken } from "../../utils/localStorage";
 
 export default function LoginModal({ setSignupOpen }) {
   const dispatch = useDispatch();
@@ -89,15 +90,27 @@ export default function LoginModal({ setSignupOpen }) {
   const handleKakao = () => {
     window.open(KAKAO_AUTH_URL);
     closeModal();
-    dispatch(login());
-    Toast.fire({
-      title: "로그인 성공!",
-      icon: "success",
-      customClass: {
-        icon: "icon-class",
-        container: "my-swal",
-      },
-    });
+    if (accessToken !== undefined) {
+      dispatch(login());
+      Toast.fire({
+        title: "로그인 성공!",
+        icon: "success",
+        customClass: {
+          icon: "icon-class",
+          container: "my-swal",
+        },
+      });
+    } else {
+      dispatch(logout());
+      Toast.fire({
+        title: "로그인 실패!",
+        icon: "error",
+        customClass: {
+          icon: "icon-class",
+          container: "my-swal",
+        },
+      });
+    }
   };
 
   const handleSignUp = () => {

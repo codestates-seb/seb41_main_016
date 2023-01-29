@@ -1,19 +1,25 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NotFound from "./pages/NotFound/NotFound";
-import Main from "./pages/Main/Main";
-import AllProducts from "./pages/AllProducts/AllProducts";
-import DetailedProduct from "./pages/DetailedProduct/DetailedProduct";
-import WishLists from "./pages/WishLists/WishLists";
-import MyPage from "./pages/MyPage/MyPage";
-import SearchProducts from "./pages/SearchProducts/SearchProducts";
 import { colorTheme } from "./assets/style/Theme";
 import { ThemeProvider } from "styled-components";
-import KakaoLogin from "./pages/KakaoLogin";
 import store from "./store/Store";
 import { Provider } from "react-redux";
+import Loading from "./components/Loading";
+
+const Main = lazy(() => import("./pages/Main/Main"));
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
+const DetailedProduct = lazy(() =>
+  import("./pages/DetailedProduct/DetailedProduct")
+);
+const AllProducts = lazy(() => import("./pages/AllProducts/AllProducts"));
+const WishLists = lazy(() => import("./pages/WishLists/WishLists"));
+const MyPage = lazy(() => import("./pages/MyPage/MyPage"));
+const KakaoLogin = lazy(() => import("./pages/KakaoLogin"));
+const SearchProducts = lazy(() =>
+  import("./pages/SearchProducts/SearchProducts")
+);
 
 const router = createBrowserRouter([
   {

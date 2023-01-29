@@ -96,7 +96,7 @@ export default function MyPage() {
     handleMypage();
   }, [handleMypage]);
   console.log(mypage);
-  //   if (loading) return <Loading />;
+  if (loading) return <></>;
   return (
     <LayoutContainer>
       <div>

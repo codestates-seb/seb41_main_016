@@ -1,13 +1,11 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
 import HotelCard from "../../components/HotelCard/HotelCard";
 import { ImAirplane } from "react-icons/im";
-import NotFound from "../NotFound/NotFound";
 import { RiBriefcase4Fill } from "react-icons/ri";
 import { MdKingBed } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import {
   AllProductsBox,
@@ -18,21 +16,22 @@ import {
 } from "./style";
 import Loading from "../../components/Loading";
 import { modalOpen } from "../../store/ModalSlice";
-import { useState } from "react";
-import { tr } from "date-fns/locale";
+import { accessToken } from "../../utils/localStorage";
+import useAllProducts from "../../hooks/useAllProducts";
 
 export default function AllProducts() {
   const isLogin = useSelector((state) => state.Login.isLogin);
-  const token = localStorage.getItem("accessToken");
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
-  const handleClickId = async (id, e) => {
+  const addWishList = async (id, e) => {
     e.stopPropagation();
     if (isLogin) {
       try {
         await axios.post(`/member/wishlists?hotelId=${id}`, {
           headers: {
-            Authorization: token,
+            Authorization: accessToken,
           },
         });
       } catch (error) {
@@ -43,8 +42,18 @@ export default function AllProducts() {
     }
   };
 
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const deleteWishList = async (id) => {
+    try {
+      await axios.delete(`/member/wishlists?hotelId=${id}`, {
+        headers: {
+          Authorization: accessToken,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const categoryData = [
     {
       id: 1,
@@ -87,30 +96,13 @@ export default function AllProducts() {
       ? `/hotel`
       : `/hotel?category=${categoryData[activeIndex].query}`;
 
-  const handleProductsList = useCallback(async () => {
-    try {
-      return (await axios.get(getUrl)).data;
-    } catch (error) {
-      return console.error(error);
-    }
-  }, [getUrl]);
-
-  const {
-    isLoading,
-    error,
-    data: productsList,
-  } = useQuery(["productsList", pathname], handleProductsList, {
-    staleTime: Infinity,
-  });
+  const { isLoading, error, productsList } = useAllProducts(getUrl, pathname);
 
   const navigateHandler = (path) => {
     navigate(path);
   };
 
-  useEffect(() => {
-    handleProductsList();
-  }, [handleProductsList]);
-  // if (isLoading) return <Loading />;
+  // if (isLoading) return <></>;
   // if (error) return <NotFound />;
 
   return (
@@ -146,7 +138,7 @@ export default function AllProducts() {
                 score={el.hotelReviewScore}
                 img={el.hotelImage}
                 reviewNum={el.reviewQuantity}
-                handleClickId={handleClickId}
+                addWishList={addWishList}
               />
             ))}
         </CardBox>
