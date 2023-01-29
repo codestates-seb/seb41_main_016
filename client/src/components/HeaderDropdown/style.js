@@ -9,7 +9,7 @@ export const MenuBox = styled.div`
   padding-top: 32px;
   position: absolute;
   top: 50px;
-  right: 50px;
+  right: 24px;
   box-shadow: 0 2px 10px 0;
   background-color: ${(props) => props.theme.white};
   border-radius: 10px;

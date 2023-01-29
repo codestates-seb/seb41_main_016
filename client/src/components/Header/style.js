@@ -23,6 +23,7 @@ export const HeaderBox = styled.header`
     justify-content: space-between;
     font-size: 1.5rem;
     align-items: center;
+    position: relative;
   }
 `;
 
