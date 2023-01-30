@@ -44,6 +44,7 @@ public class HotelMapper {
                             .hotelImage(hotelImageListTohotelImage(hotel.getImages()))
                             .hotelTitle(hotel.getTitle())
                             .hotelReviewScore(hotel.getHotelScore())
+//                            .like(hotel.getLikes())
                             .reviewQuantity(hotel.getReviewList().size())
                             .price(roomToRoomPrice(hotel.getRoomList()))
                             .build();

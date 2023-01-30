@@ -20,6 +20,8 @@ public class ReviewResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private String content;
+//    private List<ReviewImage> reviewImage;
+//    private ReviewImage reviewImage;
     private String hotelImage;
     private int score;
 }

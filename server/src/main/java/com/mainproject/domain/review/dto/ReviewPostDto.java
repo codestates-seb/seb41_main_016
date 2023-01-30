@@ -11,6 +11,8 @@ import java.util.List;
 @Builder
 public class ReviewPostDto {
     private Long reviewId;
+//    private List<ReviewImage> reviewImage;
+//    private ReviewImage reviewImage;
     private String content;
     private int score;
 

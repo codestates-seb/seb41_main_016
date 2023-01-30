@@ -138,6 +138,7 @@ INSERT INTO room(room_type, head_count, price,hotel_id, quantity) VALUES
 
 INSERT INTO hotel_image(image,title,hotel_id) VALUES
 
+
                                                   ('/1.png','외관',1),
                                                   ('/2.png','침실',1),
                                                   ('/3.png','화장실',1),
