@@ -5,8 +5,6 @@ import com.mainproject.domain.hotel.service.HotelService;
 import com.mainproject.domain.image.entity.ReviewImage;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.service.MemberService;
-import com.mainproject.domain.reservation.entity.Reservation;
-import com.mainproject.domain.reservation.service.ReservationService;
 import com.mainproject.domain.review.dto.ReviewEditDto;
 import com.mainproject.domain.review.dto.ReviewPostDto;
 import com.mainproject.domain.review.entity.Review;
@@ -31,20 +29,21 @@ public class ReviewController {
     private final HotelService hotelService;
     private final ReviewMapper mapper;
     private final JwtProvider jwtProvider;
-    private final ReservationService reservationService;
 
-    @PostMapping("/{hotel-id}/{reservation-id}")
+    @PostMapping("/{hotel-id}")
     public ResponseEntity createReview(@RequestHeader("Authorization") String accessToken,
                                        @PathVariable("hotel-id") Long hotelId,
-                                       @PathVariable("reservation-id") Long reservationId,
                                        @RequestBody ReviewPostDto reviewPostDto){
+
         Reservation findReservation = reservationService.findReservation(reservationId);
 //        Long memberId = jwtProvider.extractMemberId(accessToken);
 
         Long memberId = findReservation.getMember().getMemberId();
+
         Member member = memberService.findMember(memberId);
         Hotel hotel = hotelService.findHotel(hotelId);
-
+//        List<ReviewImage> reviewImages = reviewPostDto.getReviewImage();
+//        ReviewImage reviewImages = reviewPostDto.getReviewImage();
         Review review = mapper.reviewPostDtoToReview(reviewPostDto,hotel,member);
         Review createReview = reviewService.postReview(review);
         List<Review> reviewList= reviewService.findReviewList();
