@@ -40,6 +40,7 @@ public class ReviewController {
                                        @RequestBody ReviewPostDto reviewPostDto){
         Reservation findReservation = reservationService.findReservation(reservationId);
 //        Long memberId = jwtProvider.extractMemberId(accessToken);
+
         Long memberId = findReservation.getMember().getMemberId();
         Member member = memberService.findMember(memberId);
         Hotel hotel = hotelService.findHotel(hotelId);
