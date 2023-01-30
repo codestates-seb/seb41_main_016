@@ -35,10 +35,10 @@ public class ReviewController {
                                        @PathVariable("hotel-id") Long hotelId,
                                        @RequestBody ReviewPostDto reviewPostDto){
 
-        Reservation findReservation = reservationService.findReservation(reservationId);
-//        Long memberId = jwtProvider.extractMemberId(accessToken);
+//        Reservation findReservation = reservationService.findReservation(reservationId);
+        Long memberId = jwtProvider.extractMemberId(accessToken);
 
-        Long memberId = findReservation.getMember().getMemberId();
+//        Long memberId = findReservation.getMember().getMemberId();
 
         Member member = memberService.findMember(memberId);
         Hotel hotel = hotelService.findHotel(hotelId);
