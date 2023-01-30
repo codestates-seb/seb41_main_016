@@ -22,16 +22,10 @@ export default function ReviewContainer({
         <Line />
         <ReservationWrap>
           {reviews &&
-            reviews.map((el) => (
+            reviews.map((el, idx) => (
               <ReviewCard
-                key={el.reviewId}
                 editOpenModal={editOpenModal}
                 starLength={starLength}
-                createdAt={el.createdAt}
-                content={el.content}
-                hotelImage={el.hotelImage}
-                score={el.score}
-                hotelName={el.hotelName}
               />
             ))}
         </ReservationWrap>

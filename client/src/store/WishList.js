@@ -15,8 +15,8 @@ export const getWishList = createAsyncThunk("GET_WISH", async () => {
 
 const initialState = [];
 
-export const LikeState = createSlice({
-  name: "likestate",
+export const WishState = createSlice({
+  name: "wishstate",
   initialState,
   reducers: {},
   extraReducers: {

@@ -27,10 +27,10 @@ export default function ReviewCard({
     <Wrap>
       <ReviewlImg img={hotelImage}></ReviewlImg>
       <HotelTextBox>
-        <DateText>{createdAt.slice(0, 10)}</DateText>
+        <DateText>{createdAt?.slice(0, 10)}</DateText>
         <TitleText>{hotelName}</TitleText>
         <StarBox>
-          {starLength.map((el, idx) => (
+          {starLength?.map((el, idx) => (
             <FaStar key={idx} className="yellowStar" size={20} />
           ))}
         </StarBox>
