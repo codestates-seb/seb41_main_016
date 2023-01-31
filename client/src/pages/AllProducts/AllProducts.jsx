@@ -29,11 +29,14 @@ export default function AllProducts() {
     e.stopPropagation();
     if (isLogin) {
       try {
-        await axios.post(`/member/wishlists?hotelId=${id}`, {
-          headers: {
-            Authorization: accessToken,
-          },
-        });
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/member/wishlists?hotelId=${id}`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
       } catch (error) {
         console.error(error);
       }
@@ -44,11 +47,14 @@ export default function AllProducts() {
 
   const deleteWishList = async (id) => {
     try {
-      await axios.delete(`/member/wishlists?hotelId=${id}`, {
-        headers: {
-          Authorization: accessToken,
-        },
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/member/wishlists?hotelId=${id}`,
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        }
+      );
     } catch (error) {
       console.error(error);
     }
@@ -92,9 +98,9 @@ export default function AllProducts() {
 
   const activeIndex = categoryData.findIndex((el) => pathname === el.path);
   const getUrl =
-    pathname === "/category/all"
-      ? `/hotel`
-      : `/hotel?category=${categoryData[activeIndex].query}`;
+    pathname === `${process.env.REACT_APP_API_URL}/category/all`
+      ? `${process.env.REACT_APP_API_URL}/hotel`
+      : `${process.env.REACT_APP_API_URL}/hotel?category=${categoryData[activeIndex].query}`;
 
   const { isLoading, error, productsList } = useAllProducts(getUrl, pathname);
 

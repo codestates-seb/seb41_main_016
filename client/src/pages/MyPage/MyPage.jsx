@@ -26,7 +26,7 @@ export default function MyPage() {
     try {
       if (token) {
         const mypageList = await axios
-          .get(`/members`, {
+          .get(`${process.env.REACT_APP_API_URL}/members`, {
             headers: {
               Authorization: token,
             },
@@ -68,7 +68,7 @@ export default function MyPage() {
   const addReview = async () => {
     try {
       await axios.post(
-        `/reviews/${selectedHotelId}`,
+        `${process.env.REACT_APP_API_URL}/reviews/${selectedHotelId}`,
         { content: text, score },
         {
           headers: {
@@ -86,7 +86,7 @@ export default function MyPage() {
 
   const editReview = async () => {
     try {
-      await axios.patch("/reviews/edit/1");
+      await axios.patch(`${process.env.REACT_APP_API_URL}/reviews/edit/1`);
     } catch (error) {
       console.error(error);
     }

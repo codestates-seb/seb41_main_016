@@ -113,7 +113,7 @@ export default function DetailedProduct() {
   };
 
   const { isLoading, error, pageDetail } = useDetaildProduct(
-    `/hotel/detail/${id}`,
+    `${process.env.REACT_APP_API_URL}/hotel/detail/${id}`,
     id
   );
 
@@ -130,7 +130,7 @@ export default function DetailedProduct() {
     try {
       await axios
         .post(
-          "/reservation",
+          `${process.env.REACT_APP_API_URL}/reservation`,
           {
             memberId: memberId,
             roomId: roomType === "1 King Bed" ? 1 : 2,
@@ -152,13 +152,16 @@ export default function DetailedProduct() {
         )
         .then((res) => {
           axios
-            .get(`/payment/ready/${res.data.reservationId}`, {
-              headers: {
-                "Content-Type":
-                  "application/x-www-form-urlencoded;charset=utf-8",
-                Authorization: "KakaoAK 7d8b34bddd92b4d25454fe47608e39ab",
-              },
-            })
+            .get(
+              `${process.env.REACT_APP_API_URL}/payment/ready/${res.data.reservationId}`,
+              {
+                headers: {
+                  "Content-Type":
+                    "application/x-www-form-urlencoded;charset=utf-8",
+                  Authorization: "KakaoAK 7d8b34bddd92b4d25454fe47608e39ab",
+                },
+              }
+            )
             .then((res) => {
               console.log(res);
               window.open(
