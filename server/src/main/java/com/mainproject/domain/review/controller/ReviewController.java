@@ -34,7 +34,12 @@ public class ReviewController {
     public ResponseEntity createReview(@RequestHeader("Authorization") String accessToken,
                                        @PathVariable("hotel-id") Long hotelId,
                                        @RequestBody ReviewPostDto reviewPostDto){
+
+//        Reservation findReservation = reservationService.findReservation(reservationId);
         Long memberId = jwtProvider.extractMemberId(accessToken);
+
+//        Long memberId = findReservation.getMember().getMemberId();
+
         Member member = memberService.findMember(memberId);
         Hotel hotel = hotelService.findHotel(hotelId);
 //        List<ReviewImage> reviewImages = reviewPostDto.getReviewImage();

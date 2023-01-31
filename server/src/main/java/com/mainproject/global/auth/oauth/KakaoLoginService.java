@@ -6,6 +6,8 @@ import com.google.gson.JsonParser;
 import com.mainproject.domain.member.dto.MemberDto;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.domain.member.service.MemberService;
+import com.mainproject.global.exception.BusinessLogicException;
+import com.mainproject.global.exception.ExceptionCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +50,10 @@ public class KakaoLoginService {
             String sb = "grant_type=authorization_code" +
                     "&client_id=fb6a694dd7c7ede22f3102f1b8b17f4f" + // REST_API_KEY
 //                    "&redirect_uri=http://localhost:8080/auth/kakao/callback" + // REDIRECT_URI
-                    "&redirect_uri=http://ec2-52-79-60-71.ap-northeast-2.compute.amazonaws.com:8080/auth/kakao/callback" + // REDIRECT_URI
+                    "&redirect_uri=http://localhost:3000/auth/kakao/callback" + // REDIRECT_URI
+//                    "&redirect_uri=http://whystay.p-e.kr/auth/kakao/callback" + // REDIRECT_URI
+//                    "&redirect_uri=http://ec2-52-79-60-71.ap-northeast-2.compute.amazonaws.com:8080/auth/kakao/callback" + // REDIRECT_URI
+//                    "&redirect_uri=http://ec2-52-79-60-71.ap-northeast-2.compute.amazonaws.com:3000/auth/kakao/callback" + // REDIRECT_URI
 
                     "&code=" + code;
             bw.write(sb);
@@ -58,6 +63,10 @@ public class KakaoLoginService {
             // 유효하지 않을 경우 -1 반환
             int responseCode = connection.getResponseCode();
             log.info("Response Code: {}", responseCode);
+
+            if(responseCode == 400 || responseCode == 401) {
+                throw new BusinessLogicException(ExceptionCode.INVALID_KAKAO_CODE);
+            }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String s = "";
@@ -73,8 +82,6 @@ public class KakaoLoginService {
             atkExpire = element.getAsJsonObject().get("expires_in").getAsInt();
             rtkExpire = element.getAsJsonObject().get("refresh_token_expires_in").getAsInt();
 
-            log.info("Access Token: {}", accessToken);
-            log.info("Refresh Token: {}", refreshToken);
 
             br.close();
             bw.close();
@@ -103,6 +110,10 @@ public class KakaoLoginService {
 
             int responseCode = connection.getResponseCode();
             log.info("Response Code IN getUserInfo: {}", responseCode);
+            
+            if(responseCode == 400 || responseCode == 401) {
+                throw new BusinessLogicException(ExceptionCode.INVALID_KAKAO_CODE);
+            }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String s = "";
@@ -117,9 +128,12 @@ public class KakaoLoginService {
 
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
             String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+            String image = kakaoAccount.getAsJsonObject().get("profile").getAsJsonObject().get("profile_image_url").getAsString();
+            System.out.println("프로필 이미지: " + image);
 
             userInfo.put("nickname", nickname);
             userInfo.put("email", email);
+            userInfo.put("image", image);
         } catch (IOException e) {
             log.info("Throw Exception IN getUserInfo: {}", e.getMessage());
         }
@@ -154,6 +168,7 @@ public class KakaoLoginService {
                 .email(post.getEmail())
                 .name(post.getName())
                 .provider("kakao")
+                .image(post.getImage())
                 .build();
         System.out.println("signup으로 넘겨줬을 때 뜨는 email값: " + member.getEmail());
 

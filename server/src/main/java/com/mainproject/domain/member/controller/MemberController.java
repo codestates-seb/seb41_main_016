@@ -63,5 +63,12 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("/members/all")
+    public ResponseEntity<?> deleteMembers() {
+        memberService.deleteMembers();
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }

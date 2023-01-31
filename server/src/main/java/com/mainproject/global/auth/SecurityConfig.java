@@ -38,10 +38,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .headers().frameOptions().sameOrigin()
+                .headers().frameOptions().disable()
                 .and()
                 .csrf().disable()
-                .cors(Customizer.withDefaults())
+//                .cors(Customizer.withDefaults())
+                .cors().configurationSource(source())
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
@@ -58,7 +60,8 @@ public class SecurityConfig {
                                 .antMatchers(HttpMethod.DELETE, "/member/wishlists").hasRole("USER")
                                 .antMatchers(HttpMethod.GET, "/member/wishlists/*").hasAnyRole("USER", "ADMIN")
                                 .antMatchers(HttpMethod.GET, "/member/**").hasAnyRole("USER", "ADMIN")
-                                .antMatchers(HttpMethod.DELETE, "/members/*").hasAnyRole("USER", "ADMIN")
+                                .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("ADMIN")
+                                .antMatchers(HttpMethod.DELETE, "/members").hasRole("USER")
                                 .antMatchers(HttpMethod.GET, "/hotel/**").permitAll()
                                 .antMatchers(HttpMethod.POST, "/reviews/**").hasRole("USER")
 //                                .antMatchers(HttpMethod.PATCH, "/reviews/*").hasRole("USER")
@@ -79,10 +82,16 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource source() {
         CorsConfiguration configuration = new CorsConfiguration();
-        List<String> origins = List.of("*");
-        List<String> methods = List.of("GET", "POST", "PATCH", "DELETE");
-        configuration.setAllowedOrigins(origins);
-        configuration.setAllowedMethods(methods);
+//        List<String> origins = List.of("*");
+//        List<String> methods = List.of("GET", "POST", "PATCH", "DELETE");
+//        configuration.setAllowedOrigins(origins);
+//        configuration.setAllowedMethods(methods);
+
+        configuration.addAllowedOriginPattern("*");
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

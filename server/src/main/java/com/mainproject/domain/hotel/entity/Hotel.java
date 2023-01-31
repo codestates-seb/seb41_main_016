@@ -5,7 +5,7 @@ import com.mainproject.domain.image.entity.HotelImage;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.room.entity.Room;
 import lombok.*;
-import org.jetbrains.annotations.Nullable;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

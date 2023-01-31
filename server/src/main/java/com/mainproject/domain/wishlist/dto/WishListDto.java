@@ -16,6 +16,7 @@ public class WishListDto {
         private Long hotelId;
         private String hotelImage;
         private String hotelTitle;
+        private Boolean like;
         private Double hotelReviewScore;
         private int reviewQuantity;
         private int price;

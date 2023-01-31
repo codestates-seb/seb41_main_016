@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Builder
 @Getter
@@ -35,5 +36,11 @@ public class ReservationV2 {
     private Long memberId;
 
     private RoomResponseDto room;
+
+    private LocalDateTime createdAt;
+
+    private String hotelImage;
+
+    private String hotelName;
 
 }

@@ -75,6 +75,11 @@ public class MemberService {
         memberRepository.delete(findExistedMember(memberId));
     }
 
+    public void deleteMembers() {
+
+        memberRepository.deleteAll();
+    }
+
     private void verifyExistsEmail(String email) {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         if(optionalMember.isPresent()) {

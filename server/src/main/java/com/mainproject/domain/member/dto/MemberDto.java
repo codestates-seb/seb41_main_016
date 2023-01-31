@@ -64,7 +64,7 @@ public class MemberDto {
         private String name;
         private String image;
 //        private String nickname;
-        List<Review> reviews;
+        List<ReviewV2> reviews;
         List<ReservationV2> reservations;
 //        List<WishList> buckets;
     }
@@ -74,6 +74,7 @@ public class MemberDto {
     static public class OauthPost {
         private String email;
         private String name;
+        private String image;
 
     }
 }
