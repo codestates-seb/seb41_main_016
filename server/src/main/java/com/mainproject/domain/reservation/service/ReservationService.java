@@ -12,6 +12,7 @@ import com.mainproject.global.exception.ExceptionCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -51,12 +52,6 @@ public class ReservationService {
         //room 추가
         Room room = roomService.findRoom(roomId);
         reservation.setRoom(room);
-        reservation.getRoom().reduceQuantity();
-
-        // 예약되면 그 방은 갯수 -1, room에 예약이 존재하는 error발생
-        if (reservation.getRoom().getQuantity() < 0){
-            throw new BusinessLogicException(ExceptionCode.ROOM_RESERVATION_EXIST);
-        }
 
         //member 추가
         Member member = memberService.findMember(memberId);
@@ -99,28 +94,26 @@ public class ReservationService {
      * roomCount, checkStatus
      * 룸 갯수, 체크인 상태확인
      */
+    public void addQuantity(Reservation reservation, Room room){
+        Reservation reservationCheck = findReservation(reservation.getReservationId());
+        // 방갯수 감소
+        reservationCheck.getRoom().reduceQuantity();
+        // 예약일수 계산
+        //Integer reservationDate = reservation.getCheckout().getDayOfMonth() - reservation.getCheckin().getDayOfMonth();
 
-    /*public void addQuantity(Reservation reservation, Room room){
-
-        reservationStart = Integer.parseInt(new SimpleDateFormat("dd").format(reservation.getCheckin()));
-        reservationEnd = Integer.parseInt(new SimpleDateFormat("dd").format(reservation.getCheckout()));
-
-        for (int i = reservationStart; i < reservationEnd; i++){
-            room.reduceQuantity();
+        // checkin 날짜에 status 변경하기
+        if (LocalDate.now() == reservation.getCheckin()){
+            reservation.setStatusIn();
         }
-    }*/
-
-/*    public List<Reservation> findAllVerifiedReservation() {
-        List<Reservation> optionalReservation =
-                reservationRepository.findAllByReservation(reservation);
-
-        Reservation findReservation =
-                optionalReservation.orElseThrow(() -> {
-                    return new BusinessLogicException(ExceptionCode.RESERVATION_NOT_FOUND);
-                });
-
-        return findReservation;
-    }*/
+        // checkout 날짜에 status 변경하기
+        if (LocalDate.now() == reservation.getCheckout()){
+            reservation.setStatusOut();
+        }
+        // room에 예약이 존재하는 error발생
+        if (reservation.getRoom().getQuantity() < 1) {
+            throw new BusinessLogicException(ExceptionCode.ROOM_RESERVATION_EXIST);
+        }
+    }
 
     // Reservation 정보 저장하기
     public void saveReservation(Reservation reservation){

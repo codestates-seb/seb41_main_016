@@ -21,8 +21,6 @@ public interface KakaoFeignClient {
      * @param query
      * @return
      */
-
-
     @PostMapping(value = "/v1/payment/ready")
     PayReadyInfo readyForPay(
             @RequestHeader(PayConstants.AUTHORIZATION) String authorization,
@@ -40,8 +38,6 @@ public interface KakaoFeignClient {
      * @param query
      * @return
      */
-
-
     @PostMapping(value = "/v1/payment/approve")
     PayApproveInfo successForPay(
             @RequestHeader(PayConstants.AUTHORIZATION) String authorization,

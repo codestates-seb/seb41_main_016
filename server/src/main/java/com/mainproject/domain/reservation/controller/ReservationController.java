@@ -66,7 +66,8 @@ public class ReservationController {
     public ResponseEntity getReservation(@PathVariable("reservation-id") @Positive long reservationId){
         Reservation reservation = reservationService.findReservation(reservationId);
 
-        ReservationDto.Response reservationResponseDto = reservationMapper.reservationToReservationDto(reservation);
+        ReservationDto.Response reservationResponseDto =
+                reservationMapper.reservationToReservationDto(reservation);
 
         return new ResponseEntity<>(reservationResponseDto, HttpStatus.OK);
     }

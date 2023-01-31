@@ -45,6 +45,9 @@ public class Reservation extends Auditable {
     private boolean status;
 
     @JsonIgnore
+    private String reservationDate;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
@@ -54,12 +57,8 @@ public class Reservation extends Auditable {
     private Room room;
 
     @JsonIgnore
-    private String reservationDate;
-
-    @JsonIgnore
     @Enumerated(value = EnumType.STRING)
     private ReservationPayStatus reservationPayStatus = ReservationPayStatus.PAY_IN_PROGRESS;
-
 
 
     /************************************************** 주문 내역 정보 **************************************************/

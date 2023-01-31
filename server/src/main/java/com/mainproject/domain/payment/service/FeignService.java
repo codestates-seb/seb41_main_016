@@ -108,9 +108,9 @@ public class FeignService {
 
         return ReadyToPayInfo.builder()
                 .cid(cid)
-                .approval_url(requestUrl + "/payment/success" + "/" + reservationId)
-                .cancel_url(requestUrl + "/" + reservationId + "/cancel")
-                .fail_url(requestUrl + "/" +  reservationId + "/fail")
+                .approval_url("http://whystay.p-e.kr" + "/payment/success" + "/" + reservationId)
+                .cancel_url("http://whystay.p-e.kr" + "/" + reservationId + "/cancel")
+                .fail_url("http://whystay.p-e.kr" + "/" +  reservationId + "/fail")
                 .partner_order_id(orderId)
                 .partner_user_id("userId")
                 .item_name(itemName)
