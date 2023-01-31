@@ -1,23 +1,19 @@
 import React from "react";
-import { PacmanLoader } from "react-spinners/PacmanLoader";
 import styled from "styled-components";
+import LoadingPage from "../assets/imgs/loading.svg";
+import LayoutContainer from "./LayoutContainer/LayoutContainer";
 
 export default function Loading() {
-  return (
-    <PacmanLoader
-      color="#36d7b7"
-      cssOverride={null}
-      loading
-      margin={0}
-      size={50}
-      speedMultiplier={1}
-    />
-  );
+    return (
+        <LayoutContainer>
+            <Img />
+        </LayoutContainer>
+    );
 }
 
-const Wrap = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+export const Img = styled.div`
+    background-image: url(${LoadingPage});
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 33rem;
 `;

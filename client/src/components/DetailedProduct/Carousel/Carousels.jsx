@@ -4,17 +4,16 @@ import { Carousel } from "react-responsive-carousel";
 import { SlideContainer } from "./style";
 
 export default function Carousels({ img }) {
-  console.log(img);
-  return (
-    <SlideContainer>
-      <Carousel infiniteLoop showThumbs={false}>
-        {img?.map((el, idx) => (
-          <div key={idx}>
-            <img src={el.image} alt="이미지" />
-            <p className="legend">{el.title}</p>
-          </div>
-        ))}
-      </Carousel>
-    </SlideContainer>
-  );
+    return (
+        <SlideContainer>
+            <Carousel infiniteLoop showThumbs={false}>
+                {img?.map((el, idx) => (
+                    <div key={idx}>
+                        <img src={el.image} alt="이미지" />
+                        <p className="legend">{el.title}</p>
+                    </div>
+                ))}
+            </Carousel>
+        </SlideContainer>
+    );
 }
