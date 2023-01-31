@@ -51,6 +51,7 @@ public class KakaoLoginService {
                     "&client_id=fb6a694dd7c7ede22f3102f1b8b17f4f" + // REST_API_KEY
 //                    "&redirect_uri=http://localhost:8080/auth/kakao/callback" + // REDIRECT_URI
                     "&redirect_uri=http://localhost:3000/auth/kakao/callback" + // REDIRECT_URI
+//                    "&redirect_uri=http://whystay.p-e.kr/auth/kakao/callback" + // REDIRECT_URI
 //                    "&redirect_uri=http://ec2-52-79-60-71.ap-northeast-2.compute.amazonaws.com:8080/auth/kakao/callback" + // REDIRECT_URI
 //                    "&redirect_uri=http://ec2-52-79-60-71.ap-northeast-2.compute.amazonaws.com:3000/auth/kakao/callback" + // REDIRECT_URI
 
