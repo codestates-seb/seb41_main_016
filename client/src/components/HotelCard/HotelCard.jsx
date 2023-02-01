@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { priceFormatter } from "../../utils/priceFormatter";
-import { useSelector } from "react-redux";
 import {
     CardBox,
     Icon,
@@ -20,27 +20,23 @@ export default function HotelCard({
     img,
     id,
     reviewNum,
-    addWishList,
-    likeWish,
+    // like,
     wish,
+    handleLike,
+    isHotelId,
 }) {
-    // const isLike = useSelector((state) => state.Wishlist.isLike);
-    const [isLike, setIsLike] = useState(false);
-
     const navigate = useNavigate();
     const handleNavigate = () => {
         navigate(`/rooms/${id}`, { state: id });
     };
-    const like = (e) => {
-        e.stopPropagation();
-        setIsLike((prev) => !prev);
-    };
+
+    const isLike = useSelector((state) => state.Like.isLike);
 
     return (
         <CardBox onClick={(e) => handleNavigate(e)}>
             <ImgBox img={img}>
-                <Icon onClick={(e) => addWishList(id, e)}>
-                    {isLike ? (
+                <Icon onClick={(e) => handleLike(id, e)}>
+                    {isHotelId === id && isLike ? (
                         <AiFillHeart className="heart" />
                     ) : (
                         <AiOutlineHeart />

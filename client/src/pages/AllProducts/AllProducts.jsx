@@ -18,50 +18,16 @@ import Loading from "../../components/Loading";
 import { modalOpen } from "../../store/ModalSlice";
 import useAllProducts from "../../hooks/useAllProducts";
 import { getWishList } from "../../store/WishList";
+import { likeClose, likeOpen } from "../../store/LikeSlice";
 
 export default function AllProducts() {
     const isLogin = useSelector((state) => state.Login.isLogin);
     const dispatch = useDispatch();
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const [isHotelId, setIsHotelId] = useState(null);
     const wish = useSelector((state) => state.Wishlist);
-
-    const addWishList = async (id, e) => {
-        e.stopPropagation();
-        if (isLogin) {
-            try {
-                // await axios({
-                //     method: "post",
-                //     url: `/member/wishlists?hotelId=${id}`,
-                //     headers: {
-                //         Authorization: localStorage.getItem("accessToken"),
-                //     },
-                // });
-                await axios.post(`/member/wishlists?hotelId=${id}`, undefined, {
-                    headers: {
-                        Authorization: localStorage.getItem("accessToken"),
-                    },
-                });
-            } catch (error) {
-                console.error(error);
-            }
-        } else {
-            dispatch(modalOpen());
-        }
-    };
-
-    const deleteWishList = async (id, e) => {
-        e.stopPropagation();
-        try {
-            await axios.delete(`/member/wishlists?hotelId=${id}`, {
-                headers: {
-                    Authorization: localStorage.getItem("accessToken"),
-                },
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    const islike = useSelector((state) => state.Like.isLike);
 
     const categoryData = [
         {
@@ -112,9 +78,48 @@ export default function AllProducts() {
         navigate(path);
     };
 
-    // const likeWish = (id) => {
-    //     return wish.map((el) => el.hotelId === id);
-    // };
+    const handleLike = async (id, e) => {
+        // const likeHotelId = productsList.filter((el) => el.hotelId === id);
+        // console.log(likeHotelId);
+
+        e.stopPropagation();
+        // 로그인 안될 시, 먼저 잡고 로그인
+        if (!isLogin) {
+            dispatch(modalOpen());
+            return;
+        }
+
+        if (islike === false) {
+            try {
+                await axios
+                    .post(`/member/wishlists?hotelId=${id}`, undefined, {
+                        headers: {
+                            Authorization: localStorage.getItem("accessToken"),
+                        },
+                    })
+                    .then(() => {
+                        setIsHotelId(id);
+                        dispatch(likeOpen());
+                    });
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            try {
+                await axios
+                    .delete(`/member/wishlists?hotelId=${id}`, {
+                        headers: {
+                            Authorization: localStorage.getItem("accessToken"),
+                        },
+                    })
+                    .then(() => {
+                        dispatch(likeClose());
+                    });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     useEffect(() => {
         dispatch(getWishList());
@@ -158,10 +163,9 @@ export default function AllProducts() {
                                 score={el.hotelReviewScore}
                                 img={el.hotelImage}
                                 reviewNum={el.reviewQuantity}
-                                addWishList={addWishList}
-                                deleteWishList={deleteWishList}
-                                // likeWish={likeWish}
+                                isHotelId={isHotelId}
                                 wish={wish}
+                                handleLike={handleLike}
                             />
                         ))}
                 </CardBox>
