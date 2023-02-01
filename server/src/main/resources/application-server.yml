@@ -1,0 +1,36 @@
+spring:
+  redis:
+    host: localhost
+    port: ${REDIS_PORT}
+    password: ${REDIS_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Seoul
+    defer-datasource-initialization: true
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  sql:
+    init:
+      mode: always
+      data-locations: classpath*:db/h2/data.sql
+jwt:
+  key: ${JWT_SECRET_KEY}
+  refresh-token-expiration-minutes: 420
+  access-token-expiration-minutes: 360
+mail:
+  address:
+    admin: ${ADMIN_EMAIL_ADDRESS}
+
+#KakaoPay
+kakao:
+  admin:
+    key: ${KAKAOPAY_KEY}
+  host: ${KAKAOPAY_HOST}
