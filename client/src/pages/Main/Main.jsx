@@ -17,21 +17,21 @@ import {
 export default function Main() {
   const categoryData = [
     {
-      href: "/category/travel",
+      href: `/category/travel`,
       icon: <ImAirplane />,
       title: "여행",
       hashTag: "#일상탈출 #욜로",
       url: "/img/travel.jpg",
     },
     {
-      href: "/category/business",
+      href: `/category/business`,
       icon: <RiBriefcase4Fill />,
       title: "워캉스",
       hashTag: "#비지니스 #미팅룸",
       url: "/img/work.jpg",
     },
     {
-      href: "/category/residence",
+      href: `/category/residence`,
       icon: <MdKingBed />,
       title: "한달살이",
       hashTag: "#레지던스 #장기투숙",

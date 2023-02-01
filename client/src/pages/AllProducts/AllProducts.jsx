@@ -28,7 +28,7 @@ export default function AllProducts() {
     const [isHotelId, setIsHotelId] = useState(null);
     const wish = useSelector((state) => state.Wishlist);
     const islike = useSelector((state) => state.Like.isLike);
-
+    
     const categoryData = [
         {
             id: 1,
