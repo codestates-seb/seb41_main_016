@@ -23,28 +23,30 @@ export default function ReservationCard({
     hotelImage,
     createdAt,
 }) {
-  return (
-    <Wrap>
-      <TextBox>
-        <Text date>{createdAt?.slice(0, 10)}</Text>
-        <Text>예약완료</Text>
-      </TextBox>
-      <HotelBox>
-        <HotelImg img={hotelImage}></HotelImg>
-        <HotelTextBox>
-          <HotelText weight>{hotelName}</HotelText>
-          <HotelText2>
-            <span className="chek_in">체크인</span>
-            <span>
-              {checkin} {getDateDiff(checkin, checkout)}박
-            </span>
-          </HotelText2>
-          <HotelText>{priceFormatter.format(price)}</HotelText>
-          <Review onClick={() => reviewOpenModal(resInfo.room.hotelId)}>
-            후기 작성하기
-          </Review>
-        </HotelTextBox>
-      </HotelBox>
-    </Wrap>
-  );
+    return (
+        <Wrap>
+            <TextBox>
+                <Text date>{createdAt?.slice(0, 10)}</Text>
+                <Text>예약완료</Text>
+            </TextBox>
+            <HotelBox>
+                <HotelImg img={hotelImage}></HotelImg>
+                <HotelTextBox>
+                    <HotelText weight>{hotelName}</HotelText>
+                    <HotelText2>
+                        <span className="chek_in">체크인</span>
+                        <span>
+                            {checkin} {getDateDiff(checkin, checkout)}박
+                        </span>
+                    </HotelText2>
+                    <HotelText>{priceFormatter.format(price)}</HotelText>
+                    <Review
+                        onClick={() => reviewOpenModal(resInfo.room.hotelId)}
+                    >
+                        후기 작성하기
+                    </Review>
+                </HotelTextBox>
+            </HotelBox>
+        </Wrap>
+    );
 }

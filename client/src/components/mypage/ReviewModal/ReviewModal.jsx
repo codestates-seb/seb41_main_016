@@ -1,4 +1,3 @@
-import { removeListener } from "@reduxjs/toolkit";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
