@@ -10,15 +10,15 @@ import Loading from "./components/Loading";
 const queryClient = new QueryClient();
 
 export default function App() {
-    return (
-        <Suspense fallback={<Loading />}>
-            <QueryClientProvider client={queryClient}>
-                <GlobalStyle />
-                <Header />
-                <Outlet />
-                <Footer />
-                <ReactQueryDevtools initialIsOpen={true} />
-            </QueryClientProvider>
-        </Suspense>
-    );
+  return (
+    <Suspense fallback={<Loading />}>
+      <QueryClientProvider client={queryClient}>
+        <GlobalStyle />
+        <Header />
+        <Outlet />
+        <Footer />
+        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+      </QueryClientProvider>
+    </Suspense>
+  );
 }

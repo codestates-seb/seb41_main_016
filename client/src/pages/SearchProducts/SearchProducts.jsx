@@ -18,11 +18,9 @@ export default function SearchProducts() {
 
   const handleSearchList = useCallback(async () => {
     try {
-      await axios
-        .get(`${process.env.REACT_APP_API_URL}/main/search?keyword=${state}`)
-        .then((res) => {
-          setSearchList(res.data);
-        });
+      await axios.get(`/main/search?keyword=${state}`).then((res) => {
+        setSearchList(res.data);
+      });
     } catch (error) {
       console.error(error);
     }
@@ -32,14 +30,11 @@ export default function SearchProducts() {
     e.stopPropagation();
     if (isLogin) {
       try {
-        await axios.post(
-          `${process.env.REACT_APP_API_URL}/member/wishlists?hotelId=${id}`,
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
+        await axios.post(`/member/wishlists?hotelId=${id}`, {
+          headers: {
+            Authorization: token,
+          },
+        });
       } catch (error) {
         console.error(error);
       }
