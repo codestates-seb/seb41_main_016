@@ -76,7 +76,7 @@ export default function AllProducts() {
 
   useEffect(() => {
     dispatch(getWishList());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) return <Loading />;
   if (error) return <NotFound />;

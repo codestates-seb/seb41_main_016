@@ -67,7 +67,7 @@ export default function MyPage() {
   };
 
   let score = clicked.filter(Boolean).length;
-  const addReview = async () => {
+  const addReview = useCallback(async () => {
     try {
       await axios.post(
         `${process.env.REACT_APP_API_URL}/reviews/${selectedHotelId}`,
@@ -82,7 +82,7 @@ export default function MyPage() {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [reviewModal]);
 
   const editReview = async () => {
     try {
@@ -99,6 +99,7 @@ export default function MyPage() {
         }
       );
       setEditModal(false);
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -111,6 +112,7 @@ export default function MyPage() {
           Authorization: token,
         },
       });
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -126,7 +128,7 @@ export default function MyPage() {
 
   useEffect(() => {
     handleMypage();
-  }, [handleMypage]);
+  }, [handleMypage, addReview]);
 
   if (loading) return <Loading />;
 
