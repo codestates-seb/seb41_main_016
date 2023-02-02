@@ -116,9 +116,13 @@ export default function MyPage() {
     }
   };
 
+  const filterId = mypage?.reservations?.filter(
+    (el) => el.room.hotelId === selectedHotelId
+  );
+
   useEffect(() => {
     handleMypage();
-  }, [handleMypage, mypage]);
+  }, [handleMypage]);
 
   if (loading) return <Loading />;
 
@@ -147,7 +151,7 @@ export default function MyPage() {
         </MyLayout>
       </div>
       {reviewModal &&
-        mypage.reservations.map((el) => (
+        filterId.map((el) => (
           <ReviewModal
             key={el.reservationId}
             text={text}

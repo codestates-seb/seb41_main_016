@@ -86,7 +86,7 @@ export default function HotelCard({
             <AiFillStar />
           </Star>
           <span>
-            {score} ({reviewNum})
+            {score.toFixed(1)} ({reviewNum})
           </span>
         </ScopeBox>
       </TextBox>

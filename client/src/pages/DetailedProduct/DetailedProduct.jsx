@@ -126,63 +126,68 @@ export default function DetailedProduct() {
     for (let i = 0; i < pageDetail.reviews?.length; i++) {
       sum = sum + pageDetail.reviews[i].score;
     }
-    return (sum / pageDetail.reviews?.length).toFixed(2);
+    return (sum / pageDetail.reviews?.length).toFixed(1);
   };
 
   const handleSubmit = async () => {
-    try {
-      await axios
-        .post(
-          `${process.env.REACT_APP_API_URL}/reservation`,
-          {
-            // hotelId: id,
-            memberId: memberId,
-            roomId:
-              roomType === "1 King Bed"
-                ? pageDetail.rooms[0].roomId
-                : pageDetail.rooms[1].roomId,
-            checkin: DateFormat(startDate),
-            checkout: DateFormat(endDate),
-            adult: adultCount,
-            child: childrenCount,
-            price:
-              (roomType === "1 King Bed"
-                ? pageDetail.rooms[0].price
-                : pageDetail.rooms[1].price) * getDateDiff(startDate, endDate),
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: localStorage.getItem("accessToken"),
+    if (startDate !== null && endDate !== null && adultCount !== 0) {
+      try {
+        await axios
+          .post(
+            `${process.env.REACT_APP_API_URL}/reservation`,
+            {
+              // hotelId: id,
+              memberId: memberId,
+              roomId:
+                roomType === "1 King Bed"
+                  ? pageDetail.rooms[0].roomId
+                  : pageDetail.rooms[1].roomId,
+              checkin: DateFormat(startDate),
+              checkout: DateFormat(endDate),
+              adult: adultCount,
+              child: childrenCount,
+              price:
+                (roomType === "1 King Bed"
+                  ? pageDetail.rooms[0].price
+                  : pageDetail.rooms[1].price) *
+                getDateDiff(startDate, endDate),
             },
-          }
-        )
-        .then((res) => {
-          axios
-            .get(
-              `${process.env.REACT_APP_API_URL}/payment/ready/${res.data.reservationId}`,
-              {
-                headers: {
-                  "Content-Type":
-                    "application/x-www-form-urlencoded;charset=utf-8",
-                  Authorization: "KakaoAK 7d8b34bddd92b4d25454fe47608e39ab",
-                },
-              }
-            )
-            .then((res) => {
-              console.log(res);
-              window.open(
-                res.data.url,
-                "카카오톡 결제",
-                "top=100px, left=100px height=800px, width=500px"
-              );
-            })
-            .then(() => {
-              window.close();
-            });
-        });
-    } catch (error) {
-      console.error(error);
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("accessToken"),
+              },
+            }
+          )
+          .then((res) => {
+            axios
+              .get(
+                `${process.env.REACT_APP_API_URL}/payment/ready/${res.data.reservationId}`,
+                {
+                  headers: {
+                    "Content-Type":
+                      "application/x-www-form-urlencoded;charset=utf-8",
+                    Authorization: "KakaoAK 7d8b34bddd92b4d25454fe47608e39ab",
+                  },
+                }
+              )
+              .then((res) => {
+                console.log(res);
+                window.open(
+                  res.data.url,
+                  "카카오톡 결제",
+                  "top=100px, left=100px height=800px, width=500px"
+                );
+              });
+            // .then(() => {
+            //   window.close();
+            // });
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      return;
     }
   };
 
@@ -196,7 +201,7 @@ export default function DetailedProduct() {
         <ShortInfoBox>
           <ShortInfo>
             <AiFillStar />
-            {pageDetail.hotelScore}
+            {pageDetail.hotelScore.toFixed(1)}
           </ShortInfo>
           <ReviewNumber onClick={moveTo}>
             후기 {pageDetail.reviews?.length}개

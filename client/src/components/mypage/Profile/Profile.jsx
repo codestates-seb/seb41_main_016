@@ -4,6 +4,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
   Btn,
+  DefaultImgBox,
   NameInput,
   ProfileBox,
   ProfileImgBox,
@@ -23,9 +24,9 @@ export default function Profile({ email, name, image }) {
         {image ? (
           <ProfileImgBox image={image} />
         ) : (
-          <ProfileBox>
+          <DefaultImgBox>
             <CgProfile />
-          </ProfileBox>
+          </DefaultImgBox>
         )}
         <ProfileText onClick={() => setModify((prev) => !prev)} modify={modify}>
           프로필 수정하기
