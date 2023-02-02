@@ -5,6 +5,7 @@ import com.mainproject.domain.image.entity.HotelImage;
 import com.mainproject.domain.review.entity.Review;
 import com.mainproject.domain.room.entity.Room;
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 
 import javax.persistence.*;
@@ -26,11 +27,10 @@ public class Hotel {
 
     @Column(name = "title")
     private String title;
-
+    @Range(min = 0, max = 5)
     @Column(name = "hotel_score")
     @NotNull
     private Double hotelScore;
-
     @Column(name = "address")
     private String address;
     @Column(name = "location_x")
