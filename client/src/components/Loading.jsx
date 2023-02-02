@@ -15,5 +15,5 @@ export const Img = styled.div`
   background-image: url(${LoadingPage});
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
+  height: 99vh;
 `;
