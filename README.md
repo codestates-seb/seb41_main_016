@@ -11,7 +11,11 @@
 
 ## 🎤 발표영상
 
-[Link]()
+[Link](https://youtu.be/BnkJpTD9A_A)
+
+## ❌ NG영상
+
+[Link](https://youtu.be/Z31z7tlamdA)
 
 ## 📅 제작기간 
 
