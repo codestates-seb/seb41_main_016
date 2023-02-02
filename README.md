@@ -1,4 +1,8 @@
-# **<p align="center"><span style="color:#23C8AF">왜 가?(MakeCake) </br> 다들 여기 왜 가? 숙박 목적에 따른 분류로 안성맞춤 숙박 업체 예약 웹 서비스 </span></p>**
+
+
+
+# **<p align="center"><span style="color:#23C8AF">왜 가?(Why Stay?) </br> 다들 여기 왜 가? 숙박 목적에 따른 분류로 안성맞춤 숙박 업체 예약 웹 서비스 </span></p>**
+
 
 <p align="center"><a href="">왜 가?</a></p>
 <p align="center"><img src="https://user-images.githubusercontent.com/87220944/215426799-10b2114f-8015-489f-a306-08e2f11e2cac.jpg" height="500"></img></p>
@@ -9,7 +13,13 @@
 
 ## 🎤 발표영상
 
-[Link]()
+
+[Link](https://youtu.be/BnkJpTD9A_A)
+
+## ❌ NG영상
+
+[Link](https://youtu.be/Z31z7tlamdA)
+
 
 ## 📅 제작기간 
 
