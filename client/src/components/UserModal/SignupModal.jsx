@@ -71,7 +71,7 @@ export default function SignupModal({ setSignupOpen }) {
     } else {
       try {
         await axios
-          .post(`/members`, {
+          .post(`${process.env.REACT_APP_API_URL}/members`, {
             name: data.username,
             email: data.email,
             password: data.password,
@@ -103,9 +103,7 @@ export default function SignupModal({ setSignupOpen }) {
   };
 
   const handleKakao = () => {
-    window.open(
-      `https://kauth.kakao.com/oauth/authorize?client_id=fb6a694dd7c7ede22f3102f1b8b17f4f&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`
-    );
+    window.open(`${process.env.REACT_APP_KAKAO_AUTH_URL}`);
     closeModal();
     dispatch(login());
     Toast.fire({
