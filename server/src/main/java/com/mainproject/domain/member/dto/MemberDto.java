@@ -20,7 +20,6 @@ public class MemberDto {
         @NotBlank(message = "이름을 입력해주세요.")
         private String name;
 
-        private String image;
 //        @NotBlank(message = "사용할 닉네임을 입력해주세요.")
 //        private String nickname;
         @NotBlank(message = "비밀번호를 입력해주세요.")

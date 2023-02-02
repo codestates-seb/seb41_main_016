@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -43,7 +45,7 @@ public class KakaoLoginController {
         }
         if(user.get("email") == null) {
             log.info("이메일이 없으면 안되는데 일단 없으면 qwerasdf@gmail.com으로 대체");
-            user.put("email", "qwerasdf@gmail.com");
+            user.put("email", "nonamenono@gmail.com"+ generateRandomId());
         }
         if(user.get("nickname") == null) {
             log.info("이름 없으면 \"이름없음\" 으로 대체");
@@ -84,4 +86,14 @@ public class KakaoLoginController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    private String generateRandomId() {
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+        String s = "";
+        for (int i=0;i<4;i++) {
+            s += random.nextInt(10);
+        }
+
+        return s;
+    }
 }

@@ -53,6 +53,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setHeader("Refresh", refreshToken);
         response.setHeader("Access-Expiration-Time", String.valueOf(jwtProvider.getAccessTokenExpirationMinutes()));
         response.setHeader("Member_Id", String.valueOf(member.getMemberId()));
+        response.setHeader("Access-Control-Expose-Headers", "*");
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authentication);
     }
 }
