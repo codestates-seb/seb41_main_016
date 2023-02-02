@@ -30,29 +30,28 @@ import ScrollTop from "./hooks/ScrollTop";
 // );
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <NotFound />,
-    children: [
-      { index: true, path: "/", element: <Main /> },
-      { path: "/category/:id", element: <AllProducts /> },
-      { path: "/rooms/:id", element: <DetailedProduct /> },
-      { path: "/wishlists", element: <WishLists /> },
-      { path: `/members`, element: <MyPage /> },
-      { path: "/auth/kakao/callback", element: <KakaoLogin /> },
-      { path: "/:searchParams", element: <SearchProducts /> },
-    ],
-  },
+    {
+        path: "/",
+        element: <App />,
+        errorElement: <NotFound />,
+        children: [
+            { index: true, path: "/", element: <Main /> },
+            { path: "/category/:id", element: <AllProducts /> },
+            { path: "/rooms/:id", element: <DetailedProduct /> },
+            { path: "/wishlists", element: <WishLists /> },
+            { path: `/members`, element: <MyPage /> },
+            { path: "/auth/kakao/callback", element: <KakaoLogin /> },
+            { path: "/:searchParams", element: <SearchProducts /> },
+        ],
+    },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <Provider store={store}>
-    <ThemeProvider theme={colorTheme}>
-      <ScrollTop />
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  </Provider>
+    <Provider store={store}>
+        <ThemeProvider theme={colorTheme}>
+            <RouterProvider router={router} />
+        </ThemeProvider>
+    </Provider>
 );

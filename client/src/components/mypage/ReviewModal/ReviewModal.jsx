@@ -35,6 +35,7 @@ export default function ReviewModal({
     reslist,
 }) {
     useScrollPrevent();
+    console.log(reslist);
 
     return (
         <ModalContainer>
