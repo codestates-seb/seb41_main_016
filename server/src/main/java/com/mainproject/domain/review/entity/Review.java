@@ -7,6 +7,7 @@ import com.mainproject.domain.image.entity.ReviewImage;
 import com.mainproject.domain.member.entity.Member;
 import com.mainproject.global.audit.Auditable;
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class Review extends Auditable{
     @Column(nullable = false)
     private String content;
 
+    @Range(min = 0, max = 5)
     @Column(nullable = false)
     private int score;
     @JsonIgnore
