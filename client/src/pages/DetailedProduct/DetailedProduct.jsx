@@ -161,8 +161,9 @@ export default function DetailedProduct() {
           )
           .then((res) => {
             axios
-              .get(
+              .post(
                 `${process.env.REACT_APP_API_URL}/payment/ready/${res.data.reservationId}`,
+                undefined,
                 {
                   headers: {
                     "Content-Type":
