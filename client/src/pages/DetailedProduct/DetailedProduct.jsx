@@ -174,7 +174,6 @@ export default function DetailedProduct() {
                 }
               )
               .then((res) => {
-                console.log(res);
                 window.open(
                   res.data.url,
                   "카카오톡 결제",

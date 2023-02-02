@@ -40,7 +40,7 @@ export default function MyPage() {
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error(error);
     }
   }, [token]);
 
