@@ -6,15 +6,12 @@ import { useLocation } from "react-router-dom";
 import { useCallback } from "react";
 import { AllProductsBox, CardBox, CategoryDescriptionBox } from "./style";
 import { AllCategoryButton } from "../Main/style";
-import { useDispatch, useSelector } from "react-redux";
-import { modalOpen } from "../../store/ModalSlice";
+import { useSelector } from "react-redux";
 
 export default function SearchProducts() {
   const { state } = useLocation();
   const [searchList, setSearchList] = useState([]);
-  const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.Login.isLogin);
-  const token = localStorage.getItem("accessToken");
+  const wish = useSelector((state) => state.Wishlist);
 
   const handleSearchList = useCallback(async () => {
     try {
@@ -26,22 +23,7 @@ export default function SearchProducts() {
     }
   }, [state]);
 
-  const handleClickId = async (id, e) => {
-    e.stopPropagation();
-    if (isLogin) {
-      try {
-        await axios.post(`/member/wishlists?hotelId=${id}`, {
-          headers: {
-            Authorization: token,
-          },
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      dispatch(modalOpen());
-    }
-  };
+  const likedHotelList = wish.map((el) => el.hotelId);
 
   useEffect(() => {
     handleSearchList();
@@ -74,7 +56,7 @@ export default function SearchProducts() {
                 score={el.hotelReviewScore}
                 img={el.hotelImage}
                 reviewNum={el.reviewQuantity}
-                handleClickId={handleClickId}
+                isSelected={likedHotelList.includes(el.hotelId)}
               />
             ))}
         </CardBox>
