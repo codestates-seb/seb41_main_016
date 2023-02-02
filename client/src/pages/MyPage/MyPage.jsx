@@ -70,7 +70,7 @@ export default function MyPage() {
   const addReview = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/reviews/${selectedHotelId}/${selectedHotelId}`,
+        `${process.env.REACT_APP_API_URL}/reviews/${selectedHotelId}`,
         { content: text, score },
         {
           headers: {

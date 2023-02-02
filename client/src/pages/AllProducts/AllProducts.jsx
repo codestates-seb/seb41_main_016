@@ -114,7 +114,6 @@ export default function AllProducts() {
                 score={el.hotelReviewScore}
                 img={el.hotelImage}
                 reviewNum={el.reviewQuantity}
-                wish={wish}
                 isSelected={likedHotelList.includes(el.hotelId)}
               />
             ))}

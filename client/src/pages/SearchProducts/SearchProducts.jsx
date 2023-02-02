@@ -12,6 +12,7 @@ export default function SearchProducts() {
   const { state } = useLocation();
   const [searchList, setSearchList] = useState([]);
   const wish = useSelector((state) => state.Wishlist);
+  const isLogin = useSelector((state) => state.Login.isLogin);
 
   const handleSearchList = useCallback(async () => {
     try {
@@ -59,6 +60,7 @@ export default function SearchProducts() {
                 img={el.hotelImage}
                 reviewNum={el.reviewQuantity}
                 isSelected={likedHotelList.includes(el.hotelId)}
+                isLogin={isLogin}
               />
             ))}
         </CardBox>

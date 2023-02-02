@@ -14,6 +14,7 @@ import WishLists from "./pages/WishLists/WishLists";
 import MyPage from "./pages/MyPage/MyPage";
 import KakaoLogin from "./pages/KakaoLogin";
 import NotFound from "./pages/NotFound/NotFound";
+import ScrollTop from "./hooks/ScrollTop";
 
 // const Main = lazy(() => import("./pages/Main/Main"));
 // const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
@@ -50,6 +51,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <ThemeProvider theme={colorTheme}>
+      <ScrollTop />
       <RouterProvider router={router} />
     </ThemeProvider>
   </Provider>

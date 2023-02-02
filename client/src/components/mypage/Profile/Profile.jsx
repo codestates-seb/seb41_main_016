@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CgProfile } from "react-icons/cg";
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
@@ -19,7 +20,13 @@ export default function Profile({ email, name, image }) {
   return (
     <ProfileBox>
       <Wrap>
-        <ProfileImgBox image={image} />
+        {image ? (
+          <ProfileImgBox image={image} />
+        ) : (
+          <ProfileBox>
+            <CgProfile />
+          </ProfileBox>
+        )}
         <ProfileText onClick={() => setModify((prev) => !prev)} modify={modify}>
           프로필 수정하기
         </ProfileText>
