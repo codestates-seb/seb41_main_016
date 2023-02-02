@@ -27,7 +27,7 @@ export default function MyPage() {
     try {
       if (token) {
         const mypageList = await axios
-          .get(`/members`, {
+          .get(`${process.env.REACT_APP_API_URL}/members`, {
             headers: {
               Authorization: token,
             },
@@ -70,7 +70,7 @@ export default function MyPage() {
   const addReview = async () => {
     try {
       await axios.post(
-        `/reviews/${selectedHotelId}`,
+        `${process.env.REACT_APP_API_URL}/reviews/${selectedHotelId}/${selectedHotelId}`,
         { content: text, score },
         {
           headers: {
@@ -87,7 +87,7 @@ export default function MyPage() {
   const editReview = async () => {
     try {
       await axios.patch(
-        `/reviews/edit/${selectedReviewId}`,
+        `${process.env.REACT_APP_API_URL}/reviews/edit/${selectedReviewId}`,
         {
           content: text,
           score,
@@ -106,7 +106,7 @@ export default function MyPage() {
 
   const deleteReview = async (id) => {
     try {
-      await axios.delete(`/reviews/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${id}`, {
         headers: {
           Authorization: token,
         },
@@ -118,7 +118,7 @@ export default function MyPage() {
 
   useEffect(() => {
     handleMypage();
-  }, [handleMypage]);
+  }, [handleMypage, mypage]);
 
   if (loading) return <Loading />;
 

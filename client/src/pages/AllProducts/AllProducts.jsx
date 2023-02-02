@@ -64,8 +64,8 @@ export default function AllProducts() {
   const activeIndex = categoryData.findIndex((el) => pathname === el.path);
   const getUrl =
     pathname === "/category/all"
-      ? `/hotel`
-      : `/hotel?category=${categoryData[activeIndex].query}`;
+      ? `${process.env.REACT_APP_API_URL}/hotel`
+      : `${process.env.REACT_APP_API_URL}/hotel?category=${categoryData[activeIndex].query}`;
 
   const { isLoading, error, productsList } = useAllProducts(getUrl, pathname);
 

@@ -43,21 +43,28 @@ export default function HotelCard({
 
     if (isLike === false) {
       try {
-        await axios.post(`/member/wishlists?hotelId=${id}`, undefined, {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-          },
-        });
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/member/wishlists?hotelId=${id}`,
+          undefined,
+          {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            },
+          }
+        );
       } catch (error) {
         console.error(error);
       }
     } else {
       try {
-        await axios.delete(`/member/wishlists?hotelId=${id}`, {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-          },
-        });
+        await axios.delete(
+          `${process.env.REACT_APP_API_URL}/member/wishlists?hotelId=${id}`,
+          {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            },
+          }
+        );
       } catch (error) {
         console.error(error);
       }

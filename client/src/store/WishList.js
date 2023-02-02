@@ -4,7 +4,7 @@ import { accessToken } from "../utils/localStorage";
 
 export const getWishList = createAsyncThunk("GET_WISH", async () => {
   const wishList = await (
-    await axios.get(`/member/wishlists`, {
+    await axios.get(`${process.env.REACT_APP_API_URL}/member/wishlists`, {
       headers: {
         Authorization: accessToken,
       },

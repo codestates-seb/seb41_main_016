@@ -15,9 +15,7 @@ export default function useAllProducts(url, pathname) {
     isLoading,
     error,
     data: productsList,
-  } = useQuery(["productsList", pathname], handleProductsList, {
-    staleTime: Infinity,
-  });
+  } = useQuery(["productsList", pathname], handleProductsList, {});
   useEffect(() => {
     handleProductsList();
   }, [handleProductsList]);
