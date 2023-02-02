@@ -12,7 +12,7 @@ export default function WishLists() {
 
     useEffect(() => {
         dispatch(getWishList());
-    }, [dispatch]);
+    }, []);
 
     return (
         <LayoutContainer>

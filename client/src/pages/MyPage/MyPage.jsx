@@ -120,15 +120,17 @@ export default function MyPage() {
 
     useEffect(() => {
         handleMypage();
-    }, [handleMypage]);
+    }, []);
 
     if (loading) return <Loading />;
 
-    const filterId = mypage?.reservations?.filter(
+    const filterReviewId = mypage?.reservations?.filter(
         (el) => el.room.hotelId === selectedHotelId
     );
-    console.log(filterId);
-    console.log(mypage);
+
+    const filterEditId = mypage?.reviews?.filter(
+        (el) => el.reviewId === selectedReviewId
+    );
 
     return (
         <LayoutContainer>
@@ -155,7 +157,7 @@ export default function MyPage() {
                 </MyLayout>
             </div>
             {reviewModal &&
-                filterId.map((el) => (
+                filterReviewId.map((el) => (
                     <ReviewModal
                         key={el.reservationId}
                         text={text}
@@ -169,7 +171,7 @@ export default function MyPage() {
                     />
                 ))}
             {editModal &&
-                mypage.reviews.map((el) => (
+                filterEditId.map((el) => (
                     <EditModal
                         key={el.reviewId}
                         text={text}
