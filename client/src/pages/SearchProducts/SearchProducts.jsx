@@ -16,11 +16,9 @@ export default function SearchProducts() {
 
   const handleSearchList = useCallback(async () => {
     try {
-      await axios
-        .get(`${process.env.REACT_APP_API_URL}/main/search?keyword=${state}`)
-        .then((res) => {
-          setSearchList(res.data);
-        });
+      await axios.get(`/main/search?keyword=${state}`).then((res) => {
+        setSearchList(res.data);
+      });
     } catch (error) {
       console.error(error);
     }

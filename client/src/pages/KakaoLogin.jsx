@@ -12,9 +12,7 @@ export default function KakaoLogin() {
   const getKakaoToken = useCallback(async () => {
     try {
       axios
-        .get(
-          `${process.env.REACT_APP_API_URL}/auth/kakao/login?code=${KAKAO_CODE}`
-        )
+        .get(`/auth/kakao/login?code=${KAKAO_CODE}`)
         .then((res) => {
           localStorage.clear();
           localStorage.setItem("accessToken", res.data.accessToken);

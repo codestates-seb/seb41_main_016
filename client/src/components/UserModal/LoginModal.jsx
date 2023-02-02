@@ -64,32 +64,32 @@ export default function LoginModal({ setSignupOpen }) {
     }
 
     try {
-      await axios
-        .post(`${process.env.REACT_APP_API_URL}/auth/login`, data)
-        .then((data) => {
-          console.log(data.headers);
-          closeModal();
-          dispatch(login());
-          localStorage.clear();
-          localStorage.setItem("accessToken", data.headers.authorization);
-          localStorage.setItem("refreshToken", data.headers.refresh);
-          localStorage.setItem("memberId", data.headers.member_id);
-          Toast.fire({
-            title: "로그인 성공!",
-            icon: "success",
-            customClass: {
-              icon: "icon-class",
-              container: "my-swal",
-            },
-          });
+      await axios.post(`/auth/login`, data).then((data) => {
+        console.log(data.headers);
+        closeModal();
+        dispatch(login());
+        localStorage.clear();
+        localStorage.setItem("accessToken", data.headers.authorization);
+        localStorage.setItem("refreshToken", data.headers.refresh);
+        localStorage.setItem("memberId", data.headers.member_id);
+        Toast.fire({
+          title: "로그인 성공!",
+          icon: "success",
+          customClass: {
+            icon: "icon-class",
+            container: "my-swal",
+          },
         });
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleKakao = () => {
-    window.open(`${process.env.REACT_APP_KAKAO_AUTH_URL}`);
+    window.open(
+      `https://kauth.kakao.com/oauth/authorize?client_id=fb6a694dd7c7ede22f3102f1b8b17f4f&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`
+    );
     closeModal();
     if (accessToken !== undefined) {
       dispatch(login());
