@@ -76,7 +76,7 @@ export default function AllProducts() {
 
   useEffect(() => {
     dispatch(getWishList());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) return <Loading />;
   if (error) return <NotFound />;
@@ -114,7 +114,6 @@ export default function AllProducts() {
                 score={el.hotelReviewScore}
                 img={el.hotelImage}
                 reviewNum={el.reviewQuantity}
-                wish={wish}
                 isSelected={likedHotelList.includes(el.hotelId)}
               />
             ))}

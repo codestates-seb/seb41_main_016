@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { Suspense } from "react";
 import Loading from "./components/Loading";
+import ScrollTop from "./hooks/ScrollTop";
 
 const queryClient = new QueryClient();
 
@@ -13,6 +14,7 @@ export default function App() {
   return (
     <Suspense fallback={<Loading />}>
       <QueryClientProvider client={queryClient}>
+        <ScrollTop />
         <GlobalStyle />
         <Header />
         <Outlet />

@@ -53,7 +53,13 @@ export const ProfileContainer = styled.div`
 `;
 
 export const ProfileImg = styled.div`
+  width: 60px;
+  height: 60px;
+  background-image: ${(props) => `url(${props.image})`};
+  background-size: cover;
+  background-position: center;
   justify-content: flex-start;
+  border-radius: 50%;
   svg {
     width: 60px;
     height: 60px;

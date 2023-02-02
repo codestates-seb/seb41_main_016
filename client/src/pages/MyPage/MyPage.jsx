@@ -40,7 +40,7 @@ export default function MyPage() {
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error(error);
     }
   }, [token]);
 
@@ -70,7 +70,7 @@ export default function MyPage() {
   const addReview = async () => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/reviews/${selectedHotelId}/${selectedHotelId}`,
+        `${process.env.REACT_APP_API_URL}/reviews/${selectedHotelId}`,
         { content: text, score },
         {
           headers: {
@@ -79,6 +79,7 @@ export default function MyPage() {
         }
       );
       setReviewModal(false);
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -99,6 +100,7 @@ export default function MyPage() {
         }
       );
       setEditModal(false);
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -111,14 +113,23 @@ export default function MyPage() {
           Authorization: token,
         },
       });
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
   };
 
+  const filterReviewId = mypage?.reservations?.filter(
+    (el) => el.room.hotelId === selectedHotelId
+  );
+
+  const filterEditId = mypage?.reviews?.filter(
+    (el) => el.reviewId === selectedReviewId
+  );
+
   useEffect(() => {
     handleMypage();
-  }, [handleMypage, mypage]);
+  }, [handleMypage]);
 
   if (loading) return <Loading />;
 
@@ -147,7 +158,7 @@ export default function MyPage() {
         </MyLayout>
       </div>
       {reviewModal &&
-        mypage.reservations.map((el) => (
+        filterReviewId.map((el) => (
           <ReviewModal
             key={el.reservationId}
             text={text}
@@ -161,7 +172,7 @@ export default function MyPage() {
           />
         ))}
       {editModal &&
-        mypage.reviews.map((el) => (
+        filterEditId.map((el) => (
           <EditModal
             key={el.reviewId}
             text={text}

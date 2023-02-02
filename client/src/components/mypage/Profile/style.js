@@ -34,6 +34,16 @@ export const Wrap = styled.div`
   }
 `;
 
+export const DefaultImgBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
 export const ProfileImgBox = styled.div`
   /* display: none; */
   border-radius: 50%;

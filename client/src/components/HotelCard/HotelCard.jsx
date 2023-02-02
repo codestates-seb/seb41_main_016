@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { modalOpen } from "../../store/ModalSlice";
+import { getWishList } from "../../store/WishList";
 import { priceFormatter } from "../../utils/priceFormatter";
 import {
   CardBox,
@@ -72,6 +74,10 @@ export default function HotelCard({
     setIsLike(!isLike);
   };
 
+  useEffect(() => {
+    dispatch(getWishList());
+  }, [dispatch, isLike]);
+
   return (
     <CardBox onClick={(e) => handleNavigate(e)}>
       <ImgBox img={img}>
@@ -86,7 +92,7 @@ export default function HotelCard({
             <AiFillStar />
           </Star>
           <span>
-            {score} ({reviewNum})
+            {score.toFixed(1)} ({reviewNum})
           </span>
         </ScopeBox>
       </TextBox>
