@@ -14,7 +14,6 @@ import WishLists from "./pages/WishLists/WishLists";
 import MyPage from "./pages/MyPage/MyPage";
 import KakaoLogin from "./pages/KakaoLogin";
 import NotFound from "./pages/NotFound/NotFound";
-import ScrollTop from "./hooks/ScrollTop";
 
 // const Main = lazy(() => import("./pages/Main/Main"));
 // const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
@@ -30,28 +29,28 @@ import ScrollTop from "./hooks/ScrollTop";
 // );
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        errorElement: <NotFound />,
-        children: [
-            { index: true, path: "/", element: <Main /> },
-            { path: "/category/:id", element: <AllProducts /> },
-            { path: "/rooms/:id", element: <DetailedProduct /> },
-            { path: "/wishlists", element: <WishLists /> },
-            { path: `/members`, element: <MyPage /> },
-            { path: "/auth/kakao/callback", element: <KakaoLogin /> },
-            { path: "/:searchParams", element: <SearchProducts /> },
-        ],
-    },
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <NotFound />,
+    children: [
+      { index: true, path: "/", element: <Main /> },
+      { path: "/category/:id", element: <AllProducts /> },
+      { path: "/rooms/:id", element: <DetailedProduct /> },
+      { path: "/wishlists", element: <WishLists /> },
+      { path: `/members`, element: <MyPage /> },
+      { path: "/auth/kakao/callback", element: <KakaoLogin /> },
+      { path: "/:searchParams", element: <SearchProducts /> },
+    ],
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-    <Provider store={store}>
-        <ThemeProvider theme={colorTheme}>
-            <RouterProvider router={router} />
-        </ThemeProvider>
-    </Provider>
+  <Provider store={store}>
+    <ThemeProvider theme={colorTheme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </Provider>
 );

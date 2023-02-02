@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import LayoutContainer from "../../components/LayoutContainer/LayoutContainer";
+
 import { Btn, BtnBox, Img } from "./style";
 
 export default function NotFound() {
