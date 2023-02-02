@@ -7,8 +7,6 @@ export default function KakaoLogin() {
   const location = useLocation();
   const KAKAO_CODE = location.search.split("=")[1];
 
-  console.log(KAKAO_CODE);
-
   const getKakaoToken = useCallback(async () => {
     try {
       axios

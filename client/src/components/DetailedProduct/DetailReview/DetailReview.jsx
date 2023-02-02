@@ -16,18 +16,28 @@ import {
   UserName,
 } from "./style";
 
-export default function DetailReview({ review, handleModal, getToday }) {
+export default function DetailReview({
+  review,
+  handleModal,
+  getToday,
+  name,
+  image,
+}) {
   return (
     <ModalContainer>
       <ModalBackground>
         <ModalBox>
           <ReviewTitle>후기</ReviewTitle>
           <ProfileContainer>
-            <ProfileImg>
-              <CgProfile />
-            </ProfileImg>
+            {image ? (
+              <ProfileImg image={image} />
+            ) : (
+              <ProfileImg>
+                <CgProfile />
+              </ProfileImg>
+            )}
             <ProfileInfo>
-              <UserName>Dabin</UserName>
+              <UserName>{name}</UserName>
               <RegDate>{getToday()}</RegDate>
             </ProfileInfo>
           </ProfileContainer>

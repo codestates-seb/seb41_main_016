@@ -45,13 +45,11 @@ export default function MyPage() {
   }, [token]);
 
   const reviewOpenModal = (id) => {
-    console.log(id);
     setSelectedHotelId(id);
     setReviewModal((prev) => !prev);
   };
 
   const editOpenModal = (id) => {
-    console.log(id);
     setSelectedReviewId(id);
     setEditModal((prev) => !prev);
   };
@@ -69,6 +67,7 @@ export default function MyPage() {
   };
 
   let score = clicked.filter(Boolean).length;
+  console.log(clicked.filter(Boolean));
   const addReview = async () => {
     try {
       await axios.post(

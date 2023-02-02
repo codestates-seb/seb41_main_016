@@ -65,7 +65,6 @@ export default function LoginModal({ setSignupOpen }) {
 
     try {
       await axios.post(`/auth/login`, data).then((data) => {
-        console.log(data.headers);
         closeModal();
         dispatch(login());
         localStorage.clear();
