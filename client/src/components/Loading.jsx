@@ -1,10 +1,19 @@
 import React from "react";
-import { PacmanLoader } from "react-spinners/PacmanLoader";
+import styled from "styled-components";
+import LoadingPage from "../assets/imgs/loading.svg";
+import LayoutContainer from "./LayoutContainer/LayoutContainer";
 
 export default function Loading() {
   return (
-    <div>
-      <PacmanLoader color="#20b2aa" size={0} speedMultiplier={1} />
-    </div>
+    <LayoutContainer>
+      <Img />
+    </LayoutContainer>
   );
 }
+
+export const Img = styled.div`
+  background-image: url(${LoadingPage});
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40rem;
+`;
